@@ -1,0 +1,16 @@
+## Fix missing lat/lon:
+
+# de:08237:30965,Nordstetten Josef-Hezel-Straße,,,,onses/8003085_1.json
+# de:08237:5122,Eutingen im Gäu Daimlerstraße,,,,onses/8001004_1.json
+# de:08237:7715,Nordstetten Schule,,,,onses/8003085_1.json
+# de:08237:8032,Eyach Sommerhalde,,,,ses/8001004_100.json
+
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:30965"}, "update":{"stop_lat":"48.440657", "stop_lon":"8.701297"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:5122"}, "update":{"stop_lat":"48.47754", "stop_lon":"8.74097"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:7715"}, "update":{"stop_lat":"48.436585", "stop_lon":"8.698151"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:8032"}, "update":{"stop_lat":"48.449008", "stop_lon":"8.784465"}}
+
+# (temp) fix calendar
+{"op":"update", "match": {"file":"calendar.txt", "service_id":"1"}, "update":{"start_date":"20180806", "end_date":"20190803"}}
+{"op":"update", "match": {"file":"calendar.txt", "service_id":"6"}, "update":{"start_date":"20180806", "end_date":"20190803"}}
+{"op":"update", "match": {"file":"calendar.txt", "service_id":"7"}, "update":{"start_date":"20180806", "end_date":"20190803"}}

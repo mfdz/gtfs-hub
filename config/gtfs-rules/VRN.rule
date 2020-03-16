@@ -1,0 +1,20 @@
+## Fix missing lat/lon, wrong stop ids/names:
+# Remove all stops without coordinates
+
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:1065:0:1"}, "update":{"stop_lat":"48.469387", "stop_lon":"8.417926", "stop_id": "de:08237:1101:0:1"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:1065:0:2"}, "update":{"stop_lat":"48.469387", "stop_lon":"8.417926", "stop_id": "de:08237:1101:0:2"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:4004"}, "update":{"stop_lat":"48.474133", "stop_lon":"8.488702"}}
+# Stop has contradicting ifopt ids in nvbw haltestellen list (de:08237:4401 for stop vs de:08237:4352:0:4 for quai)
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:4352:0:4"}, "update":{"stop_lat":"48.4860261716506", "stop_lon":"8.565269769834273", "stop_id": "de:08237:4352:0:4"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:4506"}, "update":{"stop_lat":"48.530459", "stop_lon":"8.577677"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08237:4645"}, "update":{"stop_lat":"48.538909", "stop_lon":"8.596061"}}
+# Not sure, if quais are correct
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:3335"}, "update":{"stop_lat":"48.36568038549475", "stop_lon":"8.48193022090397","stop_id": "de:08237:3331:0:1", "stop_name":"Betzweiler Cafe Walter"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:3331"}, "update":{"stop_id": "de:08237:3331:0:2", "stop_name":"Betzweiler Cafe Walter"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:4005:1:2"}, "update":{"stop_lat":"48.469958", "stop_lon":"8.501346", "stop_id": "de:08237:4005:1:2"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:4005:1:4"}, "update":{"stop_lat":"48.469958", "stop_lon":"8.501346", "stop_id": "de:08237:4005:1:4"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:4005:1:5"}, "update":{"stop_lat":"48.469958", "stop_lon":"8.501346", "stop_id": "de:08237:4005:1:5"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8237:4005:1:6"}, "update":{"stop_lat":"48.469958", "stop_lon":"8.501346", "stop_id": "de:08237:4005:1:6"}}
+# gen:8325:9131 See https://www.vvr-info.de/fps/f19_hr_stand_20181209.pdf
+# To avoid duplicates, add 0:1 as virtual quai...
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8325:9131"}, "update":{"stop_lat":"48.351671", "stop_lon":"8.502698","stop_id": "de:08325:27090:0:1", "stop_name":"Dornhan Freudenst. Straße"}}

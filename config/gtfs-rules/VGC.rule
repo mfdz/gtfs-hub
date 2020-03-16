@@ -1,0 +1,33 @@
+## Fix missing lat/lon:
+
+# grep "000000" -r */stops.txt
+# vgc.gtfs/stops.txt:de:08235:10449:0:4,"Nagold, Uferstr.",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:10451:0:3,"Nagold, Kreuzertal",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:3181:0:3,"Speßhardt, Friedhof",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:5660:2:3,"Neuenbürg, Eyachbrücke",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:5660:2:4,"Neuenbürg, Eyachbrücke",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:7330:0:3,"Wildberg, Bildungszentr.",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:7330:0:4,"Wildberg, Bildungszentr.",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:7330:0:5,"Wildberg, Bildungszentr.",0.000000,0.000000
+# vgc.gtfs/stops.txt:de:08235:7330:0:7,"Wildberg, Bildungszentr.",0.000000,0.000000
+# vgc.gtfs/stops.txt:gen:8235:10263:0:3,"Unterschwandorf, Löwen",0.000000,0.000000
+# vgc.gtfs/stops.txt:gen:8235:2730:0:3,"Enzkl., Adventure Golfpark",0.000000,0.000000
+# vgc.gtfs/stops.txt:gen:8235:2730:0:4,"Enzkl., Adventure Golfpark",0.000000,0.000000
+
+# Guessing de:08235:10449:0:4,"Nagold, Uferstr.
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10449:0:4"}, "update":{"stop_lat":"48.54923", "stop_lon":"8.71451"}}
+# de:08235:10451:0:3,"Nagold, Kreuzertal", Location via info@vbn-bvn.de 
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10451:0:3"}, "update":{"stop_lat":"48.551247", "stop_lon":"8.737486"}}
+# Speßhardt location via info@vbn-bvn.de
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:3"}, "update":{"stop_lat":"48.714458", "stop_lon":"8.690857"}}
+# Eyachbrücke location via info@vbn-bvn.de
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:3"}, "update":{"stop_lat":"48.816358", "stop_lon":"8.577080", "stop_id":"de:08235:5660:2:1"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:4"}, "update":{"stop_lat":"48.816326", "stop_lon":"8.577326", "stop_id":"de:08235:5660:2:2"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:3"}, "update":{"stop_lat":"48.6241902615607", "stop_lon":"8.73791091051151"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:4"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
+# Coordinates are estimates
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:5"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:7"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:10263:0:3"}, "update":{"stop_lat":"48.54465837060639", "stop_lon":"8.671057378464063", "stop_id":"de:08235:10263:0:3"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:2730:0:3"}, "update":{"stop_lat":"48.66741682564984", "stop_lon":"8.474423251273537", "stop_id":"de:08235:2730:0:3"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:2730:0:4"}, "update":{"stop_lat":"48.66741682564984", "stop_lon":"8.474423251273537", "stop_id":"de:08235:2730:0:4"}}

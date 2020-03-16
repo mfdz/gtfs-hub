@@ -1,0 +1,4 @@
+## Fix wrong coordinates:
+
+# de:08115:4800:0:3,,Herrenberg Waldfriedhof,,48.602371216,8.9029130936,,,0,,,0,
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08115:4800:0:3"}, "update":{"stop_lat":"48.6020352", "stop_lon":"8.9036348"}}
