@@ -59,7 +59,7 @@ function download_and_check {
   if [[ `cat $GTFS_DIR/$1.log` =~ $ERROR_REGEX ]]; then
     ERRORS=${BASH_REMATCH[1]}
   else
-    cp $GTFS_FILE $GTFS_VALIDATED_DIR
+    cp -p $GTFS_FILE $GTFS_VALIDATED_DIR
   fi
   if [[ `cat $GTFS_DIR/$1.log` =~ $WARNING_REGEX ]]; then
     WARNINGS=${BASH_REMATCH[1]}
