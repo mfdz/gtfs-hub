@@ -1,6 +1,6 @@
-export OSM_DIR=/var/data/osm
-export OUT_DIR=/var/data/www
-# HOST_DATA should be set
+export OSM_DIR=$DATA_DIR/osm
+export OUT_DIR=$DATA_DIR/www
+# HOST_DATA should be set 
 
 mkdir -p $OSM_DIR
 
@@ -33,7 +33,8 @@ docker run -v $HOST_DATA/osm:/osm mfdz/osmosis:0.47-1-gd370b8c4 --read-pbf /osm/
 # Merge files
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium merge -o /osm/bw-buffered.osm.pbf -O /osm/alsace-extracted.osm.pbf /osm/dach-extracted-alzental.osm.pbf
 
-# Extract osm format for GTFS shape enhancement
+# Extract osm format for GTFS shape enhancement (As long as pfaedle does not suport osm.pbf directly)
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium cat /osm/bw-buffered.osm.pbf -o /osm/bw-buffered.osm -O
+docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium cat /osm/dach-latest.osm.pbf -o /osm/dach-latest.osm -O
 
 mv $OSM_DIR/bw-buffered.osm.pbf $OUT_DIR/bw-buffered.osm.pbf

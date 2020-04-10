@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export DATA_DIR=/var/data
 export GTFS_DIR=$DATA_DIR/gtfs
@@ -17,10 +17,10 @@ function augment_shapes {
   if [ "$1" == "VVS" ]; then
     # remove errornous transfers
     echo "Fixing VVS..."
-     rm $GTFS_DIR/$1.gtfs/transfers.txt
-   fi
+    rm $GTFS_DIR/$1.gtfs/transfers.txt
+  fi
   # call pfaedle
-  docker run --rm -v "$HOST_DATA":/data:rw mfdz/pfaedle --inplace -x /data/osm/bw-buffered.osm /data/gtfs/$1.gtfs
+  docker run --rm -v "$HOST_DATA":/data:rw mfdz/pfaedle --inplace -x /data/osm/$2 /data/gtfs/$1.gtfs
   # zip and move gtfs-out
   zip -j $GTFS_DIR/$1.with-shapes.gtfs.zip $GTFS_DIR/$1.gtfs/*.txt
   mv $GTFS_DIR/$1.with-shapes.gtfs.zip $REPORT_PUBLISH_DIR/gtfs
@@ -28,22 +28,42 @@ function augment_shapes {
 
 function download_and_check {
   export GTFS_FILE=$GTFS_DIR/$1.gtfs.zip
-  echo Download $2
+  echo Download $2 to $GTFS_FILE
   downloadurl=$2
   if [ -f $GTFS_FILE ]; then
-    # Check even non-permanent Urls, as link in CSV may have been changed
-    if [ $1 != "VBB" -a $1 != "HVV"]; then
-      response=$(curl -R -L -w "%{http_code}" -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
-    fi
+    echo "Checking update for $downloadurl"
+    # if file already exists, we only want to download, if newer, hence we add -z flag to compare for file date
+    # FIXME: Enabling this check performs a download, but does not set response_code (?)
+    # if [[ $1 =~ ^(VBB|HVV)$ ]]; then
+    # HVV and VBB dont send time stamps, so we ignore don't download them
+    # TODO: we could store the url used for downloading and download, if it changed...
+    response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
+    # fi
+    #response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
   else
+    echo "First download"
     response=$(curl -R -L -w "%{http_code}" -o $GTFS_FILE $downloadurl)
   fi
+  echo "Resulting http_code: $response"
 
     case "$response" in
-        200) docker run -t -v $HOST_DATA/gtfs:/gtfs mfdz/transitfeed feedvalidator_googletransit.py -o /gtfs/feedvalidator_$1.html -l 1000 -d /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.log
-             if [ "$7" == "Ja" ]; then
-               echo "Augment shapes for $1"
-               augment_shapes $1 $OSM_FILE
+        200) if [ "$1" != "DELFI" ]; then
+               # DELFI is to large for current feedvalidator, takes multiple hours, have to dig into
+               docker run -t -v $HOST_DATA/gtfs:/gtfs mfdz/transitfeed feedvalidator_googletransit.py -o /gtfs/feedvalidator_$1.html -l 1000 -d /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.log
+             else
+              # remove errornous transfers
+              echo "Patching DELFI..."
+              rm -rf "$GTFS_DIR/$1.gtfs"
+              unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
+              sed -i 's/"","Europe/"http:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
+              mv $GTFS_DIR/$1.gtfs/stops.txt $GTFS_DIR/$1.gtfs/stops.orig.txt && grep -v '\x08de:09372:2701:0:2' $GTFS_DIR/$1.gtfs/stops.orig.txt \
+                 | grep -v '\x08de:09278:2840:0:1' | grep -v '\x08de:09278:641:0:1' | grep -v '\x08de:09278:645:0:1' > $GTFS_DIR/$1.gtfs/stops.txt
+              sed -i 's/\x08//' $GTFS_DIR/$1.gtfs/stops.txt
+              zip -j $GTFS_DIR/$1.gtfs.zip $GTFS_DIR/$1.gtfs/*
+             fi
+             if [ "$7" != "Nein" ]; then
+               echo "Augment shapes for $1 using file $7"
+               augment_shapes $1 $7
              fi
              ;;
         301) printf "Received: HTTP $response (file moved permanently) ==> $url\n" ;;
@@ -122,6 +142,7 @@ echo "</table>
 dokumentiert.</p>
 <p>Weitere Informationen:</p>
 <ul>
+  <li><a href='https://github.com/mfdz/gtfs-hub/'>GitHub-Repository dieser Seite</a></li>
   <li><a href='https://developers.google.com/transit/gtfs/reference/'>GTFS-Spezifikation</a></li>
   <li><a href='https://gtfs.org/best-practices/'>GTFS Best Practices</a></li>
   <li><a href='https://developers.google.com/transit/gtfs/reference/gtfs-extensions'>Google GTFS Extensions</a></li>

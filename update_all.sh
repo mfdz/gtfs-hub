@@ -1,13 +1,20 @@
-#!/bin/sh
+#!/bin/bash
+export DATA_DIR=/var/data
 
-./update_osm.sh
+if ![ -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
+	echo "Updating OSM..."
+	./update_osm.sh
+fi
+echo "Updating GTFS..."
 ./update_gtfs.sh
+echo "Preparing transformation rules"
 cp makefile /var/
-mkdir /var/data/gtfs-rules/
-cp -p config/gtfs-rules/* /var/data/gtfs-rules/
+mkdir $DATA_DIR/gtfs-rules/
+cp -p config/gtfs-rules/* $DATA_DIR/gtfs-rules/
 pushd /var/
+echo "Filter and merge GTFS files"
 make
-# Copy validated gtfs files to download dir, as well as merged feeds
-cp -p /var/data/gtfs_validated/*.zip /var/data/www/
-cp -p /var/data/gtfs/*.merged.zip /var/data/www/
+# Copy validated gtfs files to download dir, as well as merged feeds, but only if newer than existing
+cp -p -u $DATA_DIR/gtfs_validated/*.zip $DATA_DIR/www/
+cp -p -u $DATA_DIR/gtfs/*.merged.zip $DATA_DIR/www/
 popd
