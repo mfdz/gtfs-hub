@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<translations>
+  <translation>
+    <name>Alzental max speed</name>
+    <description>Drastically lower the speed for the roads in the Alzental neighbourhood in Herrenberg (https://overpass-turbo.eu/s/UQI)</description>
+    <match type="way" mode="and">
+      <ids>
+        <id>10879847</id>
+        <id>10879853</id>
+        <id>10879919</id>
+        <id>10880057</id>
+        <id>10893737</id>
+        <id>10902695</id>
+        <id>22678946</id>
+        <id>24640267</id>
+        <id>24882334</id>
+        <id>24882335</id>
+        <id>28353613</id>
+        <id>82261142</id>
+        <id>277218257</id>
+        <id>277824295</id>
+        <id>277824296</id>
+        <id>550150167</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="maxspeed" v="5"/>
+    </output>
+  </translation>
+
+</translations>
