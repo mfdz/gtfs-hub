@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export DATA_DIR=/var/data
 export GTFS_DIR=$DATA_DIR/gtfs
 export GTFS_VALIDATED_DIR=$DATA_DIR/gtfs_validated
 export GTFS_SOURCES_CSV=./config/gtfs-feeds.csv
@@ -22,24 +21,29 @@ function augment_shapes {
   # call pfaedle
   docker run --rm -v "$HOST_DATA":/data:rw mfdz/pfaedle --inplace -x /data/osm/$2 /data/gtfs/$1.gtfs
   # zip and move gtfs-out
-  zip -j $GTFS_DIR/$1.with-shapes.gtfs.zip $GTFS_DIR/$1.gtfs/*.txt
-  mv $GTFS_DIR/$1.with-shapes.gtfs.zip $REPORT_PUBLISH_DIR/gtfs
+  zip -j $GTFS_DIR/$1.with_shapes.gtfs.zip $GTFS_DIR/$1.gtfs/*.txt
 }
 
 function download_and_check {
   export GTFS_FILE=$GTFS_DIR/$1.gtfs.zip
   echo Download $2 to $GTFS_FILE
   downloadurl=$2
+
   if [ -f $GTFS_FILE ]; then
-    echo "Checking update for $downloadurl"
-    # if file already exists, we only want to download, if newer, hence we add -z flag to compare for file date
-    # FIXME: Enabling this check performs a download, but does not set response_code (?)
-    # if [[ $1 =~ ^(VBB|HVV)$ ]]; then
-    # HVV and VBB dont send time stamps, so we ignore don't download them
-    # TODO: we could store the url used for downloading and download, if it changed...
-    response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
-    # fi
-    #response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
+    if [ "$1" == "HVV" ] || [ "$1" == "VBB" ] ; then
+      echo "Ignore $1 as no appropriate http headers are returned"
+      response='304'
+    else
+      echo "Checking update for $downloadurl"
+      # if file already exists, we only want to download, if newer, hence we add -z flag to compare for file date
+      # FIXME: Enabling this check performs a download, but does not set response_code (?)
+      # if [[ $1 =~ ^(VBB|HVV)$ ]]; then
+      # HVV and VBB dont send time stamps, so we ignore don't download them
+      # TODO: we could store the url used for downloading and download, if it changed...
+      response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
+      # fi
+      #response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
+    fi
   else
     echo "First download"
     response=$(curl -R -L -w "%{http_code}" -o $GTFS_FILE $downloadurl)
@@ -79,7 +83,8 @@ function download_and_check {
   if [[ `cat $GTFS_DIR/$1.log` =~ $ERROR_REGEX ]]; then
     ERRORS=${BASH_REMATCH[1]}
   else
-    cp -p $GTFS_FILE $GTFS_VALIDATED_DIR
+    # We copy original file as well as potentially shape-enhanced file to validated dir, even if the last is not explicitly validated
+    cp -p $GTFS_DIR/$1\.*gtfs.zip $GTFS_VALIDATED_DIR
   fi
   if [[ `cat $GTFS_DIR/$1.log` =~ $WARNING_REGEX ]]; then
     WARNINGS=${BASH_REMATCH[1]}

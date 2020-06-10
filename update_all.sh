@@ -1,7 +1,7 @@
 #!/bin/bash
 export DATA_DIR=/var/data
 
-if ![ -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
+if [ ! -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
 	echo "Updating OSM..."
 	./update_osm.sh
 fi

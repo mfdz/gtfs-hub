@@ -1,15 +1,14 @@
 # GTFS-Hub
 
-This project aims at providing community tested, probably quality enhanced, partially merged GTFS-feeds of (currently) German transport agencies.
+This project aims at providing community tested, probably quality/content enhanced, partially merged or filtered GTFS-feeds of (currently) German transport agencies.
 
-In contrast to a Germany-wide GTFS feed distributed via Delfi (the national access point), GTFS-hub collects and enhances feeds provided by local authorities.
 
 ## Motivation
-Currently, the national access point provides timetable data in NeTEx format. Via [gtfs.de](http://gtfs.de) derived GTFS publications are available.
+Since April, 1st, 2020, DELFI e.V. provides a (75%) Germany wide GTFS feed. However, for some use cases only a regional subset is needed, or locally published feeds need to be merged to retain original trip_ids to match e.g. GTFS-RT feeds.
 
-However, for upstreaming data to the national data access point seems not to be lossfree or  regularly. And there is no feedback channel to fix quality issues in a timely manner
+Additionally, as well the locally published datasets as well as the Germany-wide DELFI GTFS feed sometimes have quality issues or miss e.g. shape information.
 
-While we hope, that all these problems are overcome soon, we currently still see a need to work with locally published GTFS data.
+While we hope, that all these problems are overcome soon, we currently still see a need to postprocess published data to overcome these shortcomings.
 
 ## Inner workings
 
@@ -19,15 +18,16 @@ GTFS-Hub regularly checks on a list of well known GTFS-feeds, if the were update
 If yes, they are 
 
 * downloaded, 
+* quality checked via google's transitfeed feedvalidator (exception is, for performance reasons, the DELFI GTFS feed)
 * optionally enhanced with shapes using OSM data and the pfaedle tool
-* quality checked via google's transitfeed feedvalidator
 * optionally transformed with onebusaway transformer tool (fed with a feed specific rule file)
-* and optionally merged into larger aggregated GTFS feeds
+* and optionally merged into larger aggregated GTFS feeds or filtered to a regional subset
 
 ### Updating and preparing OSM data
 Before GFTS data is updated, the OSM data which is used to generate GFTFS shapes is updated.
-To avoid daily downloading large pbf datasets (GTFS-Hub downloads DACH (Germany, Austria, Switzerland) and Alsace (France)) from scratch, we only download the original datases once
-and update these afterwards via pyosmium and prepares some region clipped extracts (namely Baden-Württemberg including a buffer of some kilometers around the border).
+To avoid daily downloading large pbf datasets (GTFS-Hub uses DACH (Germany, Austria, Switzerland) and Alsace (France)) 
+from scratch, we only download the original datases once and update these afterwards via pyosmium and prepares some 
+region clipped extracts (namely Baden-Wuerttemberg including a buffer of some kilometers around the border).
 
 As this extract will serve as input to OpenTripPlanner as well, we do some additionally data processing on it to enhance some infos, e.g.
 
@@ -35,7 +35,7 @@ As this extract will serve as input to OpenTripPlanner as well, we do some addit
 * Set some well known parkings to park_ride=hov 
 
 ### Publishing
-After updating OSM and GTFS data, you'll find the datasets in data/www, ready to publish e.g. via a web serve serving this directory.
+After updating OSM and GTFS data, you'll find the datasets in the folder data/www, ready to publish e.g. via a web serve serving this directory.
 
 ### External references
 This project uses a couple of other dockerized applications:
