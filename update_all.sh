@@ -1,8 +1,10 @@
 #!/bin/bash
 export DATA_DIR=/var/data
 
-echo "Updating OSM..."
-./update_osm.sh
+if [ ! -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
+	echo "Updating OSM..."
+	./update_osm.sh
+fi
 echo "Updating GTFS..."
 ./update_gtfs.sh
 echo "Preparing transformation rules"
