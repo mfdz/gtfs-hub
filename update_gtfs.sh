@@ -52,18 +52,15 @@ function download_and_check {
 
     case "$response" in
         200) if [ "$1" != "DELFI" ]; then
-               # DELFI is to large for current feedvalidator, takes multiple hours, have to dig into
-               docker run -t -v $HOST_DATA/gtfs:/gtfs mfdz/transitfeed feedvalidator_googletransit.py -o /gtfs/feedvalidator_$1.html -l 1000 -d /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.log
+               docker run -t -v $HOST_DATA/gtfs:/gtfs -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
              else
-              # remove errornous transfers
-              echo "Patching DELFI..."
-              rm -rf "$GTFS_DIR/$1.gtfs"
-              unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
-              sed -i 's/"","Europe/"http:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
-              mv $GTFS_DIR/$1.gtfs/stops.txt $GTFS_DIR/$1.gtfs/stops.orig.txt && grep -v '\x08de:09372:2701:0:2' $GTFS_DIR/$1.gtfs/stops.orig.txt \
-                 | grep -v '\x08de:09278:2840:0:1' | grep -v '\x08de:09278:641:0:1' | grep -v '\x08de:09278:645:0:1' > $GTFS_DIR/$1.gtfs/stops.txt
-              sed -i 's/\x08//' $GTFS_DIR/$1.gtfs/stops.txt
-              zip -j $GTFS_DIR/$1.gtfs.zip $GTFS_DIR/$1.gtfs/*
+               docker run -t -v $HOST_DATA/gtfs:/gtfs mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
+               # remove errornous transfers
+               echo "Patching DELFI..."
+               rm -rf "$GTFS_DIR/$1.gtfs"
+               unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
+               sed -i 's/"","Europe/"http:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
+               zip -j $GTFS_DIR/$1.gtfs.zip $GTFS_DIR/$1.gtfs/*
              fi
              if [ "$7" != "Nein" ]; then
                echo "Augment shapes for $1 using file $7"
@@ -78,15 +75,18 @@ function download_and_check {
 
   local ERRORS=""
   local WARNINGS=""
-  local ERROR_REGEX='^.* ([0-9]*) error.*$'
-  local WARNING_REGEX='^.* ([0-9]*) warning.*$'
-  if [[ `cat $GTFS_DIR/$1.log` =~ $ERROR_REGEX ]]; then
+  local ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
+  local WARNING_REGEX='^.* ([0-9]*) WARNING.*$'
+  if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $ERROR_REGEX ]]; then
     ERRORS=${BASH_REMATCH[1]}
-  else
-    # We copy original file as well as potentially shape-enhanced file to validated dir, even if the last is not explicitly validated
-    cp -p $GTFS_DIR/$1\.*gtfs.zip $GTFS_VALIDATED_DIR
   fi
-  if [[ `cat $GTFS_DIR/$1.log` =~ $WARNING_REGEX ]]; then
+  # We temporarilly copy gtfs files even if they have errors, as GTFSVTOR is not 100% backward compatible 
+  # and more restrictive than feedvalidator, i.e. https://github.com/mecatran/gtfsvtor/issues/36  
+  #else
+    # We copy original file as well as potentially shape-enhanced file to validated dir, even if the last is not explicitly validated
+  cp -p $GTFS_DIR/$1\.*gtfs.zip $GTFS_VALIDATED_DIR
+  #fi
+  if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $WARNING_REGEX ]]; then
     WARNINGS=${BASH_REMATCH[1]}
   fi
 
@@ -96,7 +96,7 @@ function download_and_check {
           <td>$5</td>
           <td>$6</td>
           <td><a href="$2">Download</a></td>
-          <td><a href="feedvalidator_$1.html">Report</a></td>
+          <td><a href="gtfsvtor_$1.html">Report</a></td>
           <td class='errors'>$ERRORS</td>
           <td class='warnings'>$WARNINGS</td>
         </tr>" >> $SUMMARY_FILE
@@ -115,7 +115,7 @@ echo "<html><head>
 <title>GTFS-Publikationen</title></head>
 <body><h1>GTFS-Publikationen</h1>
 <p>Nachfolgend sind f&uuml;r die uns derzeit bekannten GTFS-Ver&ouml;ffentlichungen deutscher Verkehrsunternehmen und- verb&uuml;nde die
-Ergebnisse der feedvalidator-Pr&uuml;fung mit dem <a href="https://github.com/google/transitfeed">Google Transitfeed Feedvalidator</a> aufgelistet.</p>
+Ergebnisse der GTFSVTOR-Pr&uuml;fung mit dem <a href="https://github.com/mecatran/gtfsvtor">Mecatran GTFSVTOR</a> Validator von Laurent Grégoire aufgelistet.</p>
 <p><b>HINWEIS</b>: Einige Verkehrsverb&uuml;nde ver&ouml;ffentlichen Datens&auml;tze derzeit unter einer versionsbezogenen URL. VBB und HVV rufen wir nicht automatisiert ab,
 da Last-Modified/If-Modified-Since derzeit nicht unterst&uuml;tzt werden bzw. der Datensatz nicht unter eine permanten URL bereitgestellt wird.
 F&uuml;r diese k&ouml;nnen wir nicht automatisch die aktuellste Version pr&uuml;fen und hier listen. Wir freuen uns &uuml;ber einen Hinweis, sollte es aktuellere Daten oder auch
