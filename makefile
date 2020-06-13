@@ -8,8 +8,8 @@ all : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.wit
 .PHONY : all
 
 # Shortcuts for the (dockerized) transform/merge tools. 
-MERGE = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx14g -jar one-busaway-gtfs-merge/onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
-TRANSFORM = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx12g -jar one-busaway-gtfs-transformer/onebusaway-gtfs-transformer-cli.jar 
+MERGE = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx18g -jar one-busaway-gtfs-merge/onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
+TRANSFORM = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx20g -jar one-busaway-gtfs-transformer/onebusaway-gtfs-transformer-cli.jar 
 PFAEDLE = docker run -v "$(HOST_DATA)":/data:rw --rm mfdz/pfaedle
 
 # For every merged dataset, it's composing feeds should be listed.
