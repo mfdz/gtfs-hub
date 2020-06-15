@@ -33,9 +33,10 @@ docker run --rm -v $HOST_DATA/osm:/osm mfdz/osmosis:0.47-1-gd370b8c4 --read-pbf 
 echo 'Patched DACH extract, now merging with alsace...'
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium merge -o /osm/bw-buffered.osm.pbf -O /osm/alsace-extracted.osm.pbf /osm/dach-extracted-patched.osm.pbf
 
+echo 'Move bw-buffered.osm.pbf to /var/data/www'
+mv $OSM_DIR/bw-buffered.osm.pbf $OUT_DIR/bw-buffered.osm.pbf
+
 echo 'Extract osm format for GTFS shape enhancement (As long as pfaedle does not suport osm.pbf directly)'
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium cat /osm/bw-buffered.osm.pbf -o /osm/bw-buffered.osm -O
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium cat /osm/dach-latest.osm.pbf -o /osm/dach-latest.osm -O
 
-echo 'Move bw-buffered.osm.pbf to /var/data/www'
-mv $OSM_DIR/bw-buffered.osm.pbf $OUT_DIR/bw-buffered.osm.pbf
