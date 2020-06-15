@@ -123,4 +123,68 @@
     </output>
   </translation>
 
+  <translation>
+    <name>Remove turn restriction Gülsteiner Str. to Hauffstr. (Oneway-ness is restored in the next transformation)</name>
+    <description>This is to achieve Ansgar's yellow route</description>
+    <match type="relation" mode="and">
+      <ids>
+        <id>11180235</id>
+      </ids>
+    </match>
+    <output>
+      <tag k="removed" v="removed" />
+    </output>
+  </translation>
+
+
+  <translation>
+    <name>Make Hauffstr. a two-way street for bicycles but one-way for cars</name>
+    <description>This is to achieve Ansgar's yellow route</description>
+    <match type="way" mode="and">
+      <ids>
+        <id>10902695</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="oneway:bicycle" v="no" />
+      <tag k="oneway" v="yes" />
+    </output>
+  </translation>
+
+  <translation>
+    <name>Make Vogt-Hess, Schiller and Walther-Knoll-Str more appealing for bicycles</name>
+    <description>This is to achieve Ansgar's yellow route</description>
+    <match type="way" mode="and">
+      <ids>
+        <id>10879853</id>
+        <id>24882334</id>
+        <id>4849563</id>
+        <id>4849564</id>
+        <id>10902695</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="bicycle:bonus" v="yes" />
+    </output>
+  </translation>
+
+  <translation>
+    <name>Make Horber Str. less appealing to cyclists</name>
+    <description>This is to achieve Ansgar's yellow route</description>
+    <match type="way" mode="and">
+      <ids>
+        <id>30073085</id>
+        <id>10879919</id>
+        <id>740740293</id>
+        <id>24640266</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="bicycle:malus" v="yes" />
+    </output>
+  </translation>
+
 </translations>
