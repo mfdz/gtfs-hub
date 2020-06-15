@@ -1,6 +1,37 @@
 <?xml version="1.0"?>
 
 <translations>
+
+  <translation>
+    <name>Drastically reduce speed so that Gülsteiner Str. is not routed when coming from A81 exit</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>326103851</id>
+        <id>754962175</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="maxspeed" v="5"/>
+    </output>
+  </translation>
+
+  <translation>
+    <name>Add access=destination for parking lot of car dealership</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>184545854</id>
+        <id>184545852</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="access" v="destination"/>
+    </output>
+  </translation>
+
   <translation>
     <name>Alzental max speed</name>
     <description>Drastically lower the speed for the roads in the Alzental neighbourhood in Herrenberg (https://overpass-turbo.eu/s/UQI and https://overpass-turbo.eu/s/USV)</description>
@@ -57,11 +88,14 @@
         <id>813623353</id>
         <id>128497099</id>
         <id>128497100</id>
+        <id>10902627</id>
+        <id>10902624</id>
+        <id>10806524</id>
       </ids>
     </match>
     <output>
       <copy-all/>
-      <tag k="maxspeed" v="5"/>
+      <tag k="maxspeed" v="10"/>
     </output>
   </translation>
 
