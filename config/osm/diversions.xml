@@ -221,4 +221,33 @@
     </output>
   </translation>
 
+  <translation>
+    <name>Allow right turn for bicyles from Vogt-Hess to Schillerstr.</name>
+    <description>This is actually a permanent measure and has already been fixed in OSM itself but to speed its distribution it's replicated here</description>
+    <match type="relation" mode="and">
+      <ids>
+        <id>7508233</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="except" v="bicycle" />
+    </output>
+  </translation>
+
+  <translation>
+    <name>Add bollard on Badgasse</name>
+    <description>Cars should not go through here</description>
+    <match type="node" mode="and">
+      <ids>
+        <id>243277250</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="barrier" v="bollard" />
+    </output>
+  </translation>
+
+
 </translations>
