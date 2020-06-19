@@ -16,5 +16,5 @@ echo "Filter and merge GTFS files"
 make
 # Copy validated gtfs files to download dir, as well as merged feeds, but only if newer than existing
 cp -p -u $DATA_DIR/gtfs_validated/*.zip $DATA_DIR/www/
-cp -p -u $DATA_DIR/gtfs/*.merged.zip $DATA_DIR/www/
+cp -p -u $DATA_DIR/gtfs/*.merged.gtfs.zip $DATA_DIR/www/
 popd

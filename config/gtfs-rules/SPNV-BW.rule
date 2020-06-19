@@ -1,0 +1,1 @@
+{"op":"retain", "match":{"file": "stops.txt", "stop_id": "m/de:08.*/"}}
