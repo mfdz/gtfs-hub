@@ -59,7 +59,7 @@ function download_and_check {
                echo "Patching DELFI..."
                rm -rf "$GTFS_DIR/$1.gtfs"
                unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
-               sed -i 's/"","Europe/"http:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
+               sed -i 's/"","Europe/"https:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
                zip -j $GTFS_DIR/$1.gtfs.zip $GTFS_DIR/$1.gtfs/*
              fi
              if [ "$7" != "Nein" ]; then
