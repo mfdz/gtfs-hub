@@ -54,8 +54,7 @@ function download_and_check {
         200) if [ "$1" != "DELFI" ]; then
                docker run -t -v $HOST_DATA/gtfs:/gtfs -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
              else
-               docker run -t -v $HOST_DATA/gtfs:/gtfs mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
-               # remove errornous transfers
+               docker run -t -v $HOST_DATA/gtfs:/gtfs -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
                echo "Patching DELFI..."
                rm -rf "$GTFS_DIR/$1.gtfs"
                unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
