@@ -1,6 +1,6 @@
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = hbg ulm
+MERGED = hbg hbg2 ulm
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
