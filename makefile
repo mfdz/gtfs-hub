@@ -26,7 +26,7 @@ HBG2_FILES = $(HBG2:%=data/gtfs/%.gtfs.zip)
 data/gtfs/hbg.merged.gtfs.zip: $(HBG2_FILES)
 	$(MERGE) $^ /$@
 
-ULM = SPNV-BW.with_shapes naldo.filtered 
+ULM = SPNV-BW.with_shapes DING 
 ULM_FILES = $(ULM:%=data/gtfs/%.gtfs.zip)
 data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	$(MERGE) $^ /$@
