@@ -41,7 +41,7 @@ data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.gtfs.zip data/gtfs-rules/DELFI.
 
 # unzip filtered zip in case it is not yet (pfaedle requires feed unzipped)...
 data/gtfs/%.filtered.gtfs: data/gtfs/%.filtered.gtfs.zip
-	unzip -d data/gtfs/$*.filtered.gtfs data/gtfs/$*.filtered.gtfs 
+	unzip -o -d data/gtfs/$*.filtered.gtfs data/gtfs/$*.filtered.gtfs 
 
 # Apply pfaedle inplace and zip resulting files
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.filtered.gtfs
