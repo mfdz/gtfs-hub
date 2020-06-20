@@ -23,7 +23,7 @@ data/gtfs/hbg.merged.gtfs.zip: $(HBG_FILES)
 # Prepare second feed with SPNV added to test how it works
 HBG2 = SPNV-BW.with_shapes naldo.filtered VGC.filtered VVS.with_shapes.filtered
 HBG2_FILES = $(HBG2:%=data/gtfs/%.gtfs.zip)
-data/gtfs/hbg.merged.gtfs.zip: $(HBG2_FILES)
+data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
 	$(MERGE) $^ /$@
 
 ULM = SPNV-BW.with_shapes DING 
