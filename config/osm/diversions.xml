@@ -135,29 +135,6 @@
   </translation>
 
   <translation>
-    <name>Make construction site on Hindenburgstr. walkable</name>
-    <description>You may walk it but cycling and driving is not permitted</description>
-    <match type="way" mode="and">
-      <ids>
-        <id>30073084</id>
-        <id>81704977</id>
-        <id>146952807</id>
-        <id>367794634</id>
-        <id>415545861</id>
-        <id>415545869</id>
-        <id>415545873</id>
-        <id>523194703</id>
-        <id>401131018</id>
-        <id>185426473</id>
-        <id>146944105</id>
-      </ids>
-    </match>
-    <output>
-      <tag k="highway" v="footway" />
-    </output>
-  </translation>
-
-  <translation>
     <name>Remove turn restriction Gülsteiner Str. to Hauffstr. (Oneway-ness is restored in the next transformation)</name>
     <description>This is to achieve Ansgar's yellow route</description>
     <match type="relation" mode="and">
@@ -169,7 +146,6 @@
       <tag k="removed" v="removed" />
     </output>
   </translation>
-
 
   <translation>
     <name>Make Hauffstr. a two-way street for bicycles but one-way for cars</name>
@@ -249,5 +225,51 @@
     </output>
   </translation>
 
+  <translation>
+    <name>Make Markusstr. and Johannesstr. two-way for bicycles but one-way for cars</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>20317246</id>
+        <id>10902648</id>
+        <id>813623353</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="oneway:bicycle" v="no" />
+      <tag k="oneway" v="yes" />
+    </output>
+  </translation>
+
+  <translation>
+    <name>Northern part of Marienstr. is no longer a one-way street</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>369662231</id>
+        <id>440715132</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="oneway" v="no" />
+    </output>
+  </translation>
+
+  <translation>
+    <name>Northern part of Marienstr. is no longer a one-way street</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>369662231</id>
+        <id>440715132</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="oneway" v="no" />
+    </output>
+  </translation>
 
 </translations>
