@@ -272,4 +272,18 @@
     </output>
   </translation>
 
+  <translation>
+    <name>Footway near parking lot is accessible for bicycles</name>
+    <description></description>
+    <match type="way" mode="and">
+      <ids>
+        <id>367397818</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="bicycle" v="yes" />
+    </output>
+  </translation>
+
 </translations>
