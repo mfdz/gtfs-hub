@@ -281,8 +281,7 @@
       </ids>
     </match>
     <output>
-      <copy-all/>
-      <tag k="bicycle" v="yes" />
+      <tag k="highway" v="path" />
     </output>
   </translation>
 
