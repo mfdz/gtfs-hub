@@ -40,13 +40,13 @@ function download_and_check {
       # if [[ $1 =~ ^(VBB|HVV)$ ]]; then
       # HVV and VBB dont send time stamps, so we ignore don't download them
       # TODO: we could store the url used for downloading and download, if it changed...
-      response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
+      response=$(curl -k -H 'User-Agent: C url' -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
       # fi
       #response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
     fi
   else
     echo "First download"
-    response=$(curl -R -L -w "%{http_code}" -o $GTFS_FILE $downloadurl)
+    response=$(curl -k -H 'User-Agent: C url' -R -L -w "%{http_code}" -o $GTFS_FILE $downloadurl)
   fi
   echo "Resulting http_code: $response"
 
