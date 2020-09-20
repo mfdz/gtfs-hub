@@ -124,7 +124,7 @@ weitere Datenquellen geben.</p>
   <th>Verbund</th>
   <th>Datum</th>
   <th>Lizenz</th>
-  <th>Nammensnennung</th>
+  <th>Namensnennung</th>
   <th>Download</th>
   <th>Validierung</th>
   <th>Fehler</th>
