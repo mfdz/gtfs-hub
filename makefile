@@ -31,17 +31,18 @@ ULM_FILES = $(ULM:%=data/gtfs/%.gtfs.zip)
 data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	$(MERGE) $^ /$@
 
+# Remove pre-existing filtered dir, to not accumulate shapes...
 data/gtfs/%.filtered.gtfs.zip: data/gtfs/%.gtfs.zip data/gtfs-rules/%.rule
-	$(TRANSFORM) --transform=/data/gtfs-rules/$*.rule /data/gtfs/$*.gtfs.zip /$@
+	rm -rf data/gtfs/$*.filtered.gtfs && $(TRANSFORM) --transform=/data/gtfs-rules/$*.rule /data/gtfs/$*.gtfs.zip /$@
 
 # As we extract from DELFI and not only do patches, we check for the master file
 # As target is a folder, we touch to explicitly set modified timestamp
 data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.gtfs.zip data/gtfs-rules/DELFI.%.rule
 	$(TRANSFORM) --transform=/data/gtfs-rules/DELFI.$*.rule /data/gtfs/DELFI.gtfs.zip /$@ && touch data/gtfs/DELFI.$*.filtered.gtfs/
 
-# unzip filtered zip in case it is not yet (pfaedle requires feed unzipped)...
+# unzip filtered zip in case it is not yet (pfaedle requires feed unzipped). Before unzipping,rm all to avoid shape accumulation...
 data/gtfs/%.filtered.gtfs: data/gtfs/%.filtered.gtfs.zip
-	unzip -o -d data/gtfs/$*.filtered.gtfs data/gtfs/$*.filtered.gtfs 
+	rm -rf data/gtfs/$*.filtered.gtfs && unzip -o -d data/gtfs/$*.filtered.gtfs data/gtfs/$*.filtered.gtfs 
 
 # Apply pfaedle inplace and zip resulting files
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.filtered.gtfs
