@@ -1,6 +1,6 @@
 export OSM_DIR=$DATA_DIR/osm
 export OUT_DIR=$DATA_DIR/www
-# HOST_DATA should be set 
+# HOST_DATA should be set
 
 mkdir -p $OSM_DIR
 cp config/osm/* $OSM_DIR
@@ -28,7 +28,7 @@ docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium extract -p /osm/bw_b
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium extract -p /osm/bw_buffered.poly --no-progress -o /osm/dach-extracted.osm.pbf -O /osm/dach-latest.osm.pbf
 
 echo 'Set park_ride tag for well known parkings and apply diversion patches ...'
-docker run --rm -v $HOST_DATA/osm:/osm mfdz/osmosis:0.47-1-gd370b8c4 --read-pbf /osm/dach-extracted.osm.pbf --tt file=/osm/park_ride_transform.xml stats=/osm/park_ride_stats.log --tt file=/osm/diversions.xml stats=/osm/diversions.log --write-pbf /osm/dach-extracted-patched.osm.pbf
+docker run --rm -v $HOST_DATA/osm:/osm mfdz/osmosis:0.47-1-gd370b8c4 --read-pbf /osm/dach-extracted.osm.pbf --tt file=/osm/park_ride_transform.xml stats=/osm/park_ride_stats.log --write-pbf /osm/dach-extracted-patched.osm.pbf
 
 echo 'Patched DACH extract, now merging with alsace...'
 docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium osmium merge -o /osm/bw-buffered.osm.pbf -O /osm/alsace-extracted.osm.pbf /osm/dach-extracted-patched.osm.pbf
