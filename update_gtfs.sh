@@ -1,4 +1,7 @@
 #!/bin/bash
+set -e
+set -o pipefail
+set -x
 
 export GTFS_DIR=$DATA_DIR/gtfs
 export GTFS_VALIDATED_DIR=$DATA_DIR/gtfs_validated

@@ -1,3 +1,8 @@
+#!/bin/bash
+set -e
+set -o pipefail
+set -x
+
 export OSM_DIR=$DATA_DIR/osm
 export OUT_DIR=$DATA_DIR/www
 # HOST_DATA should be set

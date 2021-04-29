@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
+set -o pipefail
+set -x
+
 export DATA_DIR=/var/data
 
 if [ ! -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
