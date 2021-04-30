@@ -4,77 +4,13 @@ set -o pipefail
 set -x
 
 export GTFS_DIR=$DATA_DIR/gtfs
-export GTFS_VALIDATED_DIR=$DATA_DIR/gtfs_validated
 export GTFS_SOURCES_CSV=./config/gtfs-feeds.csv
 export REPORT_PUBLISH_DIR=$DATA_DIR/www/
-export SUMMARY_FILE=$GTFS_DIR/index.html
+export SUMMARY_FILE=$REPORT_PUBLISH_DIR/index.html
 
-
-function augment_shapes {
-  # extract gtfs
-  # TODO GTFS fixes should go into gtfs-rules
-  rm -rf "$GTFS_DIR/$1.gtfs"
-  unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
-
-  if [ "$1" == "VVS" ]; then
-    # remove errornous transfers
-    echo "Fixing VVS..."
-    rm $GTFS_DIR/$1.gtfs/transfers.txt
-  fi
-  # call pfaedle
-  docker run --rm -v "$HOST_DATA":/data:rw mfdz/pfaedle --inplace -x /data/osm/$2 /data/gtfs/$1.gtfs
-  # zip and move gtfs-out
-  zip -j $GTFS_DIR/$1.with_shapes.gtfs.zip $GTFS_DIR/$1.gtfs/*.txt
-}
 
 function download_and_check {
   export GTFS_FILE=$GTFS_DIR/$1.gtfs.zip
-  echo Download $2 to $GTFS_FILE
-  downloadurl=$2
-
-  if [ -f $GTFS_FILE ]; then
-    if [ "$1" == "HVV" ] || [ "$1" == "VBB" ] ; then
-      echo "Ignore $1 as no appropriate http headers are returned"
-      response='304'
-    else
-      echo "Checking update for $downloadurl"
-      # if file already exists, we only want to download, if newer, hence we add -z flag to compare for file date
-      # FIXME: Enabling this check performs a download, but does not set response_code (?)
-      # if [[ $1 =~ ^(VBB|HVV)$ ]]; then
-      # HVV and VBB dont send time stamps, so we ignore don't download them
-      # TODO: we could store the url used for downloading and download, if it changed...
-      response=$(curl -k -H 'User-Agent: C url' -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
-      # fi
-      #response=$(curl -R -L -w '%{http_code}' -o $GTFS_FILE -z $GTFS_FILE $downloadurl)
-    fi
-  else
-    echo "First download"
-    response=$(curl -k -H 'User-Agent: C url' -R -L -w "%{http_code}" -o $GTFS_FILE $downloadurl)
-  fi
-  echo "Resulting http_code: $response"
-
-    case "$response" in
-        200) if [ "$1" != "DELFI" ]; then
-               docker run -t -v $HOST_DATA/gtfs:/gtfs -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
-             else
-               docker run -t -v $HOST_DATA/gtfs:/gtfs -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor -o /gtfs/gtfsvtor_$1.html -l 1000 /gtfs/$1.gtfs.zip 2>&1 | tail -1 > /$GTFS_DIR/$1.gtfsvtor.log 
-               echo "Patching DELFI..."
-               rm -rf "$GTFS_DIR/$1.gtfs"
-               unzip -o -d $GTFS_DIR/$1.gtfs $GTFS_DIR/$1.gtfs.zip
-               sed -i 's/"","Europe/"https:\/\/www.delfi.de\/","Europe/' $GTFS_DIR/$1.gtfs/agency.txt
-               zip -j $GTFS_DIR/$1.gtfs.zip $GTFS_DIR/$1.gtfs/*
-             fi
-             if [ "$7" != "Nein" ]; then
-               echo "Augment shapes for $1 using file $7"
-               augment_shapes $1 $7
-             fi
-             ;;
-        301) printf "Received: HTTP $response (file moved permanently) ==> $url\n" ;;
-        304) printf "Received: HTTP $response (file unchanged) ==> $url\n" ;;
-        404) printf "Received: HTTP $response (file not found) ==> $url\n" ;;
-          *) printf "Received: HTTP $response ==> $url\n" ;;
-  esac
-
   local ERRORS=""
   local WARNINGS=""
   local ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
@@ -82,12 +18,6 @@ function download_and_check {
   if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $ERROR_REGEX ]]; then
     ERRORS=${BASH_REMATCH[1]}
   fi
-  # We temporarilly copy gtfs files even if they have errors, as GTFSVTOR is not 100% backward compatible 
-  # and more restrictive than feedvalidator, i.e. https://github.com/mecatran/gtfsvtor/issues/36  
-  #else
-    # We copy original file as well as potentially shape-enhanced file to validated dir, even if the last is not explicitly validated
-  cp -p $GTFS_DIR/$1\.*gtfs.zip $GTFS_VALIDATED_DIR
-  #fi
   if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $WARNING_REGEX ]]; then
     WARNINGS=${BASH_REMATCH[1]}
   fi
@@ -104,8 +34,6 @@ function download_and_check {
         </tr>" >> $SUMMARY_FILE
 }
 
-mkdir -p $GTFS_DIR
-mkdir -p $GTFS_VALIDATED_DIR
 mkdir -p $REPORT_PUBLISH_DIR
 echo "<html><head>
 <meta charset='utf-8'/>
@@ -156,6 +84,3 @@ dokumentiert.</p>
 </ul>
 
 </body></html>" >> $SUMMARY_FILE
-
-
-cp $GTFS_DIR/*.html $REPORT_PUBLISH_DIR/

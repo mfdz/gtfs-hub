@@ -17,8 +17,10 @@ WORKDIR /opt/gtfs-hub
 VOLUME /var/data
 
 ADD update_gtfs.sh .
+ADD patch_gtfs.sh .
 ADD download.sh .
 ADD update_osm.sh .
+ADD cp.sh .
 ADD update_all.sh .
 ADD makefile .
 
