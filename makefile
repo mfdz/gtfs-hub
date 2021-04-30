@@ -1,3 +1,10 @@
+HOST_MOUNT = $(PWD)
+TOOL_CFG = /cfg
+TOOL_DATA = /data
+
+.PHONY : all
+.DELETE_ON_ERROR:
+.PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
 MERGED = hbg hbg2 ulm
@@ -5,12 +12,44 @@ MERGED = hbg hbg2 ulm
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
 all : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.with_shapes.gtfs.zip)
-.PHONY : all
 
-# Shortcuts for the (dockerized) transform/merge tools. 
+# Shortcuts for the (dockerized) transform/merge tools.
+OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium osmium
+OSMIUM_UPDATE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium pyosmium-up-to-date
+OSMOSIS = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/osmosis:0.47-1-gd370b8c4
 MERGE = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx18g -jar one-busaway-gtfs-merge/onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
 TRANSFORM = docker run -v $(HOST_DATA):/data --rm mfdz/otp-data-tools java -Xmx20g -jar one-busaway-gtfs-transformer/onebusaway-gtfs-transformer-cli.jar 
 PFAEDLE = docker run -v "$(HOST_DATA)":/data:rw --rm mfdz/pfaedle
+
+
+# Baden-Württemberg OSM extract
+
+data/osm/alsace.osm.pbf:
+	$(info downloading Alsace OSM extract)
+	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf' '$@'
+
+data/osm/DACH.osm.pbf:
+	$(info downloading DACH OSM extract)
+	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/dach-latest.osm.pbf' '$@'
+
+data/osm/bw-extracted-from-%.osm.pbf: data/osm/%.osm.pbf
+	$(info extracting buffered Baden-Württemberg from $(<F) OSM extract)
+	$(OSMIUM) extract -p $(TOOL_CFG)/bw_buffered.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
+
+data/osm/bw-extracted-from-DACH.patched.osm.pbf: data/osm/bw-extracted-from-DACH.osm.pbf
+	$(info setting park_ride tag for well-known parkings and applying diversion patches)
+	$(OSMOSIS) --read-pbf $(TOOL_DATA)/$(<F) --tt file=$(TOOL_CFG)/park_ride_transform.xml stats=$(TOOL_DATA)/park_ride_stats.log --write-pbf $(TOOL_DATA)/$(@F)
+
+data/osm/bw-buffered.osm.pbf: data/osm/bw-extracted-from-alsace.osm.pbf data/osm/bw-extracted-from-DACH.patched.osm.pbf
+	$(info merging Baden-Württemberg extracts from Alsace & DACH)
+	$(OSMIUM) merge -o $(TOOL_DATA)/$(@F) -O $(^F:%=$(TOOL_DATA)/%)
+
+# pfaedle cannot parse OSM .pbf files yet, just XML
+data/osm/%.osm: data/osm/%.osm.pbf
+	$(info converting OSM .pbf to OSM XML for pfaedle)
+	$(info see also https://github.com/ad-freiburg/pfaedle/issues/10)
+	$(OSMIUM) cat $(TOOL_DATA)/$(<F) -o $(TOOL_DATA)/$(@F) -O
+
 
 # For every merged dataset, it's composing feeds should be listed.
 # At first, we define a variable with all feed names, which subsquently gets expanded

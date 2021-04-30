@@ -5,10 +5,11 @@ set -x
 
 export DATA_DIR=/var/data
 
-if [ ! -f $DATA_DIR//osm/dach-latest.osm.pbf ]; then
-	echo "Updating OSM..."
-	./update_osm.sh
-fi
+pushd .
+cd /var
+make data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm.xml data/osm/DACH.osm
+popd
+
 echo "Updating GTFS..."
 ./update_gtfs.sh
 echo "Preparing transformation rules"
