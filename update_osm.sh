@@ -14,7 +14,7 @@ ls $OSM_DIR
 # Download or update OSM files
 if [ ! -f "$OSM_DIR/alsace-latest.osm.pbf" ]; then
 	echo 'Download alsace-latest.osm.pbf...'
-    curl https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf > $OSM_DIR/alsace-latest.osm.pbf
+    ./download.sh 'https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf' "$OSM_DIR/alsace-latest.osm.pbf"
 else
 	echo 'Update alsace-latest.osm.pbf...'
 	docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium pyosmium-up-to-date /osm/alsace-latest.osm.pbf
@@ -22,7 +22,7 @@ fi
 
 if [ ! -f "$OSM_DIR/dach-latest.osm.pbf" ]; then
 	echo 'Download dach-latest.osm.pbf...'
-    curl https://download.geofabrik.de/europe/dach-latest.osm.pbf > $OSM_DIR/dach-latest.osm.pbf
+    ./download.sh 'https://download.geofabrik.de/europe/dach-latest.osm.pbf' "$OSM_DIR/dach-latest.osm.pbf"
 else
 	echo 'Update dach-latest.osm.pbf...'
 	docker run --rm -v $HOST_DATA/osm:/osm mfdz/pyosmium pyosmium-up-to-date /osm/dach-latest.osm.pbf
