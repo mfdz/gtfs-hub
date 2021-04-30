@@ -13,7 +13,7 @@ MERGED = hbg hbg2 ulm
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
-all : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.with_shapes.gtfs.zip)
+all : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.gtfs.zip) data/www/index.html
 
 # Shortcuts for the (dockerized) transform/merge tools.
 OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium osmium
@@ -114,4 +114,11 @@ data/gtfs/%.gtfs.zip: data/gtfs/%.with_shapes.gtfs.zip
 
 data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs.zip
 	$(info running GTFSVTOR on the $* GTFS feed)
-	$(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
+	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
+
+GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
+PROCESSED_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.gtfs.zip)
+GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
+data/www/index.html: $(PROCESSED_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
+	$(info generating GTFS feed index from $(^F))
+	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html

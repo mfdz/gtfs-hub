@@ -1,41 +1,11 @@
 #!/bin/bash
 set -e
 set -o pipefail
-set -x
 
-export GTFS_DIR=$DATA_DIR/gtfs
-export GTFS_SOURCES_CSV=./config/gtfs-feeds.csv
-export REPORT_PUBLISH_DIR=$DATA_DIR/www/
-export SUMMARY_FILE=$REPORT_PUBLISH_DIR/index.html
+export GTFS_DIR="$PWD/data/gtfs"
 
-
-function download_and_check {
-  export GTFS_FILE=$GTFS_DIR/$1.gtfs.zip
-  local ERRORS=""
-  local WARNINGS=""
-  local ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
-  local WARNING_REGEX='^.* ([0-9]*) WARNING.*$'
-  if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $ERROR_REGEX ]]; then
-    ERRORS=${BASH_REMATCH[1]}
-  fi
-  if [[ `cat $GTFS_DIR/$1.gtfsvtor.log` =~ $WARNING_REGEX ]]; then
-    WARNINGS=${BASH_REMATCH[1]}
-  fi
-
-  echo "<tr>
-          <td><a href='$4'>$1</a></td>
-          <td>`date -r $GTFS_DIR/$1.gtfs.zip  +%Y-%m-%d`</td>
-          <td>$5</td>
-          <td>$6</td>
-          <td><a href="$2">Download</a></td>
-          <td><a href="gtfsvtor_$1.html">Report</a></td>
-          <td class='errors'>$ERRORS</td>
-          <td class='warnings'>$WARNINGS</td>
-        </tr>" >> $SUMMARY_FILE
-}
-
-mkdir -p $REPORT_PUBLISH_DIR
-echo "<html><head>
+cat << EOF
+<html><head>
 <meta charset='utf-8'/>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
 <style>
@@ -60,18 +30,41 @@ weitere Datenquellen geben.</p>
   <th>Validierung</th>
   <th>Fehler</th>
   <th>Warnungen</th>
-</tr>" > $SUMMARY_FILE
-
-
+</tr>
+EOF
 
 while IFS=';' read -r name lizenz nammensnennung permanent downloadurl infourl email addshapes
 do
-  if ! [ "$name" == "shortname" ]; then # ignore first line
-    download_and_check $name $downloadurl $permanent $infourl "$lizenz" "$nammensnennung" "$addshapes"
-  fi
-done < $GTFS_SOURCES_CSV
+  if [ "$name" == "shortname" ]; then continue; fi
 
-echo "</table>
+  ERRORS=""
+  WARNINGS=""
+  ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
+  WARNING_REGEX='^.* ([0-9]*) WARNING.*$'
+  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $ERROR_REGEX ]]; then
+    ERRORS=${BASH_REMATCH[1]}
+  fi
+  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $WARNING_REGEX ]]; then
+    WARNINGS=${BASH_REMATCH[1]}
+  fi
+  1>&2 echo "$name: $ERRORS errors, $WARNINGS warnings"
+
+  cat << EOF
+  <tr>
+          <td><a href='$infourl'>$name</a></td>
+          <td>`date -r "$GTFS_DIR/$name.gtfs.zip"  +%Y-%m-%d`</td>
+          <td>$lizenz</td>
+          <td>$nammensnennung</td>
+          <td><a href="$downloadurl">Download</a></td>
+          <td><a href="gtfsvtor_$name.html">Report</a></td>
+          <td class='errors'>$ERRORS</td>
+          <td class='warnings'>$WARNINGS</td>
+        </tr>
+EOF
+done
+
+cat << EOF
+</table>
 
 <p>Unter <a href='https://www.github.com/mfdz/GTFS-Issues'>github/mfdz/GTFS-Issues</a> sind weitere Probleme oder Erweiterungswünsche
 dokumentiert.</p>
@@ -83,4 +76,5 @@ dokumentiert.</p>
   <li><a href='https://developers.google.com/transit/gtfs/reference/gtfs-extensions'>Google GTFS Extensions</a></li>
 </ul>
 
-</body></html>" >> $SUMMARY_FILE
+</body></html>
+EOF
