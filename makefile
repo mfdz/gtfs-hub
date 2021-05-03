@@ -4,9 +4,15 @@ TOOL_DATA = /data
 
 TAIL = $(shell set +e; if [[ -x "$$(which gtail)" ]]; then echo gtail; else echo tail; fi)
 
+GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
+RAW_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.raw.gtfs.zip)
+GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
+PROCESSED_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.gtfs.zip)
+GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
+
 .PHONY : all
 .DELETE_ON_ERROR:
-.PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
+.SECONDARY:
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
 MERGED = hbg hbg2 ulm
@@ -116,9 +122,6 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs.zip
 	$(info running GTFSVTOR on the $* GTFS feed)
 	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
 
-GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
-PROCESSED_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.gtfs.zip)
-GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 data/www/index.html: $(PROCESSED_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
