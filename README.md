@@ -55,23 +55,27 @@ Thanks to everybody contributing to these tools, the OSM community and Geofabrik
 You'll need to have Docker installed.
 
 ### Running GTFS-Hub
-Start the download/transform process chain. Note the necessary HOST_DATA environment variable, which requires to be set to an absolute path to the data directory, as we use a Docker in Docker setup 
-where data is shared via host-relative volumes.
+
+All configuration files necessary for the aforementioned processing steps reside in the `config` directory. The data will be downloaded into and processing within `data`.
 
 ```sh
-docker run -e HOST_DATA=$(PWD)/data -v $(PWD)/data:/var/data -v /var/run/docker.sock:/var/run/docker.sock mfdz/gtfs-hub
+make all
 ```
 
-If you want to use your own config instead, you may mount your own config directory, which
+### Running GTFS-Hub within a Docker container
+
+[GTFS-Hub's Makefile](makefile) is designed to work both *directly* on your machine, as well as within a Docker container. This section describes the 2nd setup.
+
+We'll mount the `config` & `data` directories into the GTFS-hub container.
+
+Note that, because the [Makefile](makefile) will run the processing tools via `docker run`, we'll have to enable a Docker-in-Docker setup by
+- mounting `/var/run/docker.sock` to give the GTFS-Hub container the ability to create new containers
+- passing in the path of the *host* (your machine) GTFS-Hub directory as a `$HOST_MOUNT` environment variable
 
 ```sh
-docker run -e HOST_DATA=$(PWD)/data -v $(PWD)/data:/var/data -v /var/run/docker.sock:/var/run/docker.sock -v $(PWD)/config:/opt/gtfs-hub/config mfdz/gtfs-hub
-```
-
-### Building the docker image
-To build you own docker image, just do:
-
-```sh
-docker build -t mfdz/gtfs-hub .
+docker run -it --rm \
+	-v $(PWD)/config:/gtfs-hub/config,ro -v $(PWD)/data:/gtfs-hub/data,rw \
+	-v /var/run/docker.sock:/var/run/docker.sock -e HOST_MOUNT=$(PWD) \
+	mfdz/gtfs-hub
 ```
 

@@ -1,10 +1,12 @@
-FROM       alpine
+FROM alpine
 LABEL org.opencontainers.image.title="gtfs-hub"
 LABEL org.opencontainers.image.description="Collecting, shape-enhancing, validating, fixing and (partially) merging GTFS feeds."
 LABEL org.opencontainers.image.authors="MITFAHR|DE|ZENTRALE <hb@mfdz.de>"
 LABEL org.opencontainers.image.documentation="https://github.com/mfdz/gtfs-hub"
 LABEL org.opencontainers.image.source="https://github.com/mfdz/gtfs-hub"
 LABEL org.opencontainers.image.licenses="GPL-3.0-only"
+
+WORKDIR /gtfs-hub
 
 RUN apk add --update --no-cache \
   make \
@@ -13,9 +15,6 @@ RUN apk add --update --no-cache \
   zip \
   docker-cli
 
-WORKDIR /opt/gtfs-hub
-VOLUME /var/data
-
 ADD patch_gtfs.sh .
 ADD download.sh .
 ADD update_osm.sh .
@@ -23,6 +22,10 @@ ADD cp.sh .
 ADD generate_gtfs_index.sh .
 ADD makefile .
 
-ADD config/ ./config/
+ADD config /gtfs-hub/config
+VOLUME /gtfs-hub/config
+VOLUME /gtfs-hub/data
 
-CMD make all
+ENV HOST_MOUNT=/gtfs-hub
+ENTRYPOINT /usr/bin/make
+CMD all
