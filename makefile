@@ -78,6 +78,18 @@ data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
 
+GEN_HERRENBERG_GTFS_FLEX = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/VVS.with_shapes.with_flex.gtfs:/gtfs derhuerst/generate-herrenberg-gtfs-flex
+data/gtfs/VVS.with_shapes.with_flex.gtfs: data/gtfs/VVS.with_shapes.gtfs
+	$(info copying filtered VVS GTFS feed into $@)
+	rm -rf $@ && ./cp.sh -r $< $@
+	$(info patching GTFS-Flex data into the $(@F) feed)
+	$(GEN_HERRENBERG_GTFS_FLEX)
+
+HBG3 = DELFI.BW-long-distance.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes.with_flex
+HBG3_FILES = $(HBG3:%=data/gtfs/%.gtfs)
+data/gtfs/hbg3.merged.gtfs: $(HBG3_FILES)
+	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+
 ULM = SPNV-BW.filtered DING.filtered
 ULM_FILES = $(ULM:%=data/gtfs/%.gtfs)
 data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
@@ -98,6 +110,18 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs.zip config/gtfs-rules/%.rule
 	$(info patching $* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/$*.rule $(TOOL_DATA)/$*.raw.gtfs.zip $(TOOL_DATA)/$(@F)
 	./patch_gtfs.sh "$*" "data/gtfs/$(@F)"
+	touch $@
+
+# special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs.zip
+data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.raw.gtfs.zip config/gtfs-rules/DELFI.%.rule
+	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
+	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.raw.gtfs.zip $(TOOL_DATA)/$(@F)
+	./patch_gtfs.sh "DELFI.$*" "data/gtfs/$(@F)"
+	touch $@
+data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs.zip config/gtfs-rules/SPNV-BW.%.rule
+	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
+	$(TRANSFORM) --transform=$(TOOL_CFG)/SPNV-BW.$*.rule $(TOOL_DATA)/SPNV-BW.raw.gtfs.zip $(TOOL_DATA)/$(@F)
+	./patch_gtfs.sh "SPNV-BW.$*" "data/gtfs/$(@F)"
 	touch $@
 
 # TODO GTFS fixes should go into gtfs-rules or gtfs-feeds.csv

@@ -1,0 +1,1 @@
+{"op":"remove", "match":{"file": "routes.txt", "route_type": "m/2|100|102|103/"}}
