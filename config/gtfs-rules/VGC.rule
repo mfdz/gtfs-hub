@@ -1,33 +1,20 @@
 ## Fix missing lat/lon:
 
-# grep "000000" -r */stops.txt
-# vgc.gtfs/stops.txt:de:08235:10449:0:4,"Nagold, Uferstr.",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:10451:0:3,"Nagold, Kreuzertal",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:3181:0:3,"Speßhardt, Friedhof",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:5660:2:3,"Neuenbürg, Eyachbrücke",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:5660:2:4,"Neuenbürg, Eyachbrücke",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:7330:0:3,"Wildberg, Bildungszentr.",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:7330:0:4,"Wildberg, Bildungszentr.",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:7330:0:5,"Wildberg, Bildungszentr.",0.000000,0.000000
-# vgc.gtfs/stops.txt:de:08235:7330:0:7,"Wildberg, Bildungszentr.",0.000000,0.000000
-# vgc.gtfs/stops.txt:gen:8235:10263:0:3,"Unterschwandorf, Löwen",0.000000,0.000000
-# vgc.gtfs/stops.txt:gen:8235:2730:0:3,"Enzkl., Adventure Golfpark",0.000000,0.000000
-# vgc.gtfs/stops.txt:gen:8235:2730:0:4,"Enzkl., Adventure Golfpark",0.000000,0.000000
+# xsv search -s stop_lon '^0\.' stops.txt
+# stop_id,stop_name,stop_lat,stop_lon
+# de:08235:10441:0:1,"Nagold, Stadtbahnhof Mitte",0.000000,0.000000
+# de:08235:4399:0:3,"Nagold, Rötenhöhehof",0.000000,0.000000
+# gen:8235:10336:3,"Rotfelden, Kindergarten",0.000000,0.000000
+# gen:8235:3040:0:3,Heumaden (Calw); Waldenser Str,0.000000,0.000000
+# gen:8235:3045:0:3,Heumaden (Calw) ;Hagebuttenw.,0.000000,0.000000
 
-# Guessing de:08235:10449:0:4,"Nagold, Uferstr.
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10449:0:4"}, "update":{"stop_lat":"48.54923", "stop_lon":"8.71451"}}
-# de:08235:10451:0:3,"Nagold, Kreuzertal", Location via info@vbn-bvn.de 
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10451:0:3"}, "update":{"stop_lat":"48.551247", "stop_lon":"8.737486"}}
-# Speßhardt location via info@vbn-bvn.de
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:3"}, "update":{"stop_lat":"48.714458", "stop_lon":"8.690857"}}
-# Eyachbrücke location via info@vbn-bvn.de
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:3"}, "update":{"stop_lat":"48.816358", "stop_lon":"8.577080", "stop_id":"de:08235:5660:2:1"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:5660:2:4"}, "update":{"stop_lat":"48.816326", "stop_lon":"8.577326", "stop_id":"de:08235:5660:2:2"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:3"}, "update":{"stop_lat":"48.6241902615607", "stop_lon":"8.73791091051151"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:4"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
-# Coordinates are estimates
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:5"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:7330:0:7"}, "update":{"stop_lat":"48.6241812690453", "stop_lon":"8.73791095696822"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:10263:0:3"}, "update":{"stop_lat":"48.54465837060639", "stop_lon":"8.671057378464063", "stop_id":"de:08235:10263:0:3"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:2730:0:3"}, "update":{"stop_lat":"48.66741682564984", "stop_lon":"8.474423251273537", "stop_id":"de:08235:2730:0:3"}}
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:2730:0:4"}, "update":{"stop_lat":"48.66741682564984", "stop_lon":"8.474423251273537", "stop_id":"de:08235:2730:0:4"}}
+# from https://github.com/mfdz/gtfs-hub/issues/11#issuecomment-832864113
+# Nagold, Stadtbahnhof Mitte
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10441:0:1"}, "update":{"stop_id": "de:08235:10446:90:1", "stop_lat":"48.550905897340634", "stop_lon":"8.728962732267801"}}
+# Nagold, Rötenhöhehof
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:4399:0:3"}, "update":{"stop_lat":"48.56888243389193", "stop_lon":"8.72904310339791"}}
+# todo: Rotfelden, Kindergarten
+# Heumaden (Calw); Waldenser Str
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:3040:0:3"}, "update":{"stop_lat":"48.71554", "stop_lon":"8.76361"}}
+# Heumaden (Calw) ;Hagebuttenw.
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:3045:0:3"}, "update":{"stop_lat":"48.71714", "stop_lon":"8.75913"}}
