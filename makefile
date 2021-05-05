@@ -67,17 +67,23 @@ HBG = naldo.filtered VGC.filtered VVS.with_shapes
 HBG_FILES = $(HBG:%=data/gtfs/%.gtfs)
 data/gtfs/hbg.merged.gtfs.zip: $(HBG_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
 
 # Prepare second feed with SPNV added to test how it works
 HBG2 = SPNV-BW.filtered naldo.filtered VGC.filtered VVS.with_shapes
 HBG2_FILES = $(HBG2:%=data/gtfs/%.gtfs)
 data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
 
 ULM = SPNV-BW.filtered DING.filtered
 ULM_FILES = $(ULM:%=data/gtfs/%.gtfs)
 data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/ulm.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
 
 
 # GTFS feeds: download, filtering, map-matching, validation
