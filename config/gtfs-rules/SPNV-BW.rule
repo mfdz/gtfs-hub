@@ -1,1 +1,4 @@
 {"op":"retain", "match":{"file": "stops.txt", "stop_id": "m/de:08.*|de:09775.*/"}}
+# We don't exactly know the respective agencies of these train routes, so we just
+# assign them to the "DB AG" agency ("00").
+{"op":"update", "match":{"file":"routes.txt", "agency_id":"", "route_type": "2"}, "update":{"agency_id":"00"}}
