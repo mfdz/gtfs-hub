@@ -10,6 +10,8 @@ GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
 PROCESSED_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.gtfs.zip)
 GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
+.SUFFIXES:
+.DEFAULT_TARGET: all
 .PHONY : all
 .DELETE_ON_ERROR:
 .SECONDARY:
