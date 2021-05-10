@@ -1,27 +1,31 @@
-FROM       alpine
-MAINTAINER MITFAHR|DE|ZENTRALE <hb@mfdz.de>
+FROM alpine
+LABEL org.opencontainers.image.title="gtfs-hub"
+LABEL org.opencontainers.image.description="Collecting, shape-enhancing, validating, fixing and (partially) merging GTFS feeds."
+LABEL org.opencontainers.image.authors="MITFAHR|DE|ZENTRALE <hb@mfdz.de>"
+LABEL org.opencontainers.image.documentation="https://github.com/mfdz/gtfs-hub"
+LABEL org.opencontainers.image.source="https://github.com/mfdz/gtfs-hub"
+LABEL org.opencontainers.image.licenses="GPL-3.0-only"
+
+WORKDIR /gtfs-hub
 
 RUN apk add --update --no-cache \
   make \
   bash \
-  curl \
+  wget \
   zip \
-  && rm -rf /var/cache/apk/*
+  docker-cli
 
-WORKDIR /opt/gtfs-hub
-
-RUN curl -O https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz && \ 
-  tar xzf docker-18.06.1-ce.tgz && \ 
-  cp docker/docker /usr/bin/docker && \ 
-  rm -rf docker*
-
-VOLUME /var/data
-
-ADD update_gtfs.sh .
+ADD patch_gtfs.sh .
+ADD download.sh .
 ADD update_osm.sh .
-ADD update_all.sh .
+ADD cp.sh .
+ADD generate_gtfs_index.sh .
 ADD makefile .
 
-ADD config/ ./config/
+ADD config /gtfs-hub/config
+VOLUME /gtfs-hub/config
+VOLUME /gtfs-hub/data
 
-CMD bash ./update_all.sh
+ENV HOST_MOUNT=/gtfs-hub
+ENTRYPOINT /usr/bin/make
+CMD all
