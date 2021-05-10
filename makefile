@@ -132,7 +132,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs.zip
 	./patch_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
-data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs data/osm/bw-buffered.osm
+data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm
 	$(eval @_MAP_MATCH_OSM := $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{if ($$1 == "$*") {print $$8}}'))
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
