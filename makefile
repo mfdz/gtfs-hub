@@ -114,24 +114,25 @@ data/gtfs/%.raw.gtfs: data/gtfs/%.raw.gtfs.zip
 	$(info unzipping $* GTFS feed)
 	rm -rf $@
 	unzip -d $@ $<
+	./patch_raw_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
 data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs config/gtfs-rules/%.rule
 	$(info patching $* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/$*.rule $(TOOL_DATA)/$*.raw.gtfs $(TOOL_DATA)/$(@F)
-	./patch_gtfs.sh "$*" "data/gtfs/$(@F)"
+	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
 data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.raw.gtfs config/gtfs-rules/DELFI.%.rule
 	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.raw.gtfs $(TOOL_DATA)/$(@F)
-	./patch_gtfs.sh "DELFI.$*" "data/gtfs/$(@F)"
+	./patch_filtered_gtfs.sh "DELFI.$*" "data/gtfs/$(@F)"
 	touch $@
 data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/SPNV-BW.%.rule
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/SPNV-BW.$*.rule $(TOOL_DATA)/SPNV-BW.raw.gtfs $(TOOL_DATA)/$(@F)
-	./patch_gtfs.sh "SPNV-BW.$*" "data/gtfs/$(@F)"
+	./patch_filtered_gtfs.sh "SPNV-BW.$*" "data/gtfs/$(@F)"
 	touch $@
 
 # TODO GTFS fixes should go into gtfs-rules or gtfs-feeds.csv
@@ -139,7 +140,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	$(info unzipping $* GTFS feed)
 	rm -rf $@
 	unzip -d $@ $<
-	./patch_gtfs.sh "$*" "data/gtfs/$(@F)"
+	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm

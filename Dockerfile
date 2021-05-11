@@ -15,7 +15,7 @@ RUN apk add --update --no-cache \
   zip \
   docker-cli
 
-ADD patch_gtfs.sh .
+ADD patch_raw_gtfs.sh patch_filtered_gtfs.sh ./
 ADD download.sh .
 ADD update_osm.sh .
 ADD cp.sh .
