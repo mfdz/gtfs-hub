@@ -148,7 +148,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/${@_MAP_MATCH_OSM} $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
