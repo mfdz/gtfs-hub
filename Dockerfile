@@ -31,5 +31,5 @@ VOLUME /gtfs-hub/config
 VOLUME /gtfs-hub/data
 
 ENV HOST_MOUNT=/gtfs-hub
-ENTRYPOINT /usr/bin/make
-CMD all
+ENTRYPOINT ["/usr/bin/make"]
+CMD ["gtfs"]
