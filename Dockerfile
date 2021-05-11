@@ -11,11 +11,15 @@ WORKDIR /gtfs-hub
 RUN apk add --update --no-cache \
   make \
   bash \
+  moreutils \
   wget \
   zip \
   docker-cli
+# miller is not included in the main ("community" branch) package list yet.
+# https://github.com/johnkerl/miller/issues/293#issuecomment-687661421
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing miller
 
-ADD patch_gtfs.sh .
+ADD patch_raw_gtfs.sh patch_filtered_gtfs.sh ./
 ADD download.sh .
 ADD update_osm.sh .
 ADD cp.sh .
