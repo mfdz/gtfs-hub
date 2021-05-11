@@ -74,8 +74,8 @@ Note that, because the [Makefile](makefile) will run the processing tools via `d
 
 ```sh
 docker run -it --rm \
-	-v $(PWD)/config:/gtfs-hub/config,ro -v $(PWD)/data:/gtfs-hub/data,rw \
-	-v /var/run/docker.sock:/var/run/docker.sock -e HOST_MOUNT=$(PWD) \
+	-v $PWD/config:/gtfs-hub/config:ro -v $PWD/data:/gtfs-hub/data:rw \
+	-v /var/run/docker.sock:/var/run/docker.sock -e HOST_MOUNT=$PWD \
 	mfdz/gtfs-hub
 ```
 
