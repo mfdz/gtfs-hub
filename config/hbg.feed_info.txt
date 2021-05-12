@@ -1,2 +1,2 @@
-feed_id,feed_publisher_name,feed_publisher_name,feed_lang,feed_contact_url
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
 hbg,"Mitfahr|de|zentrale","https://mfdz.de/",de-DE,"https://herrenberg.stadtnavi.de/dieser-dienst"

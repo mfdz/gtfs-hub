@@ -1,2 +1,2 @@
-feed_id,feed_publisher_name,feed_publisher_name,feed_lang,feed_contact_url
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
 ulm,"Mitfahr|de|zentrale","https://mfdz.de/",de-DE,"https://digitransit.ulm.dev/tietoja-palvelusta"
