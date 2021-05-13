@@ -1,0 +1,1 @@
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:03404:71809::2"}, "update":{"stop_name":"Osnabrück, \"\"emma\"\""}}
