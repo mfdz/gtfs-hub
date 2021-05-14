@@ -20,7 +20,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = hbg hbg2 ulm
+MERGED = hbg hbg2 hbg3 ulm
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
@@ -83,17 +83,21 @@ data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
 
-GEN_HERRENBERG_GTFS_FLEX = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/VVS.with_shapes.with_flex.gtfs:/gtfs derhuerst/generate-herrenberg-gtfs-flex
-data/gtfs/VVS.with_shapes.with_flex.gtfs: data/gtfs/VVS.with_shapes.gtfs
-	$(info copying filtered VVS GTFS feed into $@)
-	rm -rf $@ && ./cp.sh -r $< $@
-	$(info patching GTFS-Flex data into the $(@F) feed)
-	$(GEN_HERRENBERG_GTFS_FLEX)
-
-HBG3 = DELFI.BW-long-distance.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes.with_flex
+HBG3 = naldo.filtered VGC.filtered VVS.with_shapes
 HBG3_FILES = $(HBG3:%=data/gtfs/%.gtfs)
-data/gtfs/hbg3.merged.gtfs: $(HBG3_FILES)
+data/gtfs/hbg3.merged.gtfs.zip: $(HBG3_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
+data/gtfs/hbg3.merged.with_flex.gtfs: data/gtfs/hbg3.merged.gtfs.zip
+	$(info unzipping $* GTFS feed)
+	rm -rf $@
+	unzip -d $@ $<
+	$(info patching GTFS-Flex data into the GTFS feed)
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+data/gtfs/hbg3.merged.with_flex.gtfs.zip: data/gtfs/hbg3.merged.with_flex.gtfs
+	rm -f $@
+	zip -j $@ $</*.txt $</locations.geojson
 
 ULM = SPNV-BW.filtered DING.filtered
 ULM_FILES = $(ULM:%=data/gtfs/%.gtfs)
