@@ -2,3 +2,12 @@
 # We don't exactly know the respective agencies of these train routes, so we just
 # assign them to the "DB AG" agency ("00").
 {"op":"update", "match":{"file":"routes.txt", "agency_id":"", "route_type": "2"}, "update":{"agency_id":"00"}}
+
+## Fix missing lat/lon:
+# de:08315:626,Neuenburg(Baden)(Gr),0.000000,0.000000
+# de:08415:28705:1:1,Engstingen Schulzentrum,0.000000,0.000000
+
+# Using coords via DELFI
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08315:626"}, "update":{"stop_lat":"47.814342000000", "stop_lon":"7.546390000000"}}
+# Using coords via OSM
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08415:28705:1:1"}, "update":{"stop_lat":"48.3837690", "stop_lon":"9.2840170"}}

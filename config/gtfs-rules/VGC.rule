@@ -3,18 +3,13 @@
 # xsv search -s stop_lon '^0\.' stops.txt
 # stop_id,stop_name,stop_lat,stop_lon
 # de:08235:10441:0:1,"Nagold, Stadtbahnhof Mitte",0.000000,0.000000
-# de:08235:4399:0:3,"Nagold, Rötenhöhehof",0.000000,0.000000
-# gen:8235:10336:3,"Rotfelden, Kindergarten",0.000000,0.000000
-# gen:8235:3040:0:3,Heumaden (Calw); Waldenser Str,0.000000,0.000000
-# gen:8235:3045:0:3,Heumaden (Calw) ;Hagebuttenw.,0.000000,0.000000
+# de:08235:3040:0:3,Heumaden (Calw); Waldenser Str,0.000000,0.000000
+# de:08235:3045:0:3,Heumaden (Calw) ;Hagebuttenw.,0.000000,0.000000
 
 # from https://github.com/mfdz/gtfs-hub/issues/11#issuecomment-832864113
 # Nagold, Stadtbahnhof Mitte
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:10441:0:1"}, "update":{"stop_id": "de:08235:10446:90:1", "stop_lat":"48.550905897340634", "stop_lon":"8.728962732267801"}}
-# Nagold, Rötenhöhehof
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:4399:0:3"}, "update":{"stop_lat":"48.56888243389193", "stop_lon":"8.72904310339791"}}
-# todo: Rotfelden, Kindergarten
 # Heumaden (Calw); Waldenser Str
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:3040:0:3"}, "update":{"stop_lat":"48.71554", "stop_lon":"8.76361"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:3040:0:3"}, "update":{"stop_lat":"48.71554", "stop_lon":"8.76361"}}
 # Heumaden (Calw) ;Hagebuttenw.
-{"op":"update", "match":{"file":"stops.txt", "stop_id":"gen:8235:3045:0:3"}, "update":{"stop_lat":"48.71714", "stop_lon":"8.75913"}}
+{"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:3045:0:3"}, "update":{"stop_lat":"48.71714", "stop_lon":"8.75913"}}
