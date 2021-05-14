@@ -52,7 +52,7 @@ do
   cat << EOF
   <tr>
           <td><a href='$infourl'>$name</a></td>
-          <td>`date -r "$GTFS_DIR/$name.gtfs.zip"  +%Y-%m-%d`</td>
+          <td>`date -r "$GTFS_DIR/$name.raw.gtfs.zip"  +%Y-%m-%d`</td>
           <td>$lizenz</td>
           <td>$nammensnennung</td>
           <td><a href="$downloadurl">Download</a></td>
