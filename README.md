@@ -18,7 +18,7 @@ GTFS-Hub regularly checks on a list of well known GTFS-feeds for updates.
 If they have been updated, they get
 
 * downloaded, 
-* quality checked via [Google's transitfeed feedvalidator](https://github.com/google/transitfeed) (exception is, for performance reasons, the DELFI GTFS feed)
+* quality checked via mecatran's [GTFSVTOR feedvalidator](https://gtfsvtor.mecatran.com/utw-test/web/pub/gtfsvtor)
 * optionally enhanced with shapes using OSM data and the [pfaedle tool](https://github.com/ad-freiburg/pfaedle)
 * optionally transformed with the [OneBusAway GTFS transformer tool](http://developer.onebusaway.org/modules/onebusaway-gtfs-modules/1.3.4-SNAPSHOT/onebusaway-gtfs-transformer-cli.html) (fed with a feed specific rule file)
 * and optionally merged into larger aggregated GTFS feeds or filtered to a regional subset
@@ -26,7 +26,7 @@ If they have been updated, they get
 ### Updating and preparing OSM data
 Before GFTS data is updated, the OSM data which is used to generate GFTFS shapes is updated.
 To avoid daily downloading large pbf datasets (GTFS-Hub uses DACH (Germany, Austria, Switzerland) and Alsace (France)) 
-from scratch, we only download the original datases once and update these afterwards via [`pyosmium-up-to-date`](https://docs.osmcode.org/pyosmium/latest/tools_uptodate.html) and prepares some 
+from scratch, we only download the original datasets once and update these afterwards via [`pyosmium-up-to-date`](https://docs.osmcode.org/pyosmium/latest/tools_uptodate.html) and prepares some 
 region clipped extracts (namely Baden-Wuerttemberg including a buffer of some kilometers around the border).
 
 As this extract will serve as input to [OpenTripPlanner](https://www.opentripplanner.org) as well, we do some additionally data processing on it to enhance some infos, e.g.
@@ -40,10 +40,10 @@ After updating OSM and GTFS data, you'll find the datasets in the folder `data/w
 ### External references
 This project uses a couple of other Docker images:
 
-* [mfdz/pfaedle](https://hub.docker.com/r/mfdz/pfaedle): a dockerized version of Patrick Brosi's tool pfaedle the enhance GTFS feeds by shapes map matched using OSM data
+* [adfreiburg/pfaedle](https://hub.docker.com/r/adfreiburg/pfaedle): a dockerized version of Patrick Brosi's tool pfaedle the enhance GTFS feeds by shapes map matched using OSM data
 * [mfdz/pyosmium](https://hub.docker.com/r/mfdz/pyosmium): a dockerized version of (py)osmium to quickly update / cut / merge OSM data
 * [mfdz/osmosis](https://hub.docker.com/r/mfdz/osmosis): a dockerized version of osmosis to enhance OSM data with a declarative instruction set
-* [mfdz/transitfeed](https://hub.docker.com/r/mfdz/transitfeed): a dockerized version of google's transitfeed feedvalidator
+* [mfdz/transitfeed](https://hub.docker.com/r/mfdz/gtfsvtor): a dockerized version of mecatran's [GTFSVTOR feedvalidator](https://gtfsvtor.mecatran.com/utw-test/web/pub/gtfsvtor).
 * [mfdz/otp-data-tools](https://hub.docker.com/r/mfdz/otp-data-tools): a dockerized version of onebusaway's GTFS transform and merge tools
 
 Thanks to everybody contributing to these tools, the OSM community and Geofabrik and the transit agencies providing the data download services.
