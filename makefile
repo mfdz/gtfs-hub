@@ -65,6 +65,7 @@ data/osm/%.osm: data/osm/%.osm.pbf
 	$(OSMIUM) cat $(TOOL_DATA)/$(<F) -o $(TOOL_DATA)/$(@F) -O
 
 
+
 # For every merged dataset, it's composing feeds should be listed.
 # At first, we define a variable with all feed names, which subsquently gets expanded
 # to the complete paths
@@ -147,12 +148,17 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
-data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm
+# create a filtered OSM dump, specifically for pfaedle
+data/osm/%.osm.pfaedle: data/osm/%.osm data/gtfs/SPNV-BW.filtered.gtfs
+	$(info converting OSM XML to pfaedle-filtered OSM XML)
+	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/SPNV-BW.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
+# use the filtered OSM for map matching
+data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm.pfaedle
 	$(eval @_MAP_MATCH_OSM := $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{if ($$1 == "$*") {print $$8}}'))
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
