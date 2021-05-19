@@ -1,2 +1,0 @@
-{"op":"retain", "match":{"file": "routes.txt", "route_type": "m/2|100|102|103/"}}
-{"op":"retain", "match":{"file": "stops.txt", "stop_id": "m/de:08.*|de:09775.*/"}}

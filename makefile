@@ -90,13 +90,21 @@ data/gtfs/hbg3.merged.gtfs.zip: $(HBG3_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
-data/gtfs/hbg3.merged.with_flex.gtfs: data/gtfs/hbg3.merged.gtfs.zip
+
+HBG4 = DELFI.BW-long-distance-S-TÜ-CW.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes
+HBG4_FILES = $(HBG4:%=data/gtfs/%.gtfs)
+data/gtfs/hbg4.merged.gtfs.zip: $(HBG4_FILES)
+	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
+
+data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	$(info unzipping $* GTFS feed)
 	rm -rf $@
 	unzip -d $@ $<
 	$(info patching GTFS-Flex data into the GTFS feed)
 	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
-data/gtfs/hbg3.merged.with_flex.gtfs.zip: data/gtfs/hbg3.merged.with_flex.gtfs
+data/gtfs/%.merged.with_flex.gtfs.zip: data/gtfs/%.merged.with_flex.gtfs
 	rm -f $@
 	zip -j $@ $</*.txt $</locations.geojson
 
