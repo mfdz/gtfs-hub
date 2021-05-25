@@ -1,0 +1,6 @@
+{"op":"retain", "match":{"file": "routes.txt", "route_type": "m/2|100|102|103/"}}
+# only trips via
+# - Stuttgart Hbf (de:08111:6115:, de:08111:6118:)
+# - Tübingen Hbf (de:08416:11000:)
+# - Calw (de:08235:9030:)
+{"op":"retain", "match":{"file": "stops.txt", "stop_id": "m/de:08111:6115:.*|de:08111:6118:.*|de:08416:11000:.*|de:08235:9030:.*/"}}

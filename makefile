@@ -20,7 +20,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = hbg hbg2 ulm
+MERGED = hbg hbg2 hbg3 ulm
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
@@ -65,6 +65,7 @@ data/osm/%.osm: data/osm/%.osm.pbf
 	$(OSMIUM) cat $(TOOL_DATA)/$(<F) -o $(TOOL_DATA)/$(@F) -O
 
 
+
 # For every merged dataset, it's composing feeds should be listed.
 # At first, we define a variable with all feed names, which subsquently gets expanded
 # to the complete paths
@@ -83,17 +84,29 @@ data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
 
-GEN_HERRENBERG_GTFS_FLEX = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/VVS.with_shapes.with_flex.gtfs:/gtfs derhuerst/generate-herrenberg-gtfs-flex
-data/gtfs/VVS.with_shapes.with_flex.gtfs: data/gtfs/VVS.with_shapes.gtfs
-	$(info copying filtered VVS GTFS feed into $@)
-	rm -rf $@ && ./cp.sh -r $< $@
-	$(info patching GTFS-Flex data into the $(@F) feed)
-	$(GEN_HERRENBERG_GTFS_FLEX)
-
-HBG3 = DELFI.BW-long-distance.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes.with_flex
+HBG3 = naldo.filtered VGC.filtered VVS.with_shapes
 HBG3_FILES = $(HBG3:%=data/gtfs/%.gtfs)
-data/gtfs/hbg3.merged.gtfs: $(HBG3_FILES)
+data/gtfs/hbg3.merged.gtfs.zip: $(HBG3_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
+
+HBG4 = DELFI.BW-long-distance-S-TÜ-CW.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes
+HBG4_FILES = $(HBG4:%=data/gtfs/%.gtfs)
+data/gtfs/hbg4.merged.gtfs.zip: $(HBG4_FILES)
+	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hbg.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
+
+data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
+	$(info unzipping $* GTFS feed)
+	rm -rf $@
+	unzip -d $@ $<
+	$(info patching GTFS-Flex data into the GTFS feed)
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+data/gtfs/%.merged.with_flex.gtfs.zip: data/gtfs/%.merged.with_flex.gtfs
+	rm -f $@
+	zip -j $@ $</*.txt $</locations.geojson
 
 ULM = SPNV-BW.filtered DING.filtered
 ULM_FILES = $(ULM:%=data/gtfs/%.gtfs)
@@ -143,12 +156,17 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
-data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm
+# create a filtered OSM dump, specifically for pfaedle
+data/osm/%.osm.pfaedle: data/osm/%.osm data/gtfs/SPNV-BW.filtered.gtfs
+	$(info converting OSM XML to pfaedle-filtered OSM XML)
+	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/SPNV-BW.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
+# use the filtered OSM for map matching
+data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm.pfaedle
 	$(eval @_MAP_MATCH_OSM := $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{if ($$1 == "$*") {print $$8}}'))
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
