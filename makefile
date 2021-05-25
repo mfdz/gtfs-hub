@@ -12,8 +12,8 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
-.PHONY : osm gtfs
-.DELETE_ON_ERROR:
+.PHONY: osm gtfs .FORCE
+.FORCE:
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
@@ -118,7 +118,7 @@ data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 
 # GTFS feeds: download, filtering, map-matching, validation
 
-data/gtfs/%.raw.gtfs.zip:
+data/gtfs/%.raw.gtfs.zip: .FORCE
 	$(eval @_DOWNLOAD_URL := $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{if ($$1 == "$*") {print $$5}}'))
 	if [ -z "${@_DOWNLOAD_URL}" ]; then 1>&2 echo 'missing entry in config/gtfs-feeds.csv'; exit 1; fi
 	$(info downloading $* GTFS feed from ${@_DOWNLOAD_URL})
