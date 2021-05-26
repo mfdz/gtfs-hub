@@ -135,7 +135,6 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs config/gtfs-rules/%.rule
 	$(info patching $* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/$*.rule $(TOOL_DATA)/$*.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
-	$(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/gtfs/$*.filtered.gtfs $(TOOL_DATA)/gtfs/$*.filtered.gtfs
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
@@ -168,7 +167,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F) && $(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
