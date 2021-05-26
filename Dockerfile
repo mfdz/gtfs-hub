@@ -12,7 +12,7 @@ RUN apk add --update --no-cache \
   make \
   bash \
   moreutils \
-  wget \
+  curl \
   zip \
   docker-cli
 # miller is not included in the main ("community" branch) package list yet.
