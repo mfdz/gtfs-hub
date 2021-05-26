@@ -104,7 +104,7 @@ data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	rm -rf $@
 	unzip -d $@ $<
 	$(info patching GTFS-Flex data into the GTFS feed)
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex:loc-groups
 data/gtfs/%.merged.with_flex.gtfs.zip: data/gtfs/%.merged.with_flex.gtfs
 	rm -f $@
 	zip -j $@ $</*.txt $</locations.geojson
