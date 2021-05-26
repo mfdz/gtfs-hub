@@ -135,7 +135,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs config/gtfs-rules/%.rule
 	$(info patching $* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/$*.rule $(TOOL_DATA)/$*.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
-	$(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/$*.filtered.gtfs $(TOOL_DATA)/$*.filtered.gtfs
+	$(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/gtfs/$*.filtered.gtfs $(TOOL_DATA)/gtfs/$*.filtered.gtfs
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
