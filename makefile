@@ -34,7 +34,7 @@ TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v
 PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs adfreiburg/pfaedle
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm mfdz/otp-data-tools java -Xmx18g -jar one-busaway-gtfs-merge/onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor
-GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs gtfstidy
+GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs derhuerst/gtfstidy
 
 
 # Baden-Württemberg OSM extract
@@ -104,7 +104,7 @@ data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	rm -rf $@
 	unzip -d $@ $<
 	$(info patching GTFS-Flex data into the GTFS feed)
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex:duplicate-trips
 data/gtfs/%.merged.with_flex.gtfs.zip: data/gtfs/%.merged.with_flex.gtfs
 	rm -f $@
 	zip -j $@ $</*.txt $</locations.geojson
@@ -135,7 +135,6 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs config/gtfs-rules/%.rule
 	$(info patching $* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/$*.rule $(TOOL_DATA)/$*.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
-	$(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/$*.filtered.gtfs $(TOOL_DATA)/$*.filtered.gtfs
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
@@ -168,7 +167,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -D -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F) && $(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
