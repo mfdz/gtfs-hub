@@ -21,10 +21,11 @@ osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
 MERGED = hbg hbg2 hbg3 ulm
+MERGED_WITH_FLEX = hbg3
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
-gtfs : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.gtfs.zip) data/www/index.html
+gtfs : $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(MERGED_WITH_FLEX:%=data/gtfs/%.merged.with_flex.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.gtfs.zip) data/www/index.html
 
 # Shortcuts for the (dockerized) transform/merge tools.
 OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium osmium
