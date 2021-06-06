@@ -1,6 +1,7 @@
 shortname;license;attribution;permanentUrl?;downloadUrl;infoUrl;infoEmail;enhanceShapes
 AVV;cc-zero;;Ja;http://opendata.avv.de/current_GTFS/AVV_GTFS_mit_SPNV.zip;https://avv.de/de/fahrplaene/angebote-fuer-webentwickler;;Nein
 bodo;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/bodo.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
+bwgesamt;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/bwgesamt.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
 DELFI;CC BY 4.0;DELFI;nein;https://de.data.public-transport.earth/gtfs-germany.zip;https://www.opendata-oepnv.de/ht/de/organisation/delfi/startseite?tx_vrrkit_view%5Bdataset_name%5D=deutschlandweite-sollfahrplandaten-gtfs&tx_vrrkit_view%5Baction%5D=details&tx_vrrkit_view%5Bcontroller%5D=View;info@delfi.de;Nein
 DING;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/ding.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
 FlixBus;?;?;ja;http://data.ndovloket.nl/flixbus/flixbus-eu.zip;http://data.ndovloket.nl/flixbus/;;Nein
