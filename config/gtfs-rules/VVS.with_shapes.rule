@@ -2,8 +2,5 @@
 
 # de:08115:4800:0:3,,Herrenberg Waldfriedhof,,48.602371216,8.9029130936,,,0,,,0,
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08115:4800:0:3"}, "update":{"stop_lat":"48.6020352", "stop_lon":"8.9036348"}}
-# Workaround for https://github.com/mfdz/GTFS-Issues/issues/57
-{"op":"remove", "match":{"file":"routes.txt", "route_id":"31-779-t-j21-1"}}
-{"op":"remove", "match":{"file":"routes.txt", "route_id":"31-780-t-j21-1"}}
-{"op":"remove", "match":{"file":"routes.txt", "route_id":"31-782-t-j21-1"}}
-{"op":"remove", "match":{"file":"routes.txt", "route_id":"31-783-t-j21-1"}}
+{"op": "create_parent_stops"}
+{"op": "vvs_bikes_allowed"}
