@@ -9,9 +9,14 @@ if [ -z "$dest_file" ]; then 1>&2 echo 'missing 2nd argument: dest_file'; exit 1
 ua='User-Agent: mfdz/gtfs-hub'
 etag_file="$dest_file.etag"
 
-curl -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
+if test -e "$$dest_file"
+then zflag="-z '$dest_file'"
+else zflag=
+fi
 
-# todo: support Last-Modified & ETag headers
+curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
+
+# todo: support ETag headers
 # args=('-Lf' '-H' "$ua" '--compressed' '-z' "$dest_file" -R "$url" '-o' "$dest_file")
 # set -x
 # # call curl, clean up $dest_file if it failed
