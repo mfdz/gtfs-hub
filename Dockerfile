@@ -15,9 +15,9 @@ RUN apk add --update --no-cache \
   curl \
   zip \
   docker-cli
-# miller is not included in the main ("community" branch) package list yet.
+# miller is included in the "community" branch, not in the "main" branch.
 # https://github.com/johnkerl/miller/issues/293#issuecomment-687661421
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing miller
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/community miller
 
 ADD patch_raw_gtfs.sh patch_filtered_gtfs.sh ./
 ADD download.sh .
