@@ -12,7 +12,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
-.PHONY: osm gtfs .FORCE
+.PHONY: osm gtfs data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf .FORCE
 .FORCE:
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
