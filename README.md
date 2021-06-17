@@ -20,7 +20,7 @@ If they have been updated, they get
 * downloaded, 
 * quality checked via mecatran's [GTFSVTOR feedvalidator](https://gtfsvtor.mecatran.com/utw-test/web/pub/gtfsvtor)
 * optionally enhanced with shapes using OSM data and the [pfaedle tool](https://github.com/ad-freiburg/pfaedle)
-* optionally transformed with the [OneBusAway GTFS transformer tool](http://developer.onebusaway.org/modules/onebusaway-gtfs-modules/1.3.4-SNAPSHOT/onebusaway-gtfs-transformer-cli.html) (fed with a feed specific rule file)
+* optionally transformed with the [OneBusAway GTFS transformer tool](http://developer.onebusaway.org/modules/onebusaway-gtfs-modules/1.3.4-SNAPSHOT/onebusaway-gtfs-transformer-cli.html) (fed with a feed specific [rule file](https://github.com/OneBusAway/onebusaway-gtfs-modules/blob/15525f709ab75e50d79cb5c1b5fb23154f85d65e/src/site/apt/onebusaway-gtfs-transformer-cli.apt.vm#L52-L486))
 * and optionally merged into larger aggregated GTFS feeds or filtered to a regional subset
 
 ### Updating and preparing OSM data
