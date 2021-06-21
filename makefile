@@ -106,7 +106,7 @@ data/gtfs/hbg5.merged.with_flex.gtfs: data/gtfs/hbg3.merged.gtfs.zip
 	rm -rf $@
 	unzip -d $@ $<
 	$(info patching GTFS-Flex data into the GTFS feed (using derhuerst/generate-herrenberg-gtfs-flex#6))
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex:duplicate-stop-times
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
 
 data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	$(info unzipping $* GTFS feed)
