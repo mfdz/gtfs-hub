@@ -11,7 +11,7 @@ if [ -z "$OSMIUM_UPDATE" ]; then 1>&2 echo 'missing env var: OSMIUM_UPDATE'; exi
 set -x
 # call wget, clean up $dest_file if it failed
 if [ -f "$dest_file" ]; then
-	$OSMIUM_UPDATE
+	$OSMIUM_UPDATE || true
 else
 	./download.sh "$url" "$dest_file"
 fi
