@@ -2,6 +2,25 @@
 
 <translations>
   <translation>
+    <name>Set park_ride tag to no for parkings retrieved by external api</name>
+    <description>ATTENTION: This is a hack. We exclude Herrenberg park and ride parkings as
+      they are provided via an external API and we do not want them duplicated.
+      In the long run, OTP should be extended to merge such parkings...
+    </description>
+    <match type="way">
+      <ids>
+        <id>904147021</id>
+        <id>360991788</id>
+        <id>28299076</id>
+        <id>30628218</id>
+      </ids>
+    </match>
+    <output>
+      <copy-all/>
+      <tag k="park_ride" v="no"/>
+    </output>
+  </translation>
+  <translation>
     <name>Add park_ride tag to parkings close to stations</name>
     <description>Add park_ride tag to parkings close to stations identified by id, if it does not exist already</description>
     <match mode="and">
@@ -68,7 +87,6 @@
 <id>33462457</id>
 <id>33462458</id>
 <id>33700161</id>
-<id>33778012</id>
 <id>35148219</id>
 <id>35223061</id>
 <id>36054702</id>
@@ -667,7 +685,6 @@
 <id>31281518</id>
 <id>177592176</id>
 <id>177681157</id>
-<id>30628218</id>
 <id>446175726</id>
 <id>164372550</id>
 <id>161359734</id>
