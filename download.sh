@@ -21,7 +21,7 @@ fi
 #curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
 
 # HVV has no permanent URL nor last-modfied info, so we download only if not existing
-if [ "$dest_file" != "data/gtfs/HVV.gtfs.raw.zip" or zflag="" ]; then
+if [ "$dest_file" != "data/gtfs/HVV.gtfs.raw.zip" -o "$zflag"="" ]; then
 	curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
 fi
 
