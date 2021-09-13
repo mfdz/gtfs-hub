@@ -21,7 +21,7 @@ osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
 MERGED = hbg hbg2 hbg3 ulm
-MERGED_WITH_FLEX = hbg3 hbg5
+MERGED_WITH_FLEX = hbg3 hbg5 hbg6
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
@@ -93,7 +93,7 @@ data/gtfs/hbg3.merged.gtfs.zip: $(HBG3_FILES)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
 
-HBG4 = DELFI.BW-long-distance-S-TÜ-CW.with_shapes SPNV-BW.no-long-distance.with_shapes naldo.filtered VGC.filtered VVS.with_shapes
+HBG4 = bwgesamt.extract.with_shapes VVS.with_shapes
 HBG4_FILES = $(HBG4:%=data/gtfs/%.gtfs)
 data/gtfs/hbg4.merged.gtfs.zip: $(HBG4_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
@@ -102,6 +102,13 @@ data/gtfs/hbg4.merged.gtfs.zip: $(HBG4_FILES)
 
 # temporary variant of hbg3, because we don't want to break production, which uses hbg3
 data/gtfs/hbg5.merged.with_flex.gtfs: data/gtfs/hbg3.merged.gtfs.zip
+	$(info unzipping $* GTFS feed)
+	rm -rf $@
+	unzip -d $@ $<
+	$(info patching GTFS-Flex data into the GTFS feed (using derhuerst/generate-herrenberg-gtfs-flex#6))
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+
+data/gtfs/hbg6.merged.with_flex.gtfs: data/gtfs/hbg4.merged.gtfs.zip
 	$(info unzipping $* GTFS feed)
 	rm -rf $@
 	unzip -d $@ $<
@@ -156,6 +163,11 @@ data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/SPNV-BW.$*.rule $(TOOL_DATA)/SPNV-BW.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "SPNV-BW.$*" "data/gtfs/$(@F)"
+	touch $@
+data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.raw.gtfs config/gtfs-rules/bwgesamt.%.rule
+	$(info patching bwgesamt.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/bwgesamt.$*.rule)
+	$(TRANSFORM) --transform=$(TOOL_CFG)/bwgesamt.$*.rule $(TOOL_DATA)/bwgesamt.raw.gtfs $(TOOL_DATA)/$(@F)
+	./patch_filtered_gtfs.sh "bwgesamt.$*" "data/gtfs/$(@F)"
 	touch $@
 
 # TODO GTFS fixes should go into gtfs-rules or gtfs-feeds.csv
