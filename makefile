@@ -20,8 +20,8 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = hbg hbg2 hbg3 ulm
-MERGED_WITH_FLEX = hbg3 hbg5 hbg6
+MERGED = ulm
+MERGED_WITH_FLEX = hbg6
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
 FILTERED = BW
@@ -66,54 +66,15 @@ data/osm/%.osm: data/osm/%.osm.pbf
 	$(info see also https://github.com/ad-freiburg/pfaedle/issues/10)
 	$(OSMIUM) cat $(TOOL_DATA)/$(<F) -o $(TOOL_DATA)/$(@F) -O
 
-
-
 # For every merged dataset, it's composing feeds should be listed.
 # At first, we define a variable with all feed names, which subsquently gets expanded
 # to the complete paths
-HBG = naldo.filtered VGC.filtered VVS.with_shapes
-HBG_FILES = $(HBG:%=data/gtfs/%.gtfs)
-data/gtfs/hbg.merged.gtfs.zip: $(HBG_FILES)
+HBG6 = bwgesamt.extract.with_shapes VVS.with_shapes
+HBG6_FILES = $(HBG6:%=data/gtfs/%.gtfs)
+data/gtfs/hbg6.merged.gtfs.zip: $(HBG6_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
 	cp config/hbg.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
-
-# Prepare second feed with SPNV added to test how it works
-HBG2 = SPNV-BW.filtered naldo.filtered VGC.filtered VVS.with_shapes
-HBG2_FILES = $(HBG2:%=data/gtfs/%.gtfs)
-data/gtfs/hbg2.merged.gtfs.zip: $(HBG2_FILES)
-	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
-	cp config/hbg.feed_info.txt /tmp/feed_info.txt
-	zip -u -j $@ /tmp/feed_info.txt
-
-HBG3 = naldo.filtered VGC.filtered VVS.with_shapes
-HBG3_FILES = $(HBG3:%=data/gtfs/%.gtfs)
-data/gtfs/hbg3.merged.gtfs.zip: $(HBG3_FILES)
-	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
-	cp config/hbg.feed_info.txt /tmp/feed_info.txt
-	zip -u -j $@ /tmp/feed_info.txt
-
-HBG4 = bwgesamt.extract.with_shapes VVS.with_shapes
-HBG4_FILES = $(HBG4:%=data/gtfs/%.gtfs)
-data/gtfs/hbg4.merged.gtfs.zip: $(HBG4_FILES)
-	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
-	cp config/hbg.feed_info.txt /tmp/feed_info.txt
-	zip -u -j $@ /tmp/feed_info.txt
-
-# temporary variant of hbg3, because we don't want to break production, which uses hbg3
-data/gtfs/hbg5.merged.with_flex.gtfs: data/gtfs/hbg3.merged.gtfs.zip
-	$(info unzipping $* GTFS feed)
-	rm -rf $@
-	unzip -d $@ $<
-	$(info patching GTFS-Flex data into the GTFS feed (using derhuerst/generate-herrenberg-gtfs-flex#6))
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
-
-data/gtfs/hbg6.merged.with_flex.gtfs: data/gtfs/hbg4.merged.gtfs.zip
-	$(info unzipping $* GTFS feed)
-	rm -rf $@
-	unzip -d $@ $<
-	$(info patching GTFS-Flex data into the GTFS feed (using derhuerst/generate-herrenberg-gtfs-flex#6))
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
 
 data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	$(info unzipping $* GTFS feed)
@@ -121,6 +82,7 @@ data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	unzip -d $@ $<
 	$(info patching GTFS-Flex data into the GTFS feed)
 	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-herrenberg-gtfs-flex
+
 data/gtfs/%.merged.with_flex.gtfs.zip: data/gtfs/%.merged.with_flex.gtfs
 	rm -f $@
 	zip -j $@ $</*.txt $</locations.geojson
