@@ -176,7 +176,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 	$(info copying filtered $* GTFS feed into $@)
 	rm -rf $@ && ./cp.sh -r data/gtfs/$*.filtered.gtfs $@
 	$(info map-matching the $* GTFS feed using pfaedle)
-	if [ "${@_MAP_MATCH_OSM}" != "Nein" ]; then $(PFAEDLE) --inplace -x $(TOOL_DATA)/osm/bw-buffered.osm.pfaedle $(TOOL_DATA)/gtfs/$(@F) && $(GTFSTIDY) --remove-red-shapes -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/$(@F); fi
+	if [ "${@_MAP_MATCH_OSM}" != "Nein" -a "${@_MAP_MATCH_OSM}" != "" ]; then $(PFAEDLE) --inplace -x $(TOOL_DATA)/osm/${@_MAP_MATCH_OSM}.pfaedle $(TOOL_DATA)/gtfs/$(@F) && $(GTFSTIDY) -sWD --remove-red-shapes -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/$(@F); else $(GTFSTIDY) -sWD --remove-red-shapes -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/$(@F); fi
 	touch $@
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
