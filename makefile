@@ -12,12 +12,13 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
-.PHONY: osm gtfs data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf .FORCE
-.FORCE:
+.PHONY: osm gtfs osm-pfaedle
+.FORCE: %.osm.pbf
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
-osm: data/osm/bw-buffered.osm data/osm/bw-buffered.osm.pbf
+osm: data/osm/bw-buffered.osm.pbf
+osm-pfaedle: data/osm/bw-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
 MERGED = ulm
