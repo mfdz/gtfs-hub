@@ -14,12 +14,12 @@ then zflag="-z '$dest_file'"
 else zflag=
 fi
 
-curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
+#curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
 
-# todo: support ETag headers
-# args=('-Lf' '-H' "$ua" '--compressed' '-z' "$dest_file" -R "$url" '-o' "$dest_file")
-# set -x
-# # call curl, clean up $dest_file if it failed
-# # `curl -C -` fails if the server doesn't support range requests, so we try again without `-C -`.
-# # todo: additionally use ETag headers to check if the remove file has changed
-# curl -C - "${args[@]}" || curl "${args[@]}"
+# HVV has no permanent URL nor last-modfied info, so we download only if not existing
+if [ "$dest_file" != "data/gtfs/HVV.gtfs.raw.zip" or zflag="" ]; then
+	curl $zflag -Lf -H "$ua" --compressed -R "$url" '-o' "$dest_file"
+fi
+
+# todo: support ETag headers 
+# todo: support md5
