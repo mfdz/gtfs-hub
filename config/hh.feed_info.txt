@@ -1,0 +1,2 @@
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
+hh,"Mitfahr|de|zentrale","https://mfdz.de/",de-DE,"https://hamburg.stadtnavi.de/dieser-dienst"

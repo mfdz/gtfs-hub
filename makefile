@@ -17,11 +17,11 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
-osm: data/osm/bw-buffered.osm.pbf
-osm-pfaedle: data/osm/bw-buffered.osm.pfaedle
+osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.osm.pbf
+osm-pfaedle: data/osm/bw-buffered.osm.pfaedle data/osm/hh-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = ulm
+MERGED = ulm hh
 MERGED_WITH_FLEX = hbg6
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
@@ -52,6 +52,12 @@ data/osm/DACH.osm.pbf:
 data/osm/bw-extracted-from-%.osm.pbf: data/osm/%.osm.pbf
 	$(info extracting buffered Baden-Württemberg from $(<F) OSM extract)
 	$(OSMIUM) extract -p $(TOOL_CFG)/bw_buffered.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
+
+#data/osm/hh-buffered.osm.pbf: data/osm/DACH.osm.pbf
+data/osm/hh-buffered.osm.pbf:
+	$(info extracting buffered Nothern Germany from $(<F) OSM extract)
+#	$(OSMIUM) extract -p $(TOOL_CFG)/hh_sh_nds.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
+	$(OSMIUM) extract -p $(TOOL_CFG)/hh_sh_nds.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/DACH.osm.pbf
 
 data/osm/bw-extracted-from-DACH.patched.osm.pbf: data/osm/bw-extracted-from-DACH.osm.pbf
 	$(info setting park_ride tag for well-known parkings and applying diversion patches)
@@ -95,6 +101,12 @@ data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	cp config/ulm.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
 
+HH = NDS.with_shapes NAH-SH.with_shapes HVV.filtered
+HH_FILES = $(HH:%=data/gtfs/%.gtfs)
+data/gtfs/hh.merged.gtfs.zip: $(HH_FILES)
+	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
+	cp config/hh.feed_info.txt /tmp/feed_info.txt
+	zip -u -j $@ /tmp/feed_info.txt
 
 # GTFS feeds: download, filtering, map-matching, validation
 
@@ -134,6 +146,7 @@ data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.raw.gtfs config/gtfs-rule
 	touch $@
 
 # TODO GTFS fixes should go into gtfs-rules or gtfs-feeds.csv
+# TO be deleted?
 data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	$(info unzipping $* GTFS feed)
 	rm -rf $@
@@ -142,9 +155,14 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	touch $@
 
 # create a filtered OSM dump, specifically for pfaedle
-data/osm/%.osm.pfaedle: data/osm/%.osm data/gtfs/SPNV-BW.filtered.gtfs
+data/osm/bw-buffered.osm.pfaedle: data/osm/bw-buffered.osm data/gtfs/SPNV-BW.filtered.gtfs
 	$(info converting OSM XML to pfaedle-filtered OSM XML)
 	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/SPNV-BW.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
+
+data/osm/hh-buffered.osm.pfaedle: data/osm/hh-buffered.osm data/gtfs/NDS.filtered.gtfs
+	$(info converting OSM XML to pfaedle-filtered OSM XML)
+	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/NDS.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
+
 # use the filtered OSM for map matching
 data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm.pfaedle
 	$(eval @_MAP_MATCH_OSM := $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{if ($$1 == "$*") {print $$8}}'))
@@ -169,3 +187,4 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 data/www/index.html: $(PROCESSED_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
+
