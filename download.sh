@@ -6,6 +6,10 @@ if [ -z "$url" ]; then 1>&2 echo 'missing 1st argument: url'; exit 1; fi
 dest_file="$2"
 if [ -z "$dest_file" ]; then 1>&2 echo 'missing 2nd argument: dest_file'; exit 1; fi
 
+# Replace %CONNECT_FAHRPLANINFO_TOKEN% by corresponding env value, specified via make -e CONNECT_FAHRPLANINFO_TOKEN=xyz
+url="${url/\%CONNECT_FAHRPLANINFO_TOKEN\%/$CONNECT_FAHRPLANINFO_TOKEN}"
+
+
 ua='User-Agent: mfdz/gtfs-hub'
 etag_file="$dest_file.etag"
 
