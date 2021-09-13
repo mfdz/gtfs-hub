@@ -18,3 +18,20 @@ if [ "$1" == "DELFI" ]; then
   mlr --csv put -S '$agency_url == "" { $agency_url = "https://www.delfi.de/" }' "$gtfs_dir/agency.txt" | sponge "$gtfs_dir/agency.txt"
   set +x
 fi
+
+if [ "$1" == "bwgesamt" ]; then
+  1>&2 echo "bwgesamt stops.txt: deleting rows with duplicate stop_ids"
+  set -x
+  # https://github.com/mfdz/GTFS-Issues/issues/74
+  grep -v '"de:09162:100_Parent","","München Hbf Gl. 27-36"' "$gtfs_dir/stops.txt" | sponge "$gtfs_dir/stops.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/75
+  tr -d '\r' < "$gtfs_dir/trips.txt" | sponge "$gtfs_dir/trips.txt"
+  tr -d '\r' < "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/77
+  sed -i 's/,www/,http:\/\/www/g' "$gtfs_dir/agency.txt"
+  sed -i 's/,"www/,"http:\/\/www/g' "$gtfs_dir/agency.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/76
+  sed -i 's/,,,"2/,"RB",,"2/' "$gtfs_dir/routes.txt"
+  set +x
+fi
+
