@@ -16,6 +16,14 @@ if [ "$1" == "DELFI" ]; then
   1>&2 echo "DELFI agency.txt: filling missing agency_url values"
   set -x
   mlr --csv put -S '$agency_url == "" { $agency_url = "https://www.delfi.de/" }' "$gtfs_dir/agency.txt" | sponge "$gtfs_dir/agency.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/71
+  grep -v '"",' "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/72
+  grep -v '"de:08236:2590:2",' "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  grep -v '"de:08316:6667:2:1",' "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  grep -v '"de:08326:8324:90:",' "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  grep -v '"de:09676:99310:90",' "$gtfs_dir/stop_times.txt" | sponge "$gtfs_dir/stop_times.txt"
+  
   set +x
 fi
 

@@ -133,6 +133,7 @@ data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.raw.gtfs config/gtfs-rules/DELF
 	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "DELFI.$*" "data/gtfs/$(@F)"
+	./cp.sh data/gtfs/DELFI.raw.gtfs/levels.txt $@
 	touch $@
 data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/SPNV-BW.%.rule
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
