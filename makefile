@@ -99,13 +99,15 @@ data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
 	cp config/ulm.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
-
-HH = NDS.with_shapes NAH-SH.with_shapes HVV.filtered
+	touch $@
+	
+HH = NDS.with_shapes NAH.SH.with_shapes HVV.filtered
 HH_FILES = $(HH:%=data/gtfs/%.gtfs)
 data/gtfs/hh.merged.gtfs.zip: $(HH_FILES)
 	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
 	cp config/hh.feed_info.txt /tmp/feed_info.txt
 	zip -u -j $@ /tmp/feed_info.txt
+	touch $@
 
 # GTFS feeds: download, filtering, map-matching, validation
 
