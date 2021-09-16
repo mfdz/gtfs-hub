@@ -7,7 +7,6 @@ TAIL = $(shell set +e; if [[ -x "$$(which gtail)" ]]; then echo gtail; else echo
 GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
 RAW_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.raw.gtfs.zip)
 GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
-PROCESSED_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.gtfs.zip)
 GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 .SUFFIXES:
@@ -128,6 +127,14 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs config/gtfs-rules/%.rule
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
+# filtered, feeds for which no rules are defined, should just be patched, if required (and are required for with_shapes)
+data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
+	$(info unzipping $* GTFS feed)
+	rm -rf $@
+	unzip -d $@ $<
+	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
+	touch $@
+
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
 data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.raw.gtfs config/gtfs-rules/DELFI.%.rule
 	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
@@ -144,15 +151,6 @@ data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.raw.gtfs config/gtfs-rule
 	$(info patching bwgesamt.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/bwgesamt.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/bwgesamt.$*.rule $(TOOL_DATA)/bwgesamt.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "bwgesamt.$*" "data/gtfs/$(@F)"
-	touch $@
-
-# TODO GTFS fixes should go into gtfs-rules or gtfs-feeds.csv
-# TO be deleted?
-data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
-	$(info unzipping $* GTFS feed)
-	rm -rf $@
-	unzip -d $@ $<
-	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
 	touch $@
 
 # create a filtered OSM dump, specifically for pfaedle
@@ -185,7 +183,7 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 	$(info running GTFSVTOR on the $* GTFS feed)
 	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
 
-data/www/index.html: $(PROCESSED_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
+data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
 
