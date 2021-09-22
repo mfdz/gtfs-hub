@@ -32,7 +32,7 @@ OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MO
 OSMIUM_UPDATE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium pyosmium-up-to-date
 OSMOSIS = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/osmosis:0.47-1-gd370b8c4
 TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA) mfdz/onebusaway-gtfs-modules java -Xmx20g -jar onebusaway-gtfs-transformer-cli.jar
-PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs adfreiburg/pfaedle
+PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs adfreiburg/pfaedle
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm mfdz/onebusaway-gtfs-modules java -Xmx18g -jar onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs derhuerst/gtfstidy
@@ -156,13 +156,9 @@ data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.raw.gtfs config/gtfs-rule
 	touch $@
 
 # create a filtered OSM dump, specifically for pfaedle
-data/osm/bw-buffered.osm.pfaedle: data/osm/bw-buffered.osm data/gtfs/SPNV-BW.filtered.gtfs
+data/osm/%-buffered.osm.pfaedle: data/osm/%-buffered.osm | config/pfaedle/%
 	$(info converting OSM XML to pfaedle-filtered OSM XML)
-	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/SPNV-BW.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
-
-data/osm/hh-buffered.osm.pfaedle: data/osm/hh-buffered.osm data/gtfs/NDS.filtered.gtfs
-	$(info converting OSM XML to pfaedle-filtered OSM XML)
-	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_DATA)/gtfs/NDS.filtered.gtfs -X $(TOOL_DATA)/osm/$(@F)
+	$(PFAEDLE) -x $(TOOL_DATA)/osm/$(<F) -i $(TOOL_CFG)/pfaedle/$* -X $(TOOL_DATA)/osm/$(@F)
 
 # use the filtered OSM for map matching
 data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.osm.pfaedle

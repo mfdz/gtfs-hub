@@ -1,0 +1,2 @@
+route_id,trip_id,arrival_time,departure_time,stop_id,stop_sequence,service_id
+0,0,9:00:00,9:00:00,0,0,0

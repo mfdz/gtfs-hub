@@ -1,0 +1,2 @@
+route_id,route_short_name,route_type
+0,"BoundingBoxSpanningRoute",1

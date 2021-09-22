@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_timezone,agency_lang,agency_url
+0,"MFDZ","Europe/Berlin","de","https://www.mfdz.de/"

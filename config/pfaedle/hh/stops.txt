@@ -1,0 +1,3 @@
+stop_id,stop_name,stop_lat,stop_lon
+0,"lower left",51.98,6.37
+1,"upper right",55.23,11.8
