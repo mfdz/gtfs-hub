@@ -11,7 +11,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
-.PHONY: osm gtfs osm-pfaedle
+.PHONY: download osm gtfs osm-pfaedle
 .FORCE:
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
@@ -185,6 +185,9 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 	$(info running GTFSVTOR on the $* GTFS feed)
 	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
 
+download: $(RAW_GTFS_FEEDS)
+	$(info Downloaded feeds)
+ 
 data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
