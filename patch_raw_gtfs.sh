@@ -40,6 +40,8 @@ if [ "$1" == "bwgesamt" ]; then
   sed -i 's/,"www/,"http:\/\/www/g' "$gtfs_dir/agency.txt"
   # https://github.com/mfdz/GTFS-Issues/issues/76
   sed -i 's/,,,"2/,"RB",,"2/' "$gtfs_dir/routes.txt"
+  # https://github.com/mfdz/GTFS-Issues/issues/78
+  uniq "$gtfs_dir/routes.txt" | sponge "$gtfs_dir/routes.txt"
   set +x
 fi
 
