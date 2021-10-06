@@ -16,7 +16,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
-osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.osm.pbf
+osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
 osm-pfaedle: data/osm/bw-buffered.osm.pfaedle data/osm/hh-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
@@ -57,6 +57,10 @@ data/osm/hh-buffered.osm.pbf:
 	$(info extracting buffered Nothern Germany from $(<F) OSM extract)
 #	$(OSMIUM) extract -p $(TOOL_CFG)/hh_sh_nds.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
 	$(OSMIUM) extract -p $(TOOL_CFG)/hh_sh_nds.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/DACH.osm.pbf
+
+data/osm/hh-buffered.patched.osm.pbf: data/osm/hh-buffered.osm.pbf
+	$(info applying osm patches)
+	$(OSMOSIS) --read-pbf $(TOOL_DATA)/$(<F) --tt file=$(TOOL_CFG)/hh_osm_transform.xml stats=$(TOOL_DATA)/hh_osm_transform.log --write-pbf $(TOOL_DATA)/$(@F)
 
 data/osm/bw-extracted-from-DACH.patched.osm.pbf: data/osm/bw-extracted-from-DACH.osm.pbf
 	$(info setting park_ride tag for well-known parkings and applying diversion patches)

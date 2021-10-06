@@ -1,0 +1,2178 @@
+<translations>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>382213608</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Saarlandstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/saarlandstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>664890284</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Farmsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/farmsen-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>639173902</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alsterdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alsterdorf-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4161288192</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alsterdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alsterdorf-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3665885884</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alsterdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alsterdorf-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="shed" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>2575893711</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Berliner Tor" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/berliner-tor-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>223754802</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Berliner Tor" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/berliner-tor-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>586118110</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hoheluftbrücke" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hoheluftbruecke-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>429159772</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4365166534</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>632171468</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>632171466</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3482238624</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Nord" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-nord-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>758709144</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Nord" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-nord-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>759462095</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenhorn Nord" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenhorn-nord-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999403</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999404</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999402</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3369005494</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999410</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3677918225</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mundsburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mundsburg-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="shed" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3677918231</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mundsburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mundsburg-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>914828220</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Neuwiedenthal" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/neuwiedenthal-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>914828221</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Neuwiedenthal" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/neuwiedenthal-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>541958955</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Ohlstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/ohlstedt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4114726911</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Othmarschen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/othmarschen-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="stands" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>961347199</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Veddel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/veddel-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>9102185283</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wandsbek Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wandsbek-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>9102185284</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wandsbek Markt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wandsbek-markt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>50741055</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wilhelmsburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wilhelmsburg-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="shed" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3369024330</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Allermöhe" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/allermoehe-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>54499381</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Allermöhe" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/allermoehe-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3437940885</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Allermöhe" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/allermoehe-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3033453760</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alter Teichweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alter-teichweg-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3033453764</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alter Teichweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alter-teichweg-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3033453758</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alter Teichweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alter-teichweg-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3226177950</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Altona" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/altona-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>726895801</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Bergedorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/bergedorf-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>5143528041</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Bergedorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/bergedorf-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7326096054</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Billstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/billstedt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6492094807</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Billstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/billstedt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>451696521</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Burgstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/burgstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>585261794</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Burgstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/burgstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="stands" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>585261795</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Burgstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/burgstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>650660445</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Burgwedel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/burgwedel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177704658</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Diebsteich" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/diebsteich-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177687381</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Eidelstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/eidelstedt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177687371</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Eidelstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/eidelstedt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7683189835</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Finkenwerder" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/finkenwerder-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1710576220</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Finkenwerder" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/finkenwerder-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4364731341</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Finkenwerder" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/finkenwerder-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>614558289</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Fuhlsbüttel Nord" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/fuhlsbuettel-nord-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>2718691501</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Habichtstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/habichtstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>965906138</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagenbecks Tierpark" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagenbecks-tierpark-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>948706133</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagenbecks Tierpark" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagenbecks-tierpark-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>700204251</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagenbecks Tierpark" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagenbecks-tierpark-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>700204250</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagenbecks Tierpark" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagenbecks-tierpark-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>167645147</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hamburger Straße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hamburger-strasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>688861947</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-5/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>688861946</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-5/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6461327605</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-5/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>5562713581</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hasselbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hasselbrook-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7258202394</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>690030566</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6472962249</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>746649533</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>746649534</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>746649535</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Iserbrook" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/iserbrook-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>32807988</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Kellinghusenstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/kellinghusenstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="garage" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>718465767</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenfelde" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenfelde-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>718465769</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenfelde" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenfelde-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>718465768</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenfelde" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenfelde-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>718465766</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenfelde" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenfelde-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>718465765</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Langenfelde" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/langenfelde-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6906942066</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Lutterothstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/lutterothstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>737695755</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Lutterothstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/lutterothstrasse-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>168276163</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Meiendorfer Weg (Am Bahndamm)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/meiendorfer-weg-am-bahndamm/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>168276164</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Meiendorfer Weg (Am Bahndamm)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/meiendorfer-weg-am-bahndamm/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999404</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999410</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999405</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>776999402</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mittlerer Landweg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/mittlerer-landweg-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177791062</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mümmelmannsberg Nord" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/muemmelmannsberg-nord-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177791062</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Mümmelmannsberg Süd" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/muemmelmannsberg-sued-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3482238630</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Ochsenzoll" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/ochsenzoll-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>683686167</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Ohlsdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/ohlsdorf-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4149910021</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Ohlsdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/ohlsdorf-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>423493925</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Rahlstedt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/rahlstedt-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>5018088234</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Rauhes Haus" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/rauhes-haus-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>5728989907</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Rissen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/rissen-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>690027485</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Sülldorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/suelldorf-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>304760649</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Tonndorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/tonndorf-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1743585439</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Volksdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/volksdorf-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>162475196</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Volksdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/volksdorf-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4046055299</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wandsbek Gartenstadt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wandsbek-gartenstadt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>893886906</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wandsbek Gartenstadt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wandsbek-gartenstadt-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177613372</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>676548924</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>629054883</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>634820235</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>634820233</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>659517346</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>633997029</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wellingsbüttel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wellingsbuettel-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>799313174</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wilhelmsburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wilhelmsburg-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>50741055</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wilhelmsburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wilhelmsburg-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3854336143</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Billwerder-Moorfleet" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/billwerder-moorfleet-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>3854336143</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Billwerder-Moorfleet" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/billwerder-moorfleet-3/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="lockers" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8581813844</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg " />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-6/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8581813845</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-7/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8581813844</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-7/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6461327605</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-8/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>688861946</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Harburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/harburg-8/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>511099929</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Berne" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/berne-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>168701778</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Berne" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/berne-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>704621936</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Neuwiedenthal (Parkhaus)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/neuwiedenthal-parkhaus-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7647336029</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Elbbrücken" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/elbbruecken-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>653768840</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Elbbrücken" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/elbbruecken-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6306828046</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Elbbrücken" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/elbbruecken-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7647336027</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Elbbrücken" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/elbbruecken-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>818875063</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Elbbrücken" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/elbbruecken-1/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>6611787695</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Heimfeld" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/heimfeld/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8062846732</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>748617594</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>749321610</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>865034317</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>749321611</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>749321612</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>865034315</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Schnelsen" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/schnelsen-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>964531252</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Oldenfelde (Busbrookhöhe)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/oldenfelde-busbrookhoehe/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="stands" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7932637902</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Oldenfelde (Am Knill)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/oldenfelde-am-knill/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7932637903</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Oldenfelde (Am Knill)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/oldenfelde-am-knill/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4114724628</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Othmarschen (Reventlowstraße)" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/othmarschen-reventlowstrasse/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>934954706</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagendeel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagendeel-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1177735699</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Hagendeel" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/hagendeel-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>4046055299</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Wandsbek Gartenstadt" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/wandsbek-gartenstadt-2/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8458169749</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Kreuzung Moorburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/kreuzung-moorburg/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>8458169750</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Kreuzung Moorburg" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/kreuzung-moorburg/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>868019817</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alte Wöhr" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alte-woehr/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>868019816</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Alte Wöhr" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/alte-woehr/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>1743585439</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Volksdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/volksdorf-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>9226968</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Volksdorf" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/volksdorf-4/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>7093120170</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Kellinghusenstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/kellinghusenstrasse-goernestrasse/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="way">
+   <ids>
+    <id>777347149</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Kellinghusenstraße" />
+   <tag k="website" v="https://www.pr.hamburg/anlagen/location/kellinghusenstrasse-goernestrasse/detail/" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="bicycle_parking" v="stands" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+ <translation>
+  <match type="node">
+   <ids>
+    <id>9149873869</id>
+   </ids>
+  </match>
+  <output>
+   <copy-all />
+   <tag k="name" v="B+R Veddel" />
+   <tag k="website" v="https://" />
+   <tag k="operator" v="P+R-Betriebsgesellschaft mbH" />
+   <tag k="bike_ride" v="yes" />
+   <tag k="source" v="OpenStreetMap, P+R-Betriebsgesellschaft GmbH" />
+  </output>
+ </translation>
+</translations>
