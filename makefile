@@ -20,7 +20,7 @@ osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
 osm-pfaedle: data/osm/bw-buffered.osm.pfaedle data/osm/hh-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
-MERGED = ulm hh
+MERGED = ulm
 MERGED_WITH_FLEX = hbg6
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
@@ -105,14 +105,6 @@ data/gtfs/ulm.merged.gtfs.zip: $(ULM_FILES)
 	zip -u -j $@ /tmp/feed_info.txt
 	touch $@
 	
-HH = NDS.with_shapes NAH.SH.with_shapes HVV.filtered
-HH_FILES = $(HH:%=data/gtfs/%.gtfs)
-data/gtfs/hh.merged.gtfs.zip: $(HH_FILES)
-	$(MERGE) $(^F:%=$(TOOL_DATA)/gtfs/%) $(TOOL_DATA)/gtfs/$(@F)
-	cp config/hh.feed_info.txt /tmp/feed_info.txt
-	zip -u -j $@ /tmp/feed_info.txt
-	touch $@
-
 # GTFS feeds: download, filtering, map-matching, validation
 
 data/gtfs/%.raw.gtfs.zip: .FORCE
