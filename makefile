@@ -131,6 +131,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	rm -rf $@
 	unzip -d $@ $<
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
+	if [[ -f "config/$*.feed_info.txt" ]]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.filtered.gtfs/feed_info.txt; fi
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
@@ -167,6 +168,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 
 data/gtfs/%.with_shapes.gtfs.zip: data/gtfs/%.with_shapes.gtfs
 	$(info zipping the map-matched $* GTFS feed into $(@F))
+	if [[ -f "config/$*.feed_info.txt" ]]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.with_shapes.gtfs/feed_info.txt; fi
 	zip -j $@ $</*.txt
 
 data/gtfs/%.gtfs.zip: data/gtfs/%.with_shapes.gtfs.zip

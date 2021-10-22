@@ -1,0 +1,2 @@
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
+nahsh,"connect-fahrplanauskunft","https://www.connect-fahrplanauskunft.de/",de-DE,"https://www.connect-fahrplanauskunft.de/index.php?id=kontakt"
