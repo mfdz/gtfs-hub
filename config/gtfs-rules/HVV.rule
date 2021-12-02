@@ -1,0 +1,2 @@
+## Enhance bikes_allowed information
+{"op":"transform", "class":"org.onebusaway.gtfs_transformer.impl.BikesAllowedHVVStrategy"}

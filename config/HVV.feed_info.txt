@@ -1,0 +1,2 @@
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
+hvv,"connect-fahrplanauskunft","https://www.hvv.de/",de-DE,"https://www.hvv.de/de/fahrplaene/abruf-fahrplaninfos/datenabruf"
