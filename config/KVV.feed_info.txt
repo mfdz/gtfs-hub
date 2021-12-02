@@ -1,0 +1,2 @@
+feed_id,feed_publisher_name,feed_publisher_url,feed_lang,feed_contact_url
+kvv,"Karlsruher Verkehrsverbund GmbH","https://www.kvv.de/",de-DE,"https://www.kvv.de/fahrplan/fahrplaene/open-data.html"
