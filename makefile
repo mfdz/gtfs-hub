@@ -135,11 +135,14 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
-data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.raw.gtfs config/gtfs-rules/DELFI.%.rule
+data/gtfs/DELFI.tidied.gtfs: data/gtfs/DELFI.raw.gtfs
+	$(info tidying DELFI.raw GTFS feed using Patrick Brosy's gtfstidy)
+	$(GTFSTIDY) --fix -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/DELFI.raw.gtfs
+	touch $@
+data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.tidied.gtfs config/gtfs-rules/DELFI.%.rule
 	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
-	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.raw.gtfs $(TOOL_DATA)/$(@F)
-	./patch_filtered_gtfs.sh "DELFI.$*" "data/gtfs/$(@F)"
-	./cp.sh data/gtfs/DELFI.raw.gtfs/levels.txt $@
+	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.tidied.gtfs $(TOOL_DATA)/$(@F)
+	./cp.sh data/gtfs/DELFI.tidied.gtfs/levels.txt $@
 	touch $@
 data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/SPNV-BW.%.rule
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
