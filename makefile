@@ -155,6 +155,7 @@ data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.tidied.gtfs config/gtfs-rules/D
 	$(info patching DELFI.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/DELFI.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/DELFI.$*.rule $(TOOL_DATA)/DELFI.tidied.gtfs $(TOOL_DATA)/$(@F)
 	./cp.sh data/gtfs/DELFI.tidied.gtfs/levels.txt $@
+	mlr --csv join -u -j from_stop_id -r stop_id --rp __ -f $</pathways.txt $@/stops.txt | mlr --csv cut -r -x -f '^__' >$@/pathways.txt
 	touch $@
 data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/SPNV-BW.%.rule
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
