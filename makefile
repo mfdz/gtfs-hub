@@ -136,7 +136,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
 data/gtfs/DELFI.tidied.gtfs: data/gtfs/DELFI.raw.gtfs
-	$(info tidying DELFI.raw GTFS feed using Patrick Brosy's gtfstidy)
+	$(info tidying DELFI.raw GTFS feed using Patrick Brosi's gtfstidy)
 	$(GTFSTIDY) --fix -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/DELFI.raw.gtfs
 	touch $@
 data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.tidied.gtfs config/gtfs-rules/DELFI.%.rule
