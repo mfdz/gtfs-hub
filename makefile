@@ -145,6 +145,18 @@ data/gtfs/DELFI.%.filtered.gtfs: data/gtfs/DELFI.tidied.gtfs config/gtfs-rules/D
 	./cp.sh data/gtfs/DELFI.tidied.gtfs/levels.txt $@
 	mlr --csv join -u -j from_stop_id -r stop_id --rp __ -f $</pathways.txt $@/stops.txt | mlr --csv cut -r -x -f '^__' >$@/pathways.txt
 	touch $@
+data/gtfs/DELFI.BB.with_flex.gtfs: data/gtfs/DELFI.BB.filtered.gtfs
+	mkdir -p $@
+	./cp.sh $</*.txt $@/
+	# todo: actually merge *all* files
+	./cp.sh config/DELFI.BB-flex/booking_rules.txt $@/
+	./cp.sh config/DELFI.BB-flex/location_groups.txt $@/
+	mlr --csv unsparsify $</calendar.txt config/DELFI.BB-flex/calendar.txt >$@/calendar.txt
+	mlr --csv unsparsify $</calendar_dates.txt config/DELFI.BB-flex/calendar_dates.txt >$@/calendar_dates.txt
+	mlr --csv unsparsify $</routes.txt config/DELFI.BB-flex/routes.txt >$@/routes.txt
+	mlr --csv unsparsify $</trips.txt config/DELFI.BB-flex/trips.txt >$@/trips.txt
+	mlr --csv unsparsify $</stop_times.txt config/DELFI.BB-flex/stop_times.txt >$@/stop_times.txt
+	touch $@
 data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/SPNV-BW.%.rule
 	$(info patching SPNV-BW.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/SPNV-BW.$*.rule)
 	$(TRANSFORM) --transform=$(TOOL_CFG)/SPNV-BW.$*.rule $(TOOL_DATA)/SPNV-BW.raw.gtfs $(TOOL_DATA)/$(@F)

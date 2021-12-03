@@ -1,0 +1,2 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_desc
+flex-476,93,476,RufBus 476,715,"Angermünde, Herzsprung, Bölkendorf, Schmargendorf, Zuchenberg, Altkünkendorf, Grumsin, Kerkow, Görlsdorf, Wolletz, Angermünde"

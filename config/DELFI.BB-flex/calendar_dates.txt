@@ -1,0 +1,5 @@
+service_id,date,exception_type
+flex-weekdays,20211225,2
+flex-weekdays,20211226,2
+flex-weekends,20211225,1
+flex-weekends,20211226,1

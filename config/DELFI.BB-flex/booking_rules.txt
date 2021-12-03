@@ -1,0 +1,4 @@
+booking_rule_id,booking_type,prior_notice_duration_min,message,phone_number,info_url
+flächenrufbus-angermünde-weekdays,1,60,"Anmeldung bis 60min vorher, täglich von 08:00 bis 24:00",+49 3332 442 755,https://uvg-online.com/rufbus-angermuende/
+flächenrufbus-angermünde-weekends,1,60,"1€ Komfortzuschlag pro Person; Anmeldung bis 60min vorher, täglich von 08:00 bis 24:00",+49 3332 442 755,https://uvg-online.com/rufbus-angermuende/
+flächenrufbus-gartz-weekdays,1,60,"Anmeldung bis 60min vorher, täglich von 08:00 bis 24:00",+49 3332 442 755,https://uvg-online.com/rufbus-gartz/

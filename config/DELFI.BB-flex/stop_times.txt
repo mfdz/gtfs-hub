@@ -1,0 +1,5 @@
+trip_id,stop_sequence,stop_id,arrival_time,departure_time,start_pickup_dropoff_window,end_pickup_dropoff_window,pickup_type,pickup_booking_rule_id,drop_off_type,drop_off_booking_rule_id,stop_headsign
+flex-476-weekdays,1,flex-476-stops,,,17:30:00,19:00:00,2,flächenrufbus-angermünde-weekdays,2,flächenrufbus-angermünde-weekdays,RufBus 476
+flex-476-weekdays,2,flex-476-stops,,,19:00:00,22:00:00,2,flächenrufbus-angermünde-weekdays,2,flächenrufbus-angermünde-weekdays,RufBus 476
+flex-476-weekends,1,flex-476-stops,,,08:00:00,15:00:00,2,flächenrufbus-angermünde-weekends,2,flächenrufbus-angermünde-weekends,RufBus 476
+flex-476-weekends,2,flex-476-stops,,,15:00:00,22:00:00,2,flächenrufbus-angermünde-weekends,2,flächenrufbus-angermünde-weekends,RufBus 476
