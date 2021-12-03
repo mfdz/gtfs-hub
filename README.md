@@ -54,6 +54,8 @@ Thanks to everybody contributing to these tools, the OSM community and Geofabrik
 
 You'll need to have Docker installed.
 
+Also, make sure you're using the *GNU* flavor of `make`. The BSD `make` (e.g. on macOS) is not fully compatible with this project.
+
 ### Running GTFS-Hub
 
 All configuration files necessary for the aforementioned processing steps reside in the `config` directory. The data will be downloaded into and processing within `data`.
