@@ -1,2 +1,6 @@
 route_id,agency_id,route_short_name,route_long_name,route_type,route_desc
 flex-476,93,476,RufBus 476,715,"Angermünde, Herzsprung, Bölkendorf, Schmargendorf, Zuchenberg, Altkünkendorf, Grumsin, Kerkow, Görlsdorf, Wolletz, Angermünde"
+flex-477,93,477,RufBus 477,715,"Angermünde, Kerkow, Welsow, Bruchhagen, Greiffenberg, Biesenbrow, Leopoldsthal, Polßen, Schmiedeberg, Peetzig, Steinhöfel, Friedrichsfelde, Neuhaus, Wilmersdorf"
+flex-478,93,478,RufBus 478,715,"Angermünde, Kerkow, Frauenhagen, Ziethenmühle, Mürow, Neuhof, Crussow, Stolpe, Gelmersdorf, Neukünkendorf, Parstein, Lüdersdorf, Stolzenhagen"
+flex-487,93,487,RufBus 487,715,"Vierraden, Blumenhagen, Hohenfelde, Kunow, Groß Pinnow, Woltersdorf, Casekow, Wartin, Luckow, Petershagen, Hohenselchow, Vierraden"
+flex-488,93,488,RufBus 488,715,"Vierraden, Blumenhagen, Gartz, Heinrichshof, Hohenreinkendorf, Tantow, Radekow, Rosow, Neurochlitz, Keesow, Schönfeld, Damitzow, Staffelde, Mescherin, Gartz, Vierraden"
