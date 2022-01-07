@@ -1,1 +1,1 @@
-{"op":"retain", "match":{"file": "stops.txt", "stop_lat": "r/50.36/54.55/", "stop_lon": "r/9.8/16.2/"}}
+{"op":"retain", "match":{"file": "stops.txt", "stop_lat": "r/50.8/54.05/", "stop_lon": "r/10.7/15.2/"}}

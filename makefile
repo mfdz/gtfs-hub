@@ -13,10 +13,10 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 .DEFAULT_TARGET: gtfs
 .PHONY: download osm gtfs osm-pfaedle
 .FORCE:
-.PRECIOUS: data/osm/alsace.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
+.PRECIOUS: data/osm/alsace.osm.pbf data/osm/poland.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
-osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
+osm: data/osm/bw-buffered.osm.pbf data/osm/bb-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
 osm-pfaedle: data/osm/bw-buffered.osm.pfaedle data/osm/hh-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
@@ -24,7 +24,7 @@ MERGED = ulm
 MERGED_WITH_FLEX = hbg6
 # To add a new filtered feed, add it's shortname below and add a DELFI.<shortname>.rule filter rule in config/gtfs-rules.
 # NOTE: currently shape enhancement only is done using bw-buffered.osm
-FILTERED = BW
+FILTERED = BW BB
 gtfs : data/www/index.html $(MERGED_WITH_FLEX:%=data/gtfs/%.merged.with_flex.gtfs.zip) $(MERGED:%=data/gtfs/%.merged.gtfs.zip) $(FILTERED:%=data/gtfs/DELFI.%.gtfs.zip)
 
 # Shortcuts for the (dockerized) transform/merge tools.
@@ -38,21 +38,28 @@ GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs derhuerst/gtfstidy
 
 
-# Baden-Württemberg OSM extract
-
+# Download/Update OSM extracts from Geofabrik
 data/osm/alsace.osm.pbf:
 	$(info downloading Alsace OSM extract)
 	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/france/alsace-latest.osm.pbf' '$@'
+
+data/osm/poland.osm.pbf:
+	$(info downloading Poland OSM extract)
+	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/poland-latest.osm.pbf' '$@'
 
 data/osm/DACH.osm.pbf:
 	$(info downloading DACH OSM extract)
 	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/dach-latest.osm.pbf' '$@'
 
+# Extract polygons from Geofabrik downloads
+data/osm/bb-extracted-from-%.osm.pbf: data/osm/%.osm.pbf
+	$(info extracting buffered Brandenburg from $(<F) OSM extract)
+	$(OSMIUM) extract -p $(TOOL_CFG)/bb_buffered.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
+
 data/osm/bw-extracted-from-%.osm.pbf: data/osm/%.osm.pbf
 	$(info extracting buffered Baden-Württemberg from $(<F) OSM extract)
 	$(OSMIUM) extract -p $(TOOL_CFG)/bw_buffered.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
 
-#data/osm/hh-buffered.osm.pbf: data/osm/DACH.osm.pbf
 data/osm/hh-buffered.osm.pbf:
 	$(info extracting buffered Nothern Germany from $(<F) OSM extract)
 #	$(OSMIUM) extract -p $(TOOL_CFG)/hh_sh_nds.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
@@ -65,6 +72,11 @@ data/osm/hh-buffered.patched.osm.pbf: data/osm/hh-buffered.osm.pbf
 data/osm/bw-extracted-from-DACH.patched.osm.pbf: data/osm/bw-extracted-from-DACH.osm.pbf
 	$(info setting park_ride tag for well-known parkings and applying diversion patches)
 	$(OSMOSIS) --read-pbf $(TOOL_DATA)/$(<F) --tt file=$(TOOL_CFG)/park_ride_transform.xml stats=$(TOOL_DATA)/park_ride_stats.log --write-pbf $(TOOL_DATA)/$(@F)
+
+# Merge cut out files
+data/osm/bb-buffered.osm.pbf: data/osm/bb-extracted-from-poland.osm.pbf data/osm/bb-extracted-from-DACH.osm.pbf
+	$(info merging Brandenburg extracts from Poland & DACH)
+	$(OSMIUM) merge -o $(TOOL_DATA)/$(@F) -O $(^F:%=$(TOOL_DATA)/%)
 
 data/osm/bw-buffered.osm.pbf: data/osm/bw-extracted-from-alsace.osm.pbf data/osm/bw-extracted-from-DACH.patched.osm.pbf
 	$(info merging Baden-Württemberg extracts from Alsace & DACH)
