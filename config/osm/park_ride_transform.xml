@@ -3,7 +3,7 @@
 <translations>
   <translation>
     <name>Set park_ride tag to no for parkings retrieved by external api</name>
-    <description>ATTENTION: This is a hack. We exclude Herrenberg park and ride parkings as
+    <description>ATTENTION: This is a hack. We exclude Herrenberg / Ludwigsburg park and ride parkings as
       they are provided via an external API and we do not want them duplicated.
       In the long run, OTP should be extended to merge such parkings...
     </description>
@@ -13,6 +13,9 @@
         <id>360991788</id>
         <id>28299076</id>
         <id>30628218</id>
+        <id>158922160</id>
+        <id>241373675</id>
+        <id>480093618</id>
       </ids>
     </match>
     <output>
@@ -327,7 +330,6 @@
 <id>237327752</id>
 <id>237327753</id>
 <id>241138259</id>
-<id>241373675</id>
 <id>241991054</id>
 <id>242189113</id>
 <id>244030591</id>
@@ -532,7 +534,6 @@
 <id>475528747</id>
 <id>475618983</id>
 <id>476876068</id>
-<id>480093618</id>
 <id>480215517</id>
 <id>481656567</id>
 <id>481818995</id>
