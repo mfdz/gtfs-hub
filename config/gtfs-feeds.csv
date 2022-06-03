@@ -11,6 +11,7 @@ KVSH;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMa
 KVV;cc-zero;;Ja;https://projekte.kvv-efa.de/GTFS/google_transit.zip;https://www.kvv.de/fahrt-planen/fahrplaene/open-data.html;;bw-buffered.osm
 LVB;dl-de/by-2.0;Leipziger Verkehrsbetriebe (LVB) GmbH;Ja;https://opendata.leipzig.de/dataset/8803f612-2ce1-4643-82d1-213434889200/resource/b38955c4-431c-4e8b-a4ef-9964a3a2c95d/download/gtfsmdvlvb.zip;https://opendata.leipzig.de/dataset/lvb-fahrplandaten;verkehrsbetriebe@L.de;Nein
 MDV;cc-by-4.0;MDV GmbH;Ja;https://www.mdv.de/site/uploads/gtfs_mdv.zip;https://www.mdv.de/service/downloads/;daten@mdv.de;Nein
+MVG;k.A.;Münchner Verkehrsgesellschaft;Ja;https://www.mvg.de/static/gtfs/gtfs-mvg.zip;https://www.mvg.de/services/fahrgastservice/fahrplandaten.html;;Nein
 MVV;cc-by;Münchner Verkehrs- und Tarifverbund GmbH;Ja;https://www.mvv-muenchen.de/fileadmin/mediapool/02-Fahrplanauskunft/03-Downloads/openData/mvv_gtfs.zip;https://www.mvv-muenchen.de/fahrplanauskunft/fuer-entwickler/opendata/index.html;;Nein
 NAH.SH;CC-BY;Nahverkehrsverbund Schleswig-Holstein GmbH;ja;https://www.connect-info.net/opendata/gtfs/nah.sh/%CONNECT_FAHRPLANINFO_TOKEN%;;;hh-buffered.osm
 naldo;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/naldo.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
