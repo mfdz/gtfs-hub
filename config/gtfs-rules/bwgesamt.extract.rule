@@ -1,2 +1,2 @@
-{"op":"retain", "match":{"file": "routes.txt", "route_id": "m/rab-.*|vpe-.*|tub-.*|cw-.*|ddb-.*|rbs-.*/"}}
+{"op":"retain", "match":{"file": "routes.txt", "route_id": "m/rab-.*|vpe-.*|tub-.*|cw-.*|din-.*|ddb-.*|rbs-.*/"}}
 {"op":"remove", "match":{"file": "routes.txt", "route_id": "m/ddb-92-T.*/"}}
