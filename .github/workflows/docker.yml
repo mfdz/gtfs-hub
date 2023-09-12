@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Publish to Dockerhub
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -19,4 +19,3 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_AUTH}}
           tags: "latest,${{ github.sha }}"
-
