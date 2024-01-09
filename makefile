@@ -1,8 +1,8 @@
-HOST_MOUNT = $(shell set +e; if [[ -n "$$HOST_MOUNT" ]]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
+HOST_MOUNT = $(shell set +e; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
 
-TAIL = $(shell set +e; if [[ -x "$$(which gtail)" ]]; then echo gtail; else echo tail; fi)
+TAIL = $(shell set +e; if [ -x "$$(which gtail)" ]; then echo gtail; else echo tail; fi)
 
 GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
 RAW_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.raw.gtfs.zip)
@@ -16,7 +16,7 @@ GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/poland.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
 
-osm: data/osm/bw-buffered.osm.pbf data/osm/bb-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
+osm: data/osm/bw-buffered.osm.pbf data/osm/hh-buffered.patched.osm.pbf
 osm-pfaedle: data/osm/bw-buffered.osm.pfaedle data/osm/hh-buffered.osm.pfaedle
 
 # To add a new merged feed, add it's shortname here and define the variable definitions and targets as for HBG below
@@ -144,7 +144,7 @@ data/gtfs/%.filtered.gtfs: data/gtfs/%.raw.gtfs
 	rm -rf $@
 	unzip -d $@ $<
 	./patch_filtered_gtfs.sh "$*" "data/gtfs/$(@F)"
-	if [[ -f "config/$*.feed_info.txt" ]]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.filtered.gtfs/feed_info.txt; fi
+	if [ -f "config/$*.feed_info.txt" ]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.filtered.gtfs/feed_info.txt; fi
 	touch $@
 
 # special handling for DELFI.* & SPNV-BW.* feeds, because they all get generated from DELFI.raw.gtfs
@@ -185,7 +185,7 @@ data/gtfs/%.with_shapes.gtfs: data/gtfs/%.filtered.gtfs | data/osm/bw-buffered.o
 
 data/gtfs/%.gtfs.zip: data/gtfs/%.gtfs
 	$(info zipping the map-matched $* GTFS feed into $(@F))
-	if [[ -f "config/$*.feed_info.txt" ]]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.with_shapes.gtfs/feed_info.txt; fi
+	if [ -f "config/$*.feed_info.txt" ]; then cp -p "config/$*.feed_info.txt" data/gtfs/$*.with_shapes.gtfs/feed_info.txt; fi
 	zip -j $@ $</*.txt
 
 data/gtfs/%.gtfs.zip: data/gtfs/%.with_shapes.gtfs.zip
@@ -198,8 +198,7 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 
 download: $(RAW_GTFS_FEEDS)
 	$(info Downloaded feeds)
- 
+
 data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
-
