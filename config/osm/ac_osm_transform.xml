@@ -1,0 +1,14 @@
+<translations>
+ <translation>
+  <name>Undo all constructions</name>
+  <description>This transformation reverts all highway constructions.</description>
+  <match type="way">
+    <tag k="highway" v="construction"/>
+    <tag k="construction" match_id="c" v=".*"/>
+  </match>
+  <output>
+   <copy-all />
+   <tag from_match="c" k="highway" v="{0}"/>
+  </output>
+ </translation>
+</translations>

@@ -90,6 +90,10 @@ data/osm/ac.osm.pbf: data/osm/europe.osm.pbf
 	$(info extracting greater Aachen region from $(<F) OSM extract)
 	$(OSMIUM) extract -p $(TOOL_CFG)/ac.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
 
+data/osm/ac.patched.osm.pbf: data/osm/ac.osm.pbf
+	$(info applying osm patches)
+	$(OSMOSIS) --read-xml-change file="$(TOOL_CFG)/ac_osm_changes.osc" enableDateParsing=no --read-pbf $(TOOL_DATA)/$(<F) --apply-change --tt file=$(TOOL_CFG)/ac_osm_transform.xml stats=$(TOOL_DATA)/ac_osm_transform.log --write-pbf $(TOOL_DATA)/$(@F)
+
 # pfaedle cannot parse OSM .pbf files yet, just XML
 data/osm/%.osm: data/osm/%.osm.pbf
 	$(info converting OSM .pbf to OSM XML for pfaedle)

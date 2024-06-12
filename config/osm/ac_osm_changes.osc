@@ -1,0 +1,12 @@
+<osmChange version="0.6" generator="aachen-changes">
+    <create>
+        <relation id="-1" version="0">
+            <member type="way" ref="820363711" role="from"/>
+            <member type="node" ref="33370520" role="via"/>
+            <member type="way" ref="306802827" role="to"/>
+            <tag k="type" v="restriction"/>
+            <tag k="restriction" v="no_left_turn"/>
+            <tag k="except" v="bicycle;emergency"/>
+        </relation>
+    </create>
+</osmChange>
