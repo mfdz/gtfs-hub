@@ -51,6 +51,10 @@ data/osm/DACH.osm.pbf:
 	$(info downloading DACH OSM extract)
 	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'https://download.geofabrik.de/europe/dach-latest.osm.pbf' '$@'
 
+data/osm/europe.osm.pbf:
+	$(info downloading Europe OSM extract)
+	OSMIUM_UPDATE="$(OSMIUM_UPDATE) $(TOOL_DATA)/$(@F)" ./update_osm.sh 'http://download.geofabrik.de/europe-latest.osm.pbf' '$@'
+
 # Extract polygons from Geofabrik downloads
 data/osm/bb-extracted-from-%.osm.pbf: data/osm/%.osm.pbf
 	$(info extracting buffered Brandenburg from $(<F) OSM extract)
@@ -81,6 +85,10 @@ data/osm/bb-buffered.osm.pbf: data/osm/bb-extracted-from-poland.osm.pbf data/osm
 data/osm/bw-buffered.osm.pbf: data/osm/bw-extracted-from-alsace.osm.pbf data/osm/bw-extracted-from-DACH.patched.osm.pbf
 	$(info merging Baden-Württemberg extracts from Alsace & DACH)
 	$(OSMIUM) merge -o $(TOOL_DATA)/$(@F) -O $(^F:%=$(TOOL_DATA)/%)
+
+data/osm/ac.osm.pbf: data/osm/europe.osm.pbf
+	$(info extracting greater Aachen region from $(<F) OSM extract)
+	$(OSMIUM) extract -p $(TOOL_CFG)/ac.poly -o $(TOOL_DATA)/$(@F) -O $(TOOL_DATA)/$(<F)
 
 # pfaedle cannot parse OSM .pbf files yet, just XML
 data/osm/%.osm: data/osm/%.osm.pbf
