@@ -5,11 +5,11 @@
   <match type="way">
     <tag k="highway" v="construction"/>
     <tag k="construction" match_id="c" v=".*"/>
-    <tag k="access" v="yes"/>
   </match>
   <output>
    <copy-unmatched />
    <tag from_match="c" k="highway" v="{0}"/>
+   <tag k="access" v="yes"/>
   </output>
  </translation>
 </translations>
