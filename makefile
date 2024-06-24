@@ -177,9 +177,13 @@ data/gtfs/SPNV-BW.%.filtered.gtfs: data/gtfs/SPNV-BW.raw.gtfs config/gtfs-rules/
 	$(TRANSFORM) --transform=$(TOOL_CFG)/SPNV-BW.$*.rule $(TOOL_DATA)/SPNV-BW.raw.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "SPNV-BW.$*" "data/gtfs/$(@F)"
 	touch $@
-data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.raw.gtfs config/gtfs-rules/bwgesamt.%.rule
+data/gtfs/bwgesamt.tidied.gtfs: data/gtfs/bwgesamt.raw.gtfs
+	$(info tidying bwgesamt.raw GTFS feed using Patrick Brosi's gtfstidy)
+	$(GTFSTIDY) --fix -o $(TOOL_DATA)/gtfs/$(@F) $(TOOL_DATA)/gtfs/bwgesamt.raw.gtfs
+	touch $@
+data/gtfs/bwgesamt.%.filtered.gtfs: data/gtfs/bwgesamt.tidied.gtfs config/gtfs-rules/bwgesamt.%.rule
 	$(info patching bwgesamt.$* GTFS feed using OBA GTFS Transformer & config/gtfs-rules/bwgesamt.$*.rule)
-	$(TRANSFORM) --transform=$(TOOL_CFG)/bwgesamt.$*.rule $(TOOL_DATA)/bwgesamt.raw.gtfs $(TOOL_DATA)/$(@F)
+	$(TRANSFORM) --transform=$(TOOL_CFG)/bwgesamt.$*.rule $(TOOL_DATA)/bwgesamt.tidied.gtfs $(TOOL_DATA)/$(@F)
 	./patch_filtered_gtfs.sh "bwgesamt.$*" "data/gtfs/$(@F)"
 	touch $@
 
