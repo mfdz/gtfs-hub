@@ -102,16 +102,6 @@
   </create>
   <create>
     <relation id="-9989" version="0">
-      <member type="way" ref="241074262" role="from"/>
-      <member type="node" ref="27289800" role="via"/>
-      <member type="way" ref="8038403" role="to"/>
-      <tag k="type" v="restriction"/>
-      <tag k="restriction" v="only_left_turn"/>
-      <tag k="except" v="bicycle;emergency"/>
-    </relation>
-  </create>
-  <create>
-    <relation id="-9988" version="0">
       <member type="way" ref="8038403" role="from"/>
       <member type="node" ref="27289800" role="via"/>
       <member type="way" ref="25610550" role="to"/>
@@ -121,7 +111,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9987" version="0">
+    <relation id="-9988" version="0">
       <member type="way" ref="4969245" role="from"/>
       <member type="node" ref="3977862443" role="via"/>
       <member type="way" ref="122718426" role="to"/>
@@ -131,7 +121,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9986" version="0">
+    <relation id="-9987" version="0">
       <member type="way" ref="4964410" role="from"/>
       <member type="node" ref="3977862443" role="via"/>
       <member type="way" ref="122718426" role="to"/>
@@ -141,7 +131,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9985" version="0">
+    <relation id="-9986" version="0">
       <member type="way" ref="729408527" role="from"/>
       <member type="node" ref="988567816" role="via"/>
       <member type="way" ref="122718426" role="to"/>
@@ -151,7 +141,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9984" version="0">
+    <relation id="-9985" version="0">
       <member type="way" ref="206293099" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
@@ -161,7 +151,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9983" version="0">
+    <relation id="-9984" version="0">
       <member type="way" ref="414498696" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
@@ -171,7 +161,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9982" version="0">
+    <relation id="-9983" version="0">
       <member type="way" ref="4964449" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
@@ -181,7 +171,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9981" version="0">
+    <relation id="-9982" version="0">
       <member type="way" ref="820363771" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
@@ -191,7 +181,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9980" version="0">
+    <relation id="-9981" version="0">
       <member type="way" ref="15937076" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
@@ -201,7 +191,7 @@
     </relation>
   </create>
   <create>
-    <relation id="-9979" version="0">
+    <relation id="-9980" version="0">
       <member type="way" ref="306802825" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
