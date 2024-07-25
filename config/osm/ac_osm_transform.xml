@@ -7,9 +7,9 @@
     <tag k="construction" match_id="c" v=".*"/>
   </match>
   <output>
-   <copy-unmatched />
+   <copy-unmatched/>
    <tag from_match="c" k="highway" v="{0}"/>
    <tag k="access" v="yes"/>
   </output>
  </translation>
-</translations>
+<translation><match type="way"/><ids><id>8110235</id><id>422366384</id><id>1206565916</id><id>5148790</id><id>1206565947</id><id>143993036</id><id>11338222</id><id>1198032418</id><id>1198032417</id><id>141064014</id><id>24895397</id><id>5097666</id><id>5097691</id><id>24922172</id><id>5097684</id><id>862064757</id><id>220940220</id><id>1081794106</id><id>74593340</id><id>5097673</id><id>1208289393</id><id>1208289392</id><id>8659423</id><id>5122750</id><id>1208289390</id><id>1208289394</id><id>5097814</id><id>5097790</id><id>5097791</id><id>8659425</id><id>1081680550</id><id>5095111</id><id>142386236</id><id>4017604</id><id>1208289378</id><id>8659424</id><id>1208289380</id><id>1208289379</id><id>136592447</id><id>491622153</id><id>995621020</id><id>491622154</id><id>23952537</id><id>1208289383</id><id>23952533</id><id>142386719</id><id>142386720</id></ids><output><copy-unmatched/><tag k="motor_vehicle" v="destination"/></output></translation></translations>
