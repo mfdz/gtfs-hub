@@ -1,203 +1,267 @@
 <?xml version='1.0' encoding='ASCII'?>
 <osmChange version="0.6" generator="aachen-changes">
+  <delete>
+    <relation id="1066314" version="5" />
+  </delete>
   <create>
-    <relation id="-9999" version="0">
+    <relation id="50000001" version="0">
       <member type="way" ref="206293853" role="from"/>
       <member type="node" ref="32917965" role="via"/>
       <member type="way" ref="2896894" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jun 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9998" version="0">
+    <relation id="50000002" version="0">
       <member type="way" ref="2896894" role="from"/>
       <member type="node" ref="32917965" role="via"/>
       <member type="way" ref="206293853" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jun 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9997" version="0">
+    <relation id="50000003" version="0">
       <member type="way" ref="13866707" role="from"/>
       <member type="node" ref="13338222" role="via"/>
       <member type="way" ref="414512668" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2025 Jun 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9996" version="0">
+    <relation id="50000004" version="0">
       <member type="way" ref="13866707" role="from"/>
       <member type="node" ref="13338222" role="via"/>
       <member type="way" ref="206293852" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jun 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9995" version="0">
+    <relation id="50000005" version="0">
       <member type="way" ref="13871627" role="from"/>
       <member type="node" ref="13335746" role="via"/>
       <member type="way" ref="4553663" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2025 Jun 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9994" version="0">
+    <relation id="50000006" version="0">
       <member type="way" ref="5078963" role="from"/>
       <member type="node" ref="27290898" role="via"/>
       <member type="way" ref="206121405" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9993" version="0">
+    <relation id="50000007" version="0">
       <member type="way" ref="5078963" role="from"/>
       <member type="node" ref="27290898" role="via"/>
       <member type="way" ref="10162010" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9992" version="0">
+    <relation id="50000008" version="0">
       <member type="way" ref="206121405" role="from"/>
       <member type="node" ref="27290898" role="via"/>
       <member type="way" ref="5078963" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9991" version="0">
+    <relation id="50000009" version="0">
       <member type="way" ref="206121405" role="from"/>
       <member type="node" ref="27290898" role="via"/>
       <member type="way" ref="10162010" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9990" version="0">
+    <relation id="50000010" version="0">
       <member type="way" ref="10162010" role="from"/>
       <member type="node" ref="27290898" role="via"/>
       <member type="way" ref="5078963" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9989" version="0">
+    <relation id="50000011" version="0">
       <member type="way" ref="8038403" role="from"/>
       <member type="node" ref="27289800" role="via"/>
       <member type="way" ref="25610550" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9988" version="0">
+    <relation id="50000012" version="0">
       <member type="way" ref="4969245" role="from"/>
       <member type="node" ref="3977862443" role="via"/>
       <member type="way" ref="122718426" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9987" version="0">
+    <relation id="50000013" version="0">
       <member type="way" ref="4964410" role="from"/>
       <member type="node" ref="3977862443" role="via"/>
       <member type="way" ref="122718426" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9986" version="0">
+    <relation id="50000014" version="0">
       <member type="way" ref="729408527" role="from"/>
       <member type="node" ref="988567816" role="via"/>
       <member type="way" ref="122718426" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9985" version="0">
+    <relation id="50000015" version="0">
       <member type="way" ref="206293099" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9984" version="0">
+    <relation id="50000016" version="0">
       <member type="way" ref="414498696" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency;psv"/>
     </relation>
   </create>
   <create>
-    <relation id="-9983" version="0">
+    <relation id="50000017" version="0">
       <member type="way" ref="4964449" role="from"/>
       <member type="node" ref="27290865" role="via"/>
       <member type="way" ref="411094912" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9982" version="0">
+    <relation id="50000018" version="0">
       <member type="way" ref="820363771" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9981" version="0">
+    <relation id="50000019" version="0">
       <member type="way" ref="15937076" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_right_turn"/>
+      <tag k="restriction:conditional" v="no_right_turn @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
     </relation>
   </create>
   <create>
-    <relation id="-9980" version="0">
+    <relation id="50000020" version="0">
       <member type="way" ref="306802825" role="from"/>
       <member type="node" ref="33370520" role="via"/>
       <member type="way" ref="306802827" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="no_straight_on"/>
+      <tag k="restriction:conditional" v="no_straight_on @ 2025 Jan 1 - 2099 Dec 31"/>
       <tag k="except" v="bicycle;emergency"/>
+    </relation>
+  </create>
+  <create>
+    <relation id="50000021" version="0">
+      <member type="way" ref="945632566" role="from"/>
+      <member type="node" ref="8754291415" role="via"/>
+      <member type="way" ref="945632568" role="to"/>
+      <tag k="type" v="restriction"/>
+      <tag k="restriction" v="no_left_turn"/>
+      <tag k="restriction:conditional" v="no_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+      <tag k="except" v="bicycle;emergency"/>
+    </relation>
+  </create>
+  <create>
+    <relation id="50000022" version="0">
+      <member type="way" ref="430976266" role="from"/>
+      <member type="node" ref="27290921" role="via"/>
+      <member type="way" ref="1199234580" role="to"/>
+      <tag k="type" v="restriction"/>
+      <tag k="restriction" v="only_right_turn"/>
+      <tag k="restriction:conditional" v="only_right_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+    </relation>
+  </create>
+  <create>
+    <relation id="50000023" version="0">
+      <member type="way" ref="1199234580" role="from"/>
+      <member type="node" ref="27290921" role="via"/>
+      <member type="way" ref="430976266" role="to"/>
+      <tag k="type" v="restriction"/>
+      <tag k="restriction" v="only_left_turn"/>
+      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+    </relation>
+  </create>
+  <create>
+    <relation id="50000024" version="0">
+      <member type="way" ref="1194952069" role="from"/>
+      <member type="node" ref="1962308221" role="via"/>
+      <member type="way" ref="129375446" role="to"/>
+      <tag k="type" v="restriction"/>
+      <tag k="restriction" v="only_left_turn"/>
+      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
     </relation>
   </create>
 </osmChange>
