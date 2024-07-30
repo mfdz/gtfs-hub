@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='ASCII'?>
 <osmChange version="0.6" generator="aachen-changes">
   <delete>
-    <relation id="1066314" version="5" />
+    <relation id="1066314" version="5"/>
   </delete>
   <create>
     <relation id="50000001" version="0">
@@ -241,7 +241,7 @@
       <member type="way" ref="1199234580" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="only_right_turn"/>
-      <tag k="restriction:conditional" v="only_right_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+      <tag k="restriction:conditional" v="only_right_turn @ 2024 Jul 1 - 2024 Dec 31"/>
     </relation>
   </create>
   <create>
@@ -251,7 +251,7 @@
       <member type="way" ref="430976266" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="only_left_turn"/>
-      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2024 Dec 31"/>
     </relation>
   </create>
   <create>
@@ -261,7 +261,7 @@
       <member type="way" ref="129375446" role="to"/>
       <tag k="type" v="restriction"/>
       <tag k="restriction" v="only_left_turn"/>
-      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2099 Dec 31"/>
+      <tag k="restriction:conditional" v="only_left_turn @ 2024 Jul 1 - 2024 Dec 31"/>
     </relation>
   </create>
 </osmChange>
