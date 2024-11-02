@@ -9,6 +9,14 @@ RAW_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.raw.gtfs.zip)
 GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
 GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
+# Docker image definitions
+PFADLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
+GTFSVTOR_IMAGE=mfdz/gtfsvtor
+OBA_IMAGE=mfdz/onebusaway-gtfs-modules
+GTFSTIDY_IMAGE=derhuerst/gtfstidy
+OSMOSIS_IMAGE=mfdz/osmosis:0.47-1-gd370b8c4
+PYOSMIUM_IMAGE=mfdz/pyosmium
+
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
 .PHONY: download osm gtfs osm-pfaedle
@@ -29,13 +37,13 @@ gtfs : data/www/index.html $(MERGED_WITH_FLEX:%=data/gtfs/%.merged.with_flex.gtf
 
 # Shortcuts for the (dockerized) transform/merge tools.
 OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium osmium
-OSMIUM_UPDATE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/pyosmium pyosmium-up-to-date
-OSMOSIS = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) mfdz/osmosis:0.47-1-gd370b8c4
-TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA) mfdz/onebusaway-gtfs-modules java -Xmx20g -jar onebusaway-gtfs-transformer-cli.jar
-PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs adfreiburg/pfaedle
-MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm mfdz/onebusaway-gtfs-modules java -Xmx18g -jar onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
-GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G mfdz/gtfsvtor
-GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs derhuerst/gtfstidy
+OSMIUM_UPDATE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) $(PYOSMIUM_IMAGE) pyosmium-up-to-date
+OSMOSIS = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) $(OSMOSIS_IMAGE)
+TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA) $(OBA_IMAGE) java -Xmx20g -jar onebusaway-gtfs-transformer-cli.jar
+PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(PFADLE_IMAGE)
+MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm $(OBA_IMAGE) java -Xmx18g -jar onebusaway-gtfs-merge-cli.jar --file=stops.txt --duplicateDetection=identity 
+GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
+GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
 
 
 # Download/Update OSM extracts from Geofabrik
