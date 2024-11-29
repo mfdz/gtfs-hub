@@ -230,3 +230,6 @@ download: $(RAW_GTFS_FEEDS)
 data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
+
+data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.pbf:
+	python3 scripts/translate_vvs_gtfs_rt_service_alerts.py -g 'data/gtfs/VVS.raw.gtfs.zip' -s 'https://gtfsr-servicealerts.vvs.de' -o $@ de-vvs-alerts > data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.txt

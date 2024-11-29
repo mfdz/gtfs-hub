@@ -27,6 +27,8 @@ RUN apt-get update && apt-get install -y \
     docker-ce-cli \
   && apt-get clean
 
+ADD requirements.txt .
+CMD pip install -r requirements.txt
 ADD scripts/ scripts/
 ADD patch_raw_gtfs.sh patch_filtered_gtfs.sh ./
 ADD download.sh .
