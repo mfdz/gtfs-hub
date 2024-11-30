@@ -19,7 +19,7 @@ PYOSMIUM_IMAGE=mfdz/pyosmium
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
-.PHONY: download osm gtfs osm-pfaedle
+.PHONY: download osm gtfs osm-pfaedle vvs_alerts
 .FORCE:
 .PRECIOUS: data/osm/alsace.osm.pbf data/osm/poland.osm.pbf data/osm/DACH.osm.pbf data/osm/bw-buffered.osm.pbf data/osm/bw-buffered.osm
 .SECONDARY:
@@ -231,5 +231,5 @@ data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
 
-data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.pbf:
-	python3 scripts/translate_vvs_gtfs_rt_service_alerts.py -g 'data/gtfs/VVS.raw.gtfs.zip' -s 'https://gtfsr-servicealerts.vvs.de' -o $@ de-vvs-alerts > data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.txt
+vvs_alerts:
+	python3 scripts/translate_vvs_gtfs_rt_service_alerts.py -g 'data/gtfs/VVS.raw.gtfs.zip' -s 'https://gtfsr-servicealerts.vvs.de' -o data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.pbf -t data/gtfs-rt/vvs_gtfsrt_alerts_herrenberg/body.txt -l /log/vvs.alerts.log de-vvs-alerts

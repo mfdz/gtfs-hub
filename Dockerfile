@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     gnupg \
     lsb-release \
     python3 \
+    git \
   && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
   && echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
@@ -28,7 +29,9 @@ RUN apt-get update && apt-get install -y \
   && apt-get clean
 
 ADD requirements.txt .
-CMD pip install -r requirements.txt
+RUN curl https://bootstrap.pypa.io/get-pip.py > get-pip.py && \
+  python3 get-pip.py && \
+  pip install -r requirements.txt
 ADD scripts/ scripts/
 ADD patch_raw_gtfs.sh patch_filtered_gtfs.sh ./
 ADD download.sh .

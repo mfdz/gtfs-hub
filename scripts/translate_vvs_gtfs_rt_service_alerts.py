@@ -6,8 +6,10 @@ import time
 import logging
 import os
 import tempfile
+import shutil
 
 from gtfs_realtime_translators.registry import TranslatorRegistry
+from logging import handlers
 
 logger = logging.getLogger(__name__)
 
@@ -53,20 +55,27 @@ HIGH_PRIO_KEYWORDS = ['Herrenberg', 'Gäubahn', 'Ammertalbahn']
 def interrupt_handler(signum, frame):
     sys.exit(0)
 
-def atomic_write(destFile, content):
-    with tempfile.NamedTemporaryFile(delete=False) as f:
+def atomic_write(destFile, content, mode='w+b'):
+    with tempfile.NamedTemporaryFile(delete=False, mode=mode) as f:
         f.write(content)
         # make sure that all data is on disk
         # see http://stackoverflow.com/questions/7433057/is-rename-without-fsync-safe
         f.flush()
-        os.fsync(f.fileno())    
-        os.replace(f.name, destFile)  
+        os.fsync(f.fileno()) 
+        os.chmod(f.name, 0o644)   
+        shutil.move(f.name, destFile)  
 
 
-def main(translator, source, gtfsfile, interval, outpath, user_agent):
+def main(translator, source, gtfsfile, interval, out, textfile, logfile, user_agent):
     translator_args = {'gtfsfile': gtfsfile, 'high_prio_keywords': HIGH_PRIO_KEYWORDS, 'high_prio_route_ids': HIGH_PRIO_ROUTES, }
     request_headers = {'user-agent': user_agent}
     last_last_modified = None
+    if logfile:
+        handler = handlers.TimedRotatingFileHandler(logfile, when='midnight', backupCount=1)
+        handler.setFormatter(logging.Formatter('%(asctime)s translate_vvs_gtfs_rt_service_alerts [%(process)d]: %(message)s', datefmt="%d-%m-%Y %H:%M:%S"))
+        logger.addHandler(handler)
+        logger.setLevel(logging.INFO)
+
     while True:
         try:
             # if lastModified date of gtfs file changed (or the first time), we re-initialize
@@ -80,8 +89,9 @@ def main(translator, source, gtfsfile, interval, outpath, user_agent):
             response.raw.decode_content = True
 
             feed = translator(response.content)
-            print(feed)
-            atomic_write(outpath, feed.SerializeToString())
+            if textfile:
+                atomic_write(textfile, str(feed), mode='w+t')
+            atomic_write(out, feed.SerializeToString())
         except Exception:
             logger.exception(f'Error translating {translator}')
 
@@ -97,11 +107,13 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--source', nargs='?', help='source url to retrieve data from')
     parser.add_argument('-g', '--gtfsfile', nargs='?', help='gtfs file to map data to')
     parser.add_argument('-i', '--interval', nargs='?', default=60)
-    parser.add_argument('-o', '--outpath', required=True)
+    parser.add_argument('-o', '--out', required=True)
+    parser.add_argument('-t', '--textfile', required=False)
+    parser.add_argument('-l', '--logfile', required=False)
     parser.add_argument('-u', '--useragent', default="gtfs_realtime_translator (https://github.com/mfdz/gtfs_realtime_translator/)")
     
     args = parser.parse_args()
-    main(args.translator, args.source, args.gtfsfile, args.interval, args.outpath, args.useragent)
+    main(args.translator, args.source, args.gtfsfile, args.interval, args.out, args.textfile, args.logfile, args.useragent)
 
 
-# python3 translate_vvs_gtfs_rt_service_alerts.py -g 'data/gtfs/VVS.raw.gtfs.zip' -s 'https://gtfsr-servicealerts.vvs.de' de-vvs-alerts
+# python3 translate_vvs_gtfs_rt_service_alerts.py -g 'data/gtfs/VVS.raw.gtfs.zip' -s 'https://gtfsr-servicealerts.vvs.de' -o vvs.alerts.pbf -t vvs.alerts.txt -l vvs.alerts.log de-vvs-alerts
