@@ -66,7 +66,7 @@ def atomic_write(destFile, content, mode='w+b'):
         shutil.move(f.name, destFile)  
 
 
-def main(translator, source, gtfsfile, interval, out, textfile, logfile, user_agent):
+def main(translator_id, source, gtfsfile, interval, out, textfile, logfile, user_agent):
     translator_args = {'gtfsfile': gtfsfile, 'high_prio_keywords': HIGH_PRIO_KEYWORDS, 'high_prio_route_ids': HIGH_PRIO_ROUTES, }
     request_headers = {'user-agent': user_agent}
     last_last_modified = None
@@ -81,7 +81,7 @@ def main(translator, source, gtfsfile, interval, out, textfile, logfile, user_ag
             # if lastModified date of gtfs file changed (or the first time), we re-initialize
             current_last_modified = os.path.getmtime(gtfsfile)
             if last_last_modified != current_last_modified:
-                translator_class = TranslatorRegistry.get(translator)
+                translator_class = TranslatorRegistry.get(translator_id)
                 translator = translator_class(**translator_args)
                 last_last_modified = current_last_modified
 
