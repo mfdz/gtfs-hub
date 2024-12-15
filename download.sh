@@ -10,7 +10,7 @@ if [ -z "$dest_file" ]; then 1>&2 echo 'missing 2nd argument: dest_file'; exit 1
 url="${url/\%CONNECT_FAHRPLANINFO_TOKEN\%/$CONNECT_FAHRPLANINFO_TOKEN}"
 
 
-ua='User-Agent: mfdz/gtfs-hub'
+ua='User-Agent: mfdz gtfs-hub'
 etag_file="$dest_file.etag"
 
 if test -e "$$dest_file"
