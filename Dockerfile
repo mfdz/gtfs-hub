@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     make \
     zip \
     miller \
+    moreutils \
     ca-certificates \
     lsb-release \
  && install -m 0755 -d /etc/apt/keyrings \
