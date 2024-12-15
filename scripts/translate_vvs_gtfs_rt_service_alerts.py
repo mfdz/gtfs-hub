@@ -14,7 +14,6 @@ from logging import handlers
 logger = logging.getLogger(__name__)
 
 HIGH_PRIO_ROUTES = [
-"de:vvs:20019_:",
 "de:vvs:31751_:",
 "de:vvs:31753_:",
 "de:vvs:31770_:",
