@@ -127,7 +127,7 @@ data/gtfs/%.merged.with_flex.gtfs: data/gtfs/%.merged.gtfs.zip
 	python3 scripts/patch_nvbw_station_stops.py $@  
 	$(info patching GTFS-Flex data into the GTFS feed)
 	# todo: pick flex rules file based on GTFS feed
-	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-gtfs-flex:4 stadtnavi-herrenberg-flex-rules.js
+	docker run -i --rm -v $(HOST_MOUNT)/data/gtfs/$(@F):/gtfs derhuerst/generate-gtfs-flex:latest /gtfs
 	$(info generating emissions.txt)
 	python3 scripts/generate_emissions_file.py $@  
 
