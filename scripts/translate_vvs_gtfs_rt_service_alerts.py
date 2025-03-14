@@ -49,7 +49,7 @@ HIGH_PRIO_ROUTES = [
 "de:vvs:11014_:",
 "de:vvs:11004_:",]
 
-HIGH_PRIO_KEYWORDS = ['Herrenberg', 'Gäubahn', 'Ammertalbahn']
+HIGH_PRIO_KEYWORDS = ['Herrenberg', 'Gäubahn', 'Ammertalbahn', 'Streik']
 
 def interrupt_handler(signum, frame):
     sys.exit(0)
