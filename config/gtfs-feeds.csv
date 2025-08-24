@@ -8,7 +8,7 @@ HNV;dl-de/by-2.0;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;J
 HVV;dl-de/by-2.0;Hamburger Verkehrsverbund GmbH;Nein;https://daten.transparenz.hamburg.de/Dataport.HmbTG.ZS.Webservice.GetRessource100/GetRessource100.svc/dbe5f144-b806-4377-aac3-d3572b139b23/Upload__hvv_Rohdaten_GTFS_Fpl_20250108.ZIP;;Nein
 KVSH;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/kvsh.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
 KVV;cc-zero;;Ja;https://projekte.kvv-efa.de/GTFS/google_transit.zip;https://www.kvv.de/fahrt-planen/fahrplaene/open-data.html;;bw-buffered.osm
-MDV;cc-by-4.0;MDV GmbH;Ja;https://www.mdv.de/site/uploads/gtfs_mdv.zip;https://www.mdv.de/service/downloads/;daten@mdv.de;Nein
+MDV;cc-by-4.0;MDV GmbH;Ja;https://www.mdv.de/site/uploads/mdv_gtfs.zip;https://www.mdv.de/downloads/;daten@mdv.de;Nein
 MVG;k.A.;Münchner Verkehrsgesellschaft;Ja;https://www.mvg.de/static/gtfs/google_transit.zip;https://www.mvg.de/services/fahrgastservice/fahrplandaten.html;;Nein
 MVV;cc-by;Münchner Verkehrs- und Tarifverbund GmbH;Ja;https://www.mvv-muenchen.de/fileadmin/mediapool/02-Fahrplanauskunft/03-Downloads/openData/mvv_gtfs_01.zip;https://www.mvv-muenchen.de/fahrplanauskunft/fuer-entwickler/opendata/index.html;;Nein
 NAH.SH;CC-BY;Nahverkehrsverbund Schleswig-Holstein GmbH;ja;https://www.connect-info.net/opendata/gtfs/nah.sh/%CONNECT_FAHRPLANINFO_TOKEN%;;;hh-buffered.osm
