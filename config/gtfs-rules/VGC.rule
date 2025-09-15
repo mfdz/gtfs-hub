@@ -13,3 +13,10 @@
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:3040:0:3"}, "update":{"stop_lat":"48.71554", "stop_lon":"8.76361"}}
 # Heumaden (Calw) ;Hagebuttenw.
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08235:3045:0:3"}, "update":{"stop_lat":"48.71714", "stop_lon":"8.75913"}}
+
+# Remove line and stops (in Herrenberg), which are already provided via VVS feed
+# See https://github.com/stadtnavi/digitransit-ui/issues/1002
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4846:0:3"}} 
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4847:0:4"}}
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4854:0:3"}}
+{"op":"remove", "match":{"file":"routes.txt", "route_id":"cw-1-770-1"}} 
