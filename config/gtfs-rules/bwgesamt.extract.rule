@@ -6,3 +6,10 @@
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08118:7503"}, "update":{"stop_id":"de:08118:7503:tmp:tmp"}}
 {"op":"update", "match":{"file":"stops.txt", "stop_id":"de:08118:7503_Parent"}, "update":{"stop_id":"de:08118:7503"}}
 {"op":"update", "match":{"file":"stops.txt", "parent_station":"de:08118:7503_Parent"}, "update":{"parent_station":"de:08118:7503"}}
+
+# Remove line and stops (in Herrenberg), which are already provided via VVS feed
+# See https://github.com/stadtnavi/digitransit-ui/issues/1002
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4846:0:3"}} 
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4847:0:4"}}
+{"op":"remove", "match":{"file":"stops.txt", "stop_id":"de:08115:4854:0:3"}}
+{"op":"remove", "match":{"file":"routes.txt", "route_id":"cw-1-770-1"}} 
