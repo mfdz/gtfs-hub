@@ -71,8 +71,8 @@ dokumentiert.</p>
 <p>Weitere Informationen:</p>
 <ul>
   <li><a href='https://github.com/mfdz/gtfs-hub/'>GitHub-Repository dieser Seite</a></li>
-  <li><a href='https://developers.google.com/transit/gtfs/reference/'>GTFS-Spezifikation</a></li>
-  <li><a href='https://gtfs.org/best-practices/'>GTFS Best Practices</a></li>
+  <li><a href='https://gtfs.org/documentation/schedule/reference/'>GTFS-Schedule-Spezifikation</a></li>
+  <li><a href='https://gtfs.org/documentation/schedule/schedule-best-practices/'>GTFS Schedule Best Practices</a></li>
   <li><a href='https://developers.google.com/transit/gtfs/reference/gtfs-extensions'>Google GTFS Extensions</a></li>
 </ul>
 
