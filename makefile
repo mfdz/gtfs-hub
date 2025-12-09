@@ -1,4 +1,4 @@
-HOST_MOUNT = $(shell set +e; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
+HOST_MOUNT = $(shell set +e +u; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
 
