@@ -10,7 +10,7 @@ GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
 GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
 
 # Docker image definitions
-PFADLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
+PFAEDLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
 GTFSVTOR_IMAGE=mfdz/gtfsvtor
 OBA_TRANSFORMER_IMAGE=mfdz/onebusaway-gtfs-transformer-cli:4.0.1-SNAPSHOT
 OBA_MERGE_IMAGE=mfdz/onebusaway-gtfs-merge-cli:4.0.1-SNAPSHOT
@@ -41,7 +41,7 @@ OSMIUM = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MO
 OSMIUM_UPDATE = docker run -i --rm -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) $(PYOSMIUM_IMAGE) pyosmium-up-to-date
 OSMOSIS = docker run -i --rm -v $(HOST_MOUNT)/config/osm:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA) $(OSMOSIS_IMAGE)
 TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA) -e JAVA_TOOL_OPTIONS="-Xmx20g" $(OBA_TRANSFORMER_IMAGE)
-PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(PFADLE_IMAGE)
+PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(PFAEDLE_IMAGE)
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm  -e JAVA_TOOL_OPTIONS="-Xmx18g" $(OBA_MERGE_IMAGE) --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
