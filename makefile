@@ -1,3 +1,11 @@
+# https://stackoverflow.com/a/12231321/1072129
+# Check Make version (we need at least GNU Make 3.82). Fortunately,
+# 'undefine' directive has been introduced exactly in GNU Make 3.82.
+ifeq ($(filter undefine,$(value .FEATURES)),)
+$(error Unsupported Make version. \
+    gtfs-hub does not work with GNU Make $(MAKE_VERSION), please use GNU Make 3.82 or above.)
+endif
+
 HOST_MOUNT = $(shell set +e +u; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
