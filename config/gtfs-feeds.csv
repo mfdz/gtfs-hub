@@ -21,7 +21,7 @@ NWL;CC BY 4.0;NWL;Nein;https://www.opendata-oepnv.de/dataset/89892705-b6e7-4ffc-
 OstalbMobil;dl-de/by-2.0;Datensatz der NVBW GmbH;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/oam.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
 REB;Lizenz, eingeschränkte Nutzung, kostenfrei (?);;Ja;https://gtfs.rhoenenergie-bus.de/GTFS.zip;https://mobilithek.info/offers/110000000002933000;info@re-fd.de;Nein
 RNV;dl-de/by-2.0;Rhein-Neckar-Verkehr GmbH (rnv);Ja;https://gtfs-sandbox-dds.rnv-online.de/latest/gtfs.zip;https://opendata.rnv-online.de/dataset/gtfs-general-transit-feed-specification;opendata@rnv-online.de;bw-buffered.osm
-SWISS;Eigene;opentransportdata.swiss;Ja;https://data.opentransportdata.swiss/de/dataset/timetable-2025-gtfs2020/permalink;https://data.opentransportdata.swiss/dataset/timetable-2025-gtfs2020;opendata@sbb.ch;Nein
+SWISS;Eigene;opentransportdata.swiss;Ja;https://data.opentransportdata.swiss/de/dataset/timetable-2026-gtfs2020/permalink;https://data.opentransportdata.swiss/dataset/timetable-2026-gtfs2020;opendata@sbb.ch;Nein
 SWU;ODbL-1.0;;Ja;https://gtfs.swu.de/daten/SWU.zip;https://www.swu.de/privatkunden/service/mobilitaet/gtfs-daten/;Christian.Burst@swu.de;bw-buffered.osm
 TGO;dl-de/by-2.0 / Shapes ODbL;Datensatz der NVBW GmbH, Shapes (C) OpenStreetMap Mitwirkende;Ja;https://www.nvbw.de/fileadmin/user_upload/service/open_data/fahrplandaten_mit_liniennetz/tgo.zip;https://www.nvbw.de/open-data/fahrplandaten/fahrplandaten-mit-liniennetz;opendata@nvbw.de;Nein
 VAGFR;dl-de/by-2.0;VAG Freiburg;Ja;https://www.vag-freiburg.de/fileadmin/gtfs/VAGFR.zip;https://www.vag-freiburg.de/fahrplan/fahrplanauskunft;Klaus.Funke@vagfr.de;Nein
