@@ -6,6 +6,11 @@ $(error Unsupported Make version. \
     gtfs-hub does not work with GNU Make $(MAKE_VERSION), please use GNU Make 3.82 or above.)
 endif
 
+# SHELL="/bin/bash"
+# # > The .SHELLFLAGS variable was added in GNU make 3.82.
+# # .SHELLFLAGS="-eu -O extglob -c"
+# .SHELLFLAGS="-eux"
+
 HOST_MOUNT = $(shell set +e +u; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
@@ -22,9 +27,11 @@ PFAEDLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
 GTFSVTOR_IMAGE=mfdz/gtfsvtor
 OBA_TRANSFORMER_IMAGE=mfdz/onebusaway-gtfs-transformer-cli:4.0.1-SNAPSHOT
 OBA_MERGE_IMAGE=mfdz/onebusaway-gtfs-merge-cli:4.0.1-SNAPSHOT
+# todo: use gtfsclean?
 GTFSTIDY_IMAGE=derhuerst/gtfstidy
 OSMOSIS_IMAGE=mfdz/osmosis:0.47-1-gd370b8c4
 PYOSMIUM_IMAGE=mfdz/pyosmium
+DUCKDB_GTFS_IMPORTER_IMAGE=ghcr.io/opendatavbb/duckdb-gtfs-importer:1
 GTFS_VIA_DUCKDB_IMAGE=ghcr.io/public-transport/gtfs-via-duckdb:5
 
 .SUFFIXES:
@@ -54,6 +61,8 @@ PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm  -e JAVA_TOOL_OPTIONS="-Xmx18g" $(OBA_MERGE_IMAGE) --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
+# todo
+DUCKDB_GTFS_IMPORTER = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www $(DUCKDB_GTFS_IMPORTER_IMAGE)
 GTFS_VIA_DUCKDB = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -w / $(GTFS_VIA_DUCKDB_IMAGE)
 
 
