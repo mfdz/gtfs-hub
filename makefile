@@ -1,3 +1,16 @@
+# https://stackoverflow.com/a/12231321/1072129
+# Check Make version (we need at least GNU Make 3.82). Fortunately,
+# 'undefine' directive has been introduced exactly in GNU Make 3.82.
+ifeq ($(filter undefine,$(value .FEATURES)),)
+$(error Unsupported Make version. \
+    gtfs-hub does not work with GNU Make $(MAKE_VERSION), please use GNU Make 3.82 or above.)
+endif
+
+# SHELL="/bin/bash"
+# # > The .SHELLFLAGS variable was added in GNU make 3.82.
+# # .SHELLFLAGS="-eu -O extglob -c"
+# .SHELLFLAGS="-eux"
+
 HOST_MOUNT = $(shell set +e +u; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
@@ -14,9 +27,12 @@ PFAEDLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
 GTFSVTOR_IMAGE=mfdz/gtfsvtor
 OBA_TRANSFORMER_IMAGE=mfdz/onebusaway-gtfs-transformer-cli:4.0.1-SNAPSHOT
 OBA_MERGE_IMAGE=mfdz/onebusaway-gtfs-merge-cli:4.0.1-SNAPSHOT
+# todo: use gtfsclean?
 GTFSTIDY_IMAGE=derhuerst/gtfstidy
 OSMOSIS_IMAGE=mfdz/osmosis:0.47-1-gd370b8c4
 PYOSMIUM_IMAGE=mfdz/pyosmium
+DUCKDB_GTFS_IMPORTER_IMAGE=ghcr.io/opendatavbb/duckdb-gtfs-importer:1
+GTFS_VIA_DUCKDB_IMAGE=ghcr.io/public-transport/gtfs-via-duckdb:5
 
 .SUFFIXES:
 .DEFAULT_TARGET: gtfs
@@ -45,6 +61,9 @@ PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm  -e JAVA_TOOL_OPTIONS="-Xmx18g" $(OBA_MERGE_IMAGE) --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
+# todo
+DUCKDB_GTFS_IMPORTER = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www $(DUCKDB_GTFS_IMPORTER_IMAGE)
+GTFS_VIA_DUCKDB = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -w / $(GTFS_VIA_DUCKDB_IMAGE)
 
 
 # Download/Update OSM extracts from Geofabrik
@@ -224,6 +243,26 @@ data/gtfs/%.gtfs.zip: data/gtfs/%.with_shapes.gtfs.zip
 data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 	$(info running GTFSVTOR on the $* GTFS feed)
 	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
+
+# run all shell commands in one shell
+# > The .ONESHELL variable was added in GNU make 3.82.
+.ONESHELL: data/www/%.gtfs.duckdb
+data/www/%.gtfs.duckdb: data/gtfs/%.gtfs
+	$(info importing the $* GTFS feed into $(@F))
+
+	gtfs_files=()
+	shopt -s nullglob
+	for file in "data/gtfs/$(<F)/"*.txt; do
+		gtfs_files+=( "${TOOL_DATA}/gtfs/$(<F)/$$(basename "$$file")" )
+	done
+
+	# make atomic by using a temporary file
+	rm -f "data/www/$(@F).tmp"{,.wal}
+	$(GTFS_VIA_DUCKDB) \
+		-d --import-metadata \
+		"${TOOL_DATA}/www/$(@F).tmp" \
+		"$${gtfs_files[@]}"
+	mv "data/www/$(@F).tmp" "data/www/$(@F)"
 
 download: $(RAW_GTFS_FEEDS)
 	$(info Downloaded feeds)
