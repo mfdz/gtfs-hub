@@ -54,7 +54,7 @@ Thanks to everybody contributing to these tools, the OSM community and Geofabrik
 
 You'll need to have Docker installed.
 
-Also, make sure you're using the *GNU* flavor of `make`. The BSD `make` (e.g. on macOS) is not fully compatible with this project.
+Also, make sure you're using the *GNU* flavor of `make`, at least v3.82. The BSD `make` (e.g. on macOS) is not fully compatible with this project.
 
 ### Running GTFS-Hub
 
