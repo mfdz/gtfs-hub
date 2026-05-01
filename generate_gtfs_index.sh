@@ -9,6 +9,11 @@ cat << EOF
 <meta charset='utf-8'/>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
 <style>
+table { border-collapse: collapse; }
+table thead th, table tbody td { padding: .1em .2em; }
+table thead tr:last-child th { border-bottom: 1px solid #222; }
+table tbody tr:nth-child(odd) { background-color: #f0f0f0; }
+.border-left { border-left: 1px solid #222; padding-left: .2em; }
 .errors { text-align: right; color: rgb(255, 0, 0); }
 .warnings { text-align: right; color: rgb(255, 120, 0) }
 </style>
@@ -21,16 +26,24 @@ da Last-Modified/If-Modified-Since derzeit nicht unterst&uuml;tzt werden bzw. de
 F&uuml;r diese k&ouml;nnen wir nicht automatisch die aktuellste Version pr&uuml;fen und hier listen. Wir freuen uns &uuml;ber einen Hinweis, sollte es aktuellere Daten oder auch
 weitere Datenquellen geben.</p>
 <p>Feedback bitte an "hb at mfdz de"</p>
-<table><tr>
+<table>
+<thead>
+<tr>
+  <th colspan="5"></th>
+  <th colspan="3" class="border-left">Validierung</th>
+</tr>
+<tr>
   <th>Verbund</th>
   <th>Datum</th>
   <th>Lizenz</th>
   <th>Namensnennung</th>
   <th>Download</th>
-  <th>Validierung</th>
+  <th class="border-left">Report</th>
   <th>Fehler</th>
   <th>Warnungen</th>
 </tr>
+</thead>
+<tbody>
 EOF
 
 while IFS=';' read -r name lizenz nammensnennung permanent downloadurl infourl email addshapes
@@ -56,7 +69,7 @@ do
           <td>$lizenz</td>
           <td>$nammensnennung</td>
           <td><a href="$downloadurl">Download</a></td>
-          <td><a href="gtfsvtor_$name.html">Report</a></td>
+          <td class="border-left"><a href="gtfsvtor_$name.html">Report</a></td>
           <td class='errors'>$ERRORS</td>
           <td class='warnings'>$WARNINGS</td>
         </tr>
@@ -64,6 +77,7 @@ EOF
 done
 
 cat << EOF
+</tbody>
 </table>
 
 <p>Unter <a href='https://www.github.com/mfdz/GTFS-Issues'>github/mfdz/GTFS-Issues</a> sind weitere Probleme oder Erweiterungswünsche
