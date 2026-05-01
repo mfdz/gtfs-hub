@@ -5,6 +5,8 @@ set -o pipefail
 name=$1
 gtfs_dir=$2
 
+# todo: keep original modification date+time
+
 if [ "$1" == "SPNV-BW" ]; then
   1>&2 echo "SPNV-BW routes.txt: filling missing agency_id values"
   set -x
