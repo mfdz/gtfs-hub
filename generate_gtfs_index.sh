@@ -19,8 +19,7 @@ table tbody tr:nth-child(odd) { background-color: #f0f0f0; }
 </style>
 <title>GTFS-Publikationen</title></head>
 <body><h1>GTFS-Publikationen</h1>
-<p>Nachfolgend sind f&uuml;r die uns derzeit bekannten GTFS-Ver&ouml;ffentlichungen deutscher Verkehrsunternehmen und- verb&uuml;nde die
-Ergebnisse der GTFSVTOR-Pr&uuml;fung mit dem <a href="https://github.com/mecatran/gtfsvtor">Mecatran GTFSVTOR</a> Validator von Laurent Grégoire aufgelistet.</p>
+<p>Nachfolgend sind f&uuml;r die uns derzeit bekannten GTFS-Ver&ouml;ffentlichungen deutscher Verkehrsunternehmen und- verb&uuml;nde die Ergebnisse der GTFSVTOR-Prüfung mittels <a href="https://github.com/mecatran/gtfsvtor">GTFSVTOR</a> und <a href="https://github.com/MobilityData/gtfs-validator">GTFS Validator</a> aufgelistet.</p>
 <p><b>HINWEIS</b>: Einige Verkehrsverb&uuml;nde ver&ouml;ffentlichen Datens&auml;tze derzeit unter einer versionsbezogenen URL. VBB und HVV rufen wir nicht automatisiert ab,
 da Last-Modified/If-Modified-Since derzeit nicht unterst&uuml;tzt werden bzw. der Datensatz nicht unter eine permanten URL bereitgestellt wird.
 F&uuml;r diese k&ouml;nnen wir nicht automatisch die aktuellste Version pr&uuml;fen und hier listen. Wir freuen uns &uuml;ber einen Hinweis, sollte es aktuellere Daten oder auch
@@ -31,6 +30,7 @@ weitere Datenquellen geben.</p>
 <tr>
   <th colspan="5"></th>
   <th colspan="3" class="border-left">Validierung GTFSVTOR</th>
+  <th colspan="3" class="border-left">Validierung GTFS Validator</th>
 </tr>
 <tr>
   <th>Verbund</th>
@@ -38,6 +38,9 @@ weitere Datenquellen geben.</p>
   <th>Lizenz</th>
   <th>Namensnennung</th>
   <th>Download</th>
+  <th class="border-left">Report</th>
+  <th>Fehler</th>
+  <th>Warnungen</th>
   <th class="border-left">Report</th>
   <th>Fehler</th>
   <th>Warnungen</th>
@@ -61,7 +64,11 @@ do
     GTFSVTOR_WARNINGS=${BASH_REMATCH[1]}
   fi
 
-  1>&2 echo "$name: $GTFSVTOR_ERRORS errors, $GTFSVTOR_WARNINGS warnings"
+  gtfs_validator_report="$GTFS_DIR/$name.raw.gtfs.zip.gtfs-validator-result/report.json"
+  GTFS_VALIDATOR_ERRORS="$(jq -rc 'add(.notices[] | select(.severity == "ERROR") | .totalNotices) // 0' "$gtfs_validator_report")"
+  GTFS_VALIDATOR_WARNINGS="$(jq -rc 'add(.notices[] | select(.severity == "WARNING") | .totalNotices) // 0' "$gtfs_validator_report")"
+
+  1>&2 echo "$name: $GTFSVTOR_ERRORS/$GTFS_VALIDATOR_ERRORS errors, $GTFSVTOR_WARNINGS/$GTFS_VALIDATOR_WARNINGS warnings"
 
   cat << EOF
   <tr>
@@ -73,6 +80,9 @@ do
           <td class="border-left"><a href="gtfsvtor_$name.html">Report</a></td>
           <td class='errors'>$GTFSVTOR_ERRORS</td>
           <td class='warnings'>$GTFSVTOR_WARNINGS</td>
+          <td class="border-left"><a href="gtfs_validator_$name.html">Report</a></td>
+          <td class='errors'>$GTFS_VALIDATOR_ERRORS</td>
+          <td class='warnings'>$GTFS_VALIDATOR_WARNINGS</td>
         </tr>
 EOF
 done

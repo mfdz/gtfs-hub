@@ -1,3 +1,5 @@
+THREADS:=$(shell nproc)
+
 HOST_MOUNT = $(shell set +e +u; if [ -n "$$HOST_MOUNT" ]; then echo "$$HOST_MOUNT"; else echo "$$PWD"; fi)
 TOOL_CFG = /cfg
 TOOL_DATA = /data
@@ -7,11 +9,13 @@ TAIL = $(shell set +e; if [ -x "$$(which gtail)" ]; then echo gtail; else echo t
 GTFS_FEEDS = $(shell cat config/gtfs-feeds.csv | $(TAIL) -n +2 | awk -F';' '{print $$1}' | tr '\n' ' ')
 RAW_GTFS_FEEDS = $(GTFS_FEEDS:%=data/gtfs/%.raw.gtfs.zip)
 GTFS_FEEDS_WITH_SHAPES = $(GTFS_FEEDS:%=data/gtfs/%.with_shapes.gtfs)
-GTFS_VALIDATION_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
+GTFSVTOR_RESULTS = $(GTFS_FEEDS:%=data/www/gtfsvtor_%.html)
+GTFS_VALIDATOR_RESULTS = $(GTFS_FEEDS:%=data/www/gtfs_validator_%.html)
 
 # Docker image definitions
 PFAEDLE_IMAGE=ghcr.io/ad-freiburg/pfaedle:2024-10-31t12-25
 GTFSVTOR_IMAGE=mfdz/gtfsvtor
+GTFS_VALIDATOR_IMAGE=ghcr.io/mobilitydata/gtfs-validator:7.1.0
 OBA_TRANSFORMER_IMAGE=mfdz/onebusaway-gtfs-transformer-cli:4.0.1-SNAPSHOT
 OBA_MERGE_IMAGE=mfdz/onebusaway-gtfs-merge-cli:4.0.1-SNAPSHOT
 GTFSTIDY_IMAGE=derhuerst/gtfstidy
@@ -44,6 +48,7 @@ TRANSFORM = docker run -i --rm -v $(HOST_MOUNT)/config/gtfs-rules:$(TOOL_CFG) -v
 PFAEDLE = docker run -i --rm -v $(HOST_MOUNT)/config:$(TOOL_CFG) -v $(HOST_MOUNT)/data/osm:$(TOOL_DATA)/osm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(PFAEDLE_IMAGE)
 MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm  -e JAVA_TOOL_OPTIONS="-Xmx18g" $(OBA_MERGE_IMAGE) --file=stops.txt --duplicateDetection=identity 
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
+GTFS_VALIDATOR = docker run -i --rm --memory 8g --platform linux/amd64 -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www $(GTFS_VALIDATOR_IMAGE)
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
 
 
@@ -221,6 +226,20 @@ data/gtfs/%.gtfs.zip: data/gtfs/%.with_shapes.gtfs.zip
 	$(info symlinking $(@F) -> $(<F))
 	ln -f "$<" "$@"
 
+data/gtfs/%.gtfs.zip.gtfs-validator-result: data/gtfs/%.gtfs.zip data/gtfs/%.gtfs
+	rm -rf "$@"
+	$(info running canonical GTFS Validator on the $* GTFS feed)
+	# todo: pass `--country_code` with value defined in config/gtfs-feeds.csv
+	$(GTFS_VALIDATOR) \
+		--date "$$(unzip -v -qq "$<" routes.txt | awk '{print $$5}' | awk -F- '{print $$3 "-" $$1 "-" $$2}')" \
+		--input "$<" \
+		--output_base "$@" \
+		--pretty \
+		--skip_validator_update \
+		--threads $(THREADS)
+data/www/gtfs_validator_%.html: data/gtfs/%.raw.gtfs.zip.gtfs-validator-result
+	cp "$</report.html" "$@"
+
 data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 	$(info running GTFSVTOR on the $* GTFS feed)
 	2>/dev/null $(GTFSVTOR) -o $(TOOL_DATA)/www/$(@F) -p -l 1000 $(TOOL_DATA)/gtfs/$(<F) | $(TAIL) -1 >data/gtfs/$*.gtfsvtor.log
@@ -228,7 +247,7 @@ data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 download: $(RAW_GTFS_FEEDS)
 	$(info Downloaded feeds)
 
-data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFS_VALIDATION_RESULTS)
+data/www/index.html: $(RAW_GTFS_FEEDS) $(GTFSVTOR_RESULTS) $(GTFS_VALIDATOR_RESULTS)
 	$(info generating GTFS feed index from $(^F))
 	./generate_gtfs_index.sh <config/gtfs-feeds.csv >data/www/index.html
 
