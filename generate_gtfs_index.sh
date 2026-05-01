@@ -30,7 +30,7 @@ weitere Datenquellen geben.</p>
 <thead>
 <tr>
   <th colspan="5"></th>
-  <th colspan="3" class="border-left">Validierung</th>
+  <th colspan="3" class="border-left">Validierung GTFSVTOR</th>
 </tr>
 <tr>
   <th>Verbund</th>
@@ -50,17 +50,18 @@ while IFS=';' read -r name lizenz nammensnennung permanent downloadurl infourl e
 do
   if [ "$name" == "shortname" ]; then continue; fi
 
-  ERRORS=""
-  WARNINGS=""
-  ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
-  WARNING_REGEX='^.* ([0-9]*) WARNING.*$'
-  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $ERROR_REGEX ]]; then
-    ERRORS=${BASH_REMATCH[1]}
+  GTFSVTOR_ERRORS=""
+  GTFSVTOR_WARNINGS=""
+  GTFSVTOR_ERROR_REGEX='^.* ([1-9][0-9]*) ERROR.*$'
+  GTFSVTOR_WARNING_REGEX='^.* ([0-9]*) WARNING.*$'
+  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $GTFSVTOR_ERROR_REGEX ]]; then
+    GTFSVTOR_ERRORS=${BASH_REMATCH[1]}
   fi
-  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $WARNING_REGEX ]]; then
-    WARNINGS=${BASH_REMATCH[1]}
+  if [[ `cat $GTFS_DIR/$name.gtfsvtor.log` =~ $GTFSVTOR_WARNING_REGEX ]]; then
+    GTFSVTOR_WARNINGS=${BASH_REMATCH[1]}
   fi
-  1>&2 echo "$name: $ERRORS errors, $WARNINGS warnings"
+
+  1>&2 echo "$name: $GTFSVTOR_ERRORS errors, $GTFSVTOR_WARNINGS warnings"
 
   cat << EOF
   <tr>
@@ -70,8 +71,8 @@ do
           <td>$nammensnennung</td>
           <td><a href="$downloadurl">Download</a></td>
           <td class="border-left"><a href="gtfsvtor_$name.html">Report</a></td>
-          <td class='errors'>$ERRORS</td>
-          <td class='warnings'>$WARNINGS</td>
+          <td class='errors'>$GTFSVTOR_ERRORS</td>
+          <td class='warnings'>$GTFSVTOR_WARNINGS</td>
         </tr>
 EOF
 done
