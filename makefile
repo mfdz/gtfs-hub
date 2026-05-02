@@ -50,6 +50,7 @@ MERGE = docker run -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs --rm  -e JAVA_TO
 GTFSVTOR = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www -e GTFSVTOR_OPTS=-Xmx8G $(GTFSVTOR_IMAGE)
 GTFS_VALIDATOR = docker run -i --rm --memory 8g --platform linux/amd64 -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs -v $(HOST_MOUNT)/data/www:$(TOOL_DATA)/www $(GTFS_VALIDATOR_IMAGE)
 GTFSTIDY = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs $(GTFSTIDY_IMAGE)
+GTFS_VALIDATOR_REPORT_AS_METRICS = docker run -i --rm -v $(HOST_MOUNT)/data/gtfs:$(TOOL_DATA)/gtfs ghcr.io/mobidata-bw/gtfs-validator-metrics-service:1.3.0 /app/format-metrics.js
 
 
 # Download/Update OSM extracts from Geofabrik
@@ -239,6 +240,9 @@ data/gtfs/%.gtfs.zip.gtfs-validator-result: data/gtfs/%.gtfs.zip data/gtfs/%.gtf
 		--threads $(THREADS)
 data/www/gtfs_validator_%.html: data/gtfs/%.raw.gtfs.zip.gtfs-validator-result
 	cp "$</report.html" "$@"
+grafana_gtfs_validator_metrics_%: data/gtfs/%.raw.gtfs.zip.gtfs-validator-result
+	$(GTFS_VALIDATOR_REPORT_AS_METRICS) "$(TOOL_DATA)/gtfs/$(<F)/report.json" \
+		| ./scripts/push-to-prometheus-pushgateway.sh "$(<F)"
 
 data/www/gtfsvtor_%.html: data/gtfs/%.raw.gtfs
 	$(info running GTFSVTOR on the $* GTFS feed)

@@ -10,6 +10,12 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus-data:/var/lib/prometheus
 
+  prometheus_pushgateway:
+    image: docker.io/prom/pushgateway # todo: pin?
+    ports:
+      - '127.0.0.1:9091:9091'
+      - '[::1]:9091:9091'
+
   grafana:
     image: docker.io/grafana/grafana:main # todo: pin?
     ports:
