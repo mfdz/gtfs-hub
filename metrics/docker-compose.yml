@@ -1,0 +1,19 @@
+name: metrics
+
+services:
+  prometheus:
+    image: docker.io/prom/prometheus:v3-distroless
+    ports:
+      - '127.0.0.1:9090:9090'
+      - '[::1]:9090:9090'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus-data:/var/lib/prometheus
+
+  grafana:
+    image: docker.io/grafana/grafana:main # todo: pin?
+    ports:
+      - '127.0.0.1:3000:3000'
+      - '[::1]:3000:3000'
+    volumes:
+      - ./grafana-data:/var/lib/grafana
